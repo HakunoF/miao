@@ -10,22 +10,23 @@
       body > p:first-child{
         color: red;
       }
-      .a:hover[tabindex="1"]{
+      /* 鼠标悬浮时为红色，按下去时为绿色，获得焦点时为蓝色 */
+      [tabindex="1"]:hover{
         color: red;
       }
-      .a:focus[tabindex="1"]{
+      [tabindex="1"]:focus{
         color: blue;
       }
-      .a:active[tabindex="1"]{
+      [tabindex="1"]:active{
         color: green;
-      }
-      p span:first-child{
+      }     
+      .a.c span{
         color: red;
       }
-      p span:nth-child(2){
+      .a.c span span:first-child{
         color: green;
       }
-      p span:last-child{
+      .a.c span span:last-child{
         color: blue;
       }
       div a:visited{
