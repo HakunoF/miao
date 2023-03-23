@@ -10,6 +10,7 @@
       body > p:first-child{
         color: red;
       }
+
       /* 鼠标悬浮时为红色，按下去时为绿色，获得焦点时为蓝色 */
       [tabindex="1"]:hover{
         color: red;
@@ -19,7 +20,9 @@
       }
       [tabindex="1"]:active{
         color: green;
-      }     
+      }  
+
+      /* 改变字体颜色 */
       .a.c span{
         color: red;
       }
@@ -29,6 +32,8 @@
       .a.c span span:last-child{
         color: blue;
       }
+
+      /* 链接样式修改 */     
       div a:visited{
         color: orange;
       }
@@ -44,9 +49,13 @@
       div a[href^="aaa"]{
         font-size: 30px;
       }
+
+      /* 4567改为红色 */
       .a ul li:nth-child(n+4):nth-child(-n+7){
         color: red;
       }
+
+      /* 让25及以内的元素为红色，让65及以上的元素为绿色，让35-50的元素为蓝色 */
       .b ul li:nth-child(n+65){
         color: green;
       }
@@ -56,6 +65,8 @@
       .b ul li:nth-child(-n+50):nth-child(n+35){
         color: blue;
       }
+
+      /* 质数与合数 */
       .prime ul li:nth-child(2n+4){
         color: aqua;
       }
