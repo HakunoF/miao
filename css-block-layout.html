@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .div1 {
+      background-color: black;
+      margin: auto;
+      min-width: 600px;
+    }
+
+    .div1 p {
+      width: 600px;
+      color: white;
+      margin: auto;
+    }
+
+    .div2 {
+      width: 600px;
+      margin: auto;
+    }
+
+    .div3 {
+      width: 600px;
+      margin: 30px auto 30px auto;
+
+    }
+
+    .div3 p {
+      border: black solid 3px;
+      width: 174px;
+      height: 34px;
+      text-align: center;
+      line-height: 34px;
+      background-color: pink;
+    }
+
+    .div3 p:hover {
+      background-color: red;
+    }
+
+    .div3 p:nth-child(n+5){
+      margin-left: 210px;
+    }
+
+    .div3 p:nth-child(n+9){
+      margin-left: 420px;
+    }
+
+    .div3 p:nth-child(4n+5) {
+      margin-top: -224px;
+    }
+
+    .div4 {
+      width: 600px;
+      margin: auto;
+    }
+
+    .div4 p {
+      border: 1px dotted;
+      border-color: transparent transparent black transparent;
+    }
+
+    .div4 p:nth-child(5) {
+      border-color: transparent;
+    }
+
+    footer {
+      background-color: violet;
+    }
+
+    footer p {
+      white-space: pre;
+      width: 600px;
+      text-align: center;
+      margin: auto;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </style>
+
+
+
+</head>
+<body>
+
+  <div class="div1">
+    <p>
+      hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果
+    </p>
+  </div>
+
+  <div class="div2">
+    <p>
+      页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px
+    </p>
+  </div>
+  <div class="div3">
+    <!-- 宽180高40包含边框 水平间隙30px 垂直间隙15px 边框宽度3px -->
+
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+    <p>产品</p>
+
+  </div>
+
+  <div class="div4">
+    <p>link</p>
+    <p>link</p>
+    <p>link</p>
+    <p>link</p>
+    <p>link</p>
+  </div>
+
+  <footer>
+    <p>       ©️版权所有
+       本页所有布局均使用块元素</p>
+  </footer>
+
+
+
+
+
+</body>
+</html>
