@@ -11,6 +11,7 @@
       margin: 0;
       padding: 0;
       height: 100vh;
+      min-width: 930px;
     }
 
     aside {
@@ -50,18 +51,15 @@
       box-sizing: border-box;
     }
 
-    main h2 {
+    .md1 {
       border: 1px solid black;
-      xborder-left: none;
-      xborder-top: none;
     }
 
 
     main {
       margin: 0;
-      height: 100vh;
-      xmin-width: 600px;
-      width: calc(100vw - 600px);
+      height: 100%;
+      width: calc(100% - 600px);
       background-color: lightgoldenrodyellow;
       margin-left: 200px;
       margin-top: -100vh;
@@ -69,8 +67,8 @@
       border: 1px solid black;
     }
 
-    ol {
-      height: calc(100vh - 100px);
+    .md2 {
+      height: calc(100vh - 80px);
       overflow-y: scroll;
     }
 
@@ -179,7 +177,10 @@
   </aside>
 
   <main>
-    <h2>fantasy</h2>
+    <div class="md1">
+      <h2>fantasy</h2>
+    </div>
+    <div class="md2">
     <ol>
       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sapiente voluptate culpa rerum eaque eum inventore ratione magnam eius a.</li>
       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure sapiente voluptate culpa rerum eaque eum inventore ratione magnam eius a.</li>
@@ -215,6 +216,7 @@
 
 
     </ol>
+   </div>
   </main>
 
   <div class="voc">
