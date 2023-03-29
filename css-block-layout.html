@@ -28,50 +28,64 @@
       margin: auto;
     }
 
-    .div3 {
-      width: 600px;
-      margin: 30px auto 30px auto;
-
-    }
-
-    .div3 p {
-      border: black solid 3px;
-      width: 174px;
-      height: 34px;
-      text-align: center;
-      line-height: 34px;
-      background-color: pink;
-    }
-
-    .div3 p:hover {
-      background-color: red;
-    }
-
-    .div3 p:nth-child(n+5){
-      margin-left: 210px;
-    }
-
-    .div3 p:nth-child(n+9){
-      margin-left: 420px;
-    }
-
-    .div3 p:nth-child(4n+5) {
-      margin-top: -224px;
-    }
-
-    .div4 {
+    .ul1 {
+      list-style: none;
+      padding: 0;
       width: 600px;
       margin: auto;
     }
 
-    .div4 p {
-      border: 1px dotted;
-      border-color: transparent transparent black transparent;
+    .ul1 li {
+      box-sizing: border-box;
+      height: 40px;
+      width: 180px;
+      border: 3px solid;
+      background-color: pink;
+      margin-bottom: 15px;
+      line-height: 34px;
+      text-align: center;
     }
 
-    .div4 p:nth-child(5) {
-      border-color: transparent;
+    .ul1 li:nth-child(n+5) {
+      margin-left: 210px;
     }
+
+    .ul1 li:nth-child(n+9) {
+      margin-left: 420px;
+    }
+
+    .ul1 li:nth-child(4n+5) {
+      margin-top: -220px;
+    }
+
+    .ul1 li:hover {
+      background-color: red;
+    }
+
+    .ul2 {
+      list-style: none;
+      margin: auto;
+      width: 600px;
+      padding: 0;
+
+    }
+
+    .ul2 li {
+      border-bottom: dotted 1px black;
+      margin-bottom: -1px;
+      overflow: hidden;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     footer {
       background: linear-gradient(blue, pink);
@@ -83,21 +97,7 @@
       width: 600px;
       text-align: center;
       margin: auto;
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   </style>
 
@@ -117,31 +117,30 @@
       页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px页面主体 宽度600px
     </p>
   </div>
-  <div class="div3">
+  <ul class="ul1">
     <!-- 宽180高40包含边框 水平间隙30px 垂直间隙15px 边框宽度3px -->
 
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
-    <p>产品</p>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+    <li>产品</li>
+  </ul>
 
-  </div>
-
-  <div class="div4">
-    <p>link</p>
-    <p>link</p>
-    <p>link</p>
-    <p>link</p>
-    <p>link</p>
-  </div>
+  <ul class="ul2">
+   <li>link</li>
+   <li>link</li>
+   <li>link</li>
+   <li>link</li>
+   <li>link</li>
+  </ul>
 
   <footer>
     <p>       ©️版权所有
