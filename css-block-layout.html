@@ -76,6 +76,36 @@
       overflow: hidden;
     }
 
+    .lb {
+      width: 600px;
+      margin: auto;
+      font-size: 0;
+    }
+
+
+     /* 宽180高40包含边框 水平间隙30px 垂直间隙15px 边框宽度3px */
+
+    .lb span {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 180px;
+      height: 40px;
+      border: 3px solid;
+      font-size: 15px;
+      margin-bottom: 15px;
+      text-align: center;
+      line-height: 40px;
+      background-color: pink;
+    }
+
+    .lb :not(span:nth-child(3n+1)) {
+      margin-left: 30px;
+    }
+
+    .lb span:hover {
+      background-color: red;
+    }
+
 
 
 
@@ -133,6 +163,24 @@
     <li>产品</li>
     <li>产品</li>
   </ul>
+
+
+
+  <div class="lb">
+    <!-- 宽180高40包含边框 水平间隙30px 垂直间隙15px 边框宽度3px -->
+   <span>产品1</span>
+   <span>产品2</span>
+   <span>产品3</span>
+   <span>产品4</span>
+   <span>产品5</span>
+   <span>产品6</span>
+   <span>产品7</span>
+   <span>产品8</span>
+   <span>产品9</span>
+   <span>产品10</span>
+   <span>产品11</span>
+   <span>产品12</span>
+  </div>
 
   <ul class="ul2">
    <li>link</li>
