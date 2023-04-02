@@ -57,41 +57,46 @@
     .categories .cat1 {
       display: none;
       list-style: none;
-      width: 300px;
-      position: relative;
+      width: 240px;
       text-align: left;
-    }
-
-
-    .categories:hover .cat1 {
-      display: block;
       position: absolute;
       top: 50px;
       left: -5px;
       color: black;
       font-weight: normal;
+      background-color: rgba(194, 241, 241, 0.29);
+      line-height: 40px;
+
+    }
+
+    .categories:hover .cat1 {
+      display: block;
+
     }
 
     .categories .cat1 .cat2 {
       display: none;
       list-style: none;
-      width: 500px;
+      width: 400px;
       text-align: left;
+      position: absolute;
+      top: 80px;
+      left: 280px;
+      font-weight: normal;
+      background-color: rgba(194, 241, 241, 0.29);
     }
 
     .health:hover .cat2 {
       display: block;
-      position: absolute;
-      top: 80px;
-      left: 250px;
     }
 
+    .cat1 li {
+      margin-left: 0;
+    }
 
-
-
-
-
-
+    .cat1 li:hover {
+      background-color: rgba(88, 91, 91, 0.39);
+    }
 
     .search {
       width: 300px;
