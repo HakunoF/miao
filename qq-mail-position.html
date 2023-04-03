@@ -8,78 +8,55 @@
   <title>Document</title>
 
   <style>
-    html, body {
+    html, body, .wrapper {
       width: 100%;
       height: 100%;
       margin: 0;
       padding: 0;
-      background: linear-gradient(rgb(216, 235, 242), #eddbcc);
     }
 
-    body > * {
-      margin: 0;
+    .wrapper {
+      background: linear-gradient(rgb(216, 235, 242), #eddbcc);
+      position: relative;
     }
 
     .top {
+      position: absolute;
+      top: 0;
       width: 100%;
       height: 150px;
-      background-color: transparent;
-      xbackground: linear-gradient(pink, #eddbcc);
     }
 
     h1 {
       margin: 0;
     }
 
-    .bottom {
-      position: relative;
-      width: 100%;
-      height: calc(100% - 150px);
-    }
 
     .left {
+      position: absolute;
+      top: 150px;
+      bottom: 0;
       width: 200px;
-      height: 100%;
+      overflow-y: scroll;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 2;
     }
 
     .left ul {
-      margin: 0;
-      position: relative;
-      top: 15px;
-      height: calc(100% - 30px);
-      overflow-y: scroll;
       list-style: none;
     }
 
-    .left ul li {
-      margin: 20px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
     .right {
-      width: calc(100% - 200px);
-      height: 100%;
-      background: linear-gradient(#eddbcc, #e4e7ea);
       position: absolute;
+      padding: 10px;
+      top: 150px;
+      bottom: 0;
       left: 200px;
-      top: 0;
+      background: linear-gradient(#eddbcc, #e4e7ea);
       border-radius: 30px;
-    }
-
-    .right p {
-      margin: 0;
-      position: relative;
-      top: 15px;
-      left: 15px;
-      height: calc(100% - 30px);
-      width: calc(100% - 30px);
       overflow-y: scroll;
     }
-
-
-
-
 
 
 
@@ -88,10 +65,10 @@
   </style>
 </head>
 <body>
-  <div class="top">
-    <h1>Hmail</h1>
-  </div>
-  <section class="bottom">
+  <div class="wrapper">
+    <div class="top">
+     <h1>Hmail</h1>
+   </div>
   <div class="left">
     <ul>
       <li>Compose</li>
@@ -228,6 +205,6 @@
     Hic magni, fugit placeat provident corrupti delectus, libero commodi nihil nam soluta similique molestias ut reiciendis labore omnis neque voluptatibus eaque eligendi ea praesentium possimus minus! Voluptatibus provident excepturi molestias.
     Beatae natus exercitationem dolorum inventore, ipsa pariatur neque harum iste maxime, repudiandae, ab veritatis! Alias, reprehenderit. Quae, reiciendis. Voluptatibus labore magnam distinctio, ipsum quasi quod ut pariatur vero perferendis. Accusamus.</p>
   </div>
-</section>
+</div>
 </body>
 </html>
