@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    label {
+      display: block;
+      width: 106px;
+      height: 106px;
+      box-sizing: border-box;
+      margin: 0;
+      border: 3px solid black;
+      position: relative;
+      overflow: hidden;
+    }
+
+    input {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      box-sizing: border-box;
+      width: 100px;
+      height: 100px;
+      top: 0;
+      left: 0;
+      display: none;
+      background-color: aqua;
+    }
+
+    img {
+      display: inline-block;
+      height: 100px;
+      width: auto;
+      position: absolute;
+      left: 0;
+    }
+
+    input:checked + img {
+      left: -2800px;
+      transition: steps(28) 1.2s;
+    }
+
+
+
+
+
+
+
+
+
+
+
+  </style>
+
+</head>
+
+
+<body>
+  <label>
+    <input type="checkbox">
+    <img src="xiaoguotu.png" alt="">
+  </label>
+
+
+
+</body>
+</html>
