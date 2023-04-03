@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    label {
+      display: block;
+      width: 270px;
+      height: 160px;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 10px;
+      background-color: #e7e7e7;
+      border: 3px solid #c9cac8;
+      border-radius: 80px;
+      position: relative;
+      transition: 0.2s;
+    }
+
+    input {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      box-sizing: border-box;
+      top: 0;
+      left: 55px;
+      right: 0;
+      width: 160px;
+      height: 160px;
+      display: none;
+      xtransition: 0.5s;
+    }
+
+    button {
+      display: inline-block;
+      width: 140px;
+      height: 140px;
+      border: none;
+      border-radius: 70px;
+      background-color: white;
+      position: absolute;
+      top: 7px;
+      left: 5px;
+      transition: 0.2s;
+      box-shadow: 0 0 20px rgba(91, 91, 91, 0.483);
+    }
+
+    input:checked + button {
+      left: 122px;
+    }
+
+    label:has(:checked) {
+      background-color: #72f15e;
+      border-color: #72f15e;
+    }
+
+
+
+
+
+</style>
+
+</head>
+<body>
+
+    <label>
+    <input type="checkbox">
+    <button></button>
+  </label>
+
+
+
+</body>
+</html>
