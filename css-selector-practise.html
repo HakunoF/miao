@@ -12,11 +12,11 @@
       }
 
       /* 鼠标悬浮时为红色，按下去时为绿色，获得焦点时为蓝色 */
-      [tabindex="1"]:hover{
-        color: red;
-      }
       [tabindex="1"]:focus{
         color: blue;
+      }
+      [tabindex="1"]:hover{
+        color: red;
       }
       [tabindex="1"]:active{
         color: green;
@@ -67,10 +67,11 @@
       }
 
       /* 质数与合数 */
-      .prime ul li:nth-child(2n+4){
+      .prime ul li:nth-child(2n+4),.prime ul li:nth-child(3n+9),.prime ul li:nth-child(5n+25), .prime ul li:nth-child(7n+49){
         color: aqua;
       }
-      .prime ul li:nth-child(3n+6){
+
+      /* .prime ul li:nth-child(3n+9){
         color: aqua;
       }
       .prime ul li:nth-child(5n+25){
@@ -79,7 +80,8 @@
       .prime ul li:nth-child(7n+49){
         color: aqua;
       }
-      .prime ul :not(.prime ul li:nth-child(2n+4)):not(.prime ul li:nth-child(3n+6)):not(.prime ul li:nth-child(5n+25)):not(.prime ul li:nth-child(7n+49)):not(.prime ul li:first-child){
+      */
+      .prime ul :not(.prime ul li:nth-child(2n+4)):not(.prime ul li:nth-child(3n+9)):not(.prime ul li:nth-child(5n+25)):not(.prime ul li:nth-child(7n+49)):not(.prime ul li:first-child){
         color: blueviolet;
       }
 
