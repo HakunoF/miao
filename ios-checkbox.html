@@ -18,7 +18,7 @@
       border: 3px solid #c9cac8;
       border-radius: 80px;
       position: relative;
-      transition: 0.2s;
+      transition: 0.5s;
     }
 
     input {
@@ -27,36 +27,33 @@
       position: absolute;
       box-sizing: border-box;
       top: 0;
-      left: 55px;
-      right: 0;
-      width: 160px;
-      height: 160px;
+      left: 0;
       display: none;
     }
 
-    button {
+    span {
       display: inline-block;
-      width: 140px;
-      height: 140px;
       border: none;
       border-radius: 70px;
       background-color: white;
       position: absolute;
       top: 7px;
+      bottom: 7px;
       left: 5px;
-      transition: 0.2s;
+      right: 119px;
       box-shadow: 0 0 20px rgba(91, 91, 91, 0.483);
     }
 
-    input:checked + button {
-      left: 122px;
+    input:checked + span {
+      left: 119px;
+      right: 5px;
+      transition: right 0.5s, left 0.7s;
     }
 
     label:has(:checked) {
       xbackground-color: #72f15e;
       border-color: #72f15e;
       box-shadow: inset 20px 0 0 80px #72f15e;
-
     }
 
 
@@ -68,9 +65,9 @@
 </head>
 <body>
 
-    <label>
+  <label>
     <input type="checkbox">
-    <button></button>
+    <span></span>
   </label>
 
 
