@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小米商城</title>
+  <base target="_blank">
+  <style type="text/less">
+    * {
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+      list-style: none;
+      white-space: nowrap;
+    }
+
+    html, body, .wrapper {
+      width: 100%;
+      min-width: 900px;
+    }
+    .container {
+      position: relative;
+      width: 1200px;
+      margin: auto;
+    }
+
+
+    /* 顶部菜单栏 */
+
+    .header {
+      background-color: #333333;
+      height: 40px;
+      width: 100%;
+    }
+
+    .header1 {
+      background-color: #333333;
+      margin: auto;
+      padding: 0;
+      width: 1200px;
+      height: 100%;
+      font-family: "Helvetica Neue" Helvetica Arial "Microsoft Yahei" "Hiragino Sans GB" "Heiti SC" "WenQuanYi Micro Hei" sans-serif;
+      line-height: 40px;
+      font-size: 0;
+      position: relative;
+
+      .top {
+      display: inline-block;
+      font-size: 12px;
+      position: absolute;
+        a {
+      color:#b0b0b0;
+      display: inline-block;
+      padding: 0 5px;
+        }
+        a:hover {
+          color: #ffffff;
+        }
+        span {
+      color: #424242;
+      font-size: 14px;
+      line-height: 40px;
+        }
+      }
+
+        .topleft {
+        left: 0;
+      }
+
+      .topright {
+        right: 0;
+      }
+    }
+
+
+    /* 搜索栏 */
+    .menuline {
+      height: 100px;
+
+      > * {
+        position: absolute;
+      }
+
+      .menu {
+        left: 250px;
+        top: 40px;
+
+        img {
+            width: 33%;
+          }
+          ul {
+            display: none;
+          }
+
+        > li {
+          display: inline-block;
+          font-size: initial;
+          padding: 0 8px;
+          text-align: center;
+        }
+
+        li:hover ul {
+          display: block;
+        }
+      }
+
+      
+      .search {
+        right: 0;
+        top: 34px;
+
+        input {
+          height: 30px;
+          vertical-align: bottom;
+        }
+        button {
+          height: 34px;
+          width: 40px;
+          vertical-align: bottom;
+        }
+      }
+      img {
+        top: 22px;
+      }
+    }
+
+    /* 侧边栏 */
+
+    aside {
+      height: 460px;
+      width: 230px;
+      background-color: #a4a2a2;
+      position: relative;
+      color: white;
+      ul {
+        width: 100%;
+        position: absolute;
+        top: 41px;
+        li {
+          line-height: 42px;
+          padding-left: 30px;
+        }
+      }
+
+    }
+
+
+
+
+
+
+
+
+
+
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+</head>
+<body>
+  <div class="wrapper">
+    <section class="header">
+      <div class="header1">
+        <div class="top topleft">
+          <a href="https://www.mi.com/">小米官网</a><span>|</span>
+          <a href="">小米商城</a><span>|</span>
+          <a href="">MIUI</a><span>|</span>
+          <a href="">IoT</a><span>|</span>
+          <a href="">云服务</a><span>|</span>
+          <a href="">天星数科</a><span>|</span>
+          <a href="">有品</a><span>|</span>
+          <a href="">小爱开放平台</a><span>|</span>
+          <a href="">企业团购</a><span>|</span>
+          <a href="">资质证照</a><span>|</span>
+          <a href="">协议规则</a><span>|</span>
+          <a href="">下载app</a><span>|</span>
+          <a href="">Select Location</a>
+        </div>
+        <div class="top topright">
+          <a href="">登录</a><span>|</span>
+          <a href="">注册</a><span>|</span>
+          <a href="">消息通知</a>
+          <a href="">购物车</a>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="menuline">
+        <img src="logo-mi2.png" width="56px" height="56px">
+        <ul class="menu">
+          <li>Xiaomi手机
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=320&h=220&f=webp&q=90"><br>
+                Xiaomi 13 <br>
+                3999元起
+              </li>
+            </ul>
+          </li>
+          <li>Redmi手机</li>
+          <li>电视</li>
+          <li>笔记本</li>
+          <li>平板</li>
+          <li>家电</li>
+          <li>路由器</li>
+          <li>服务中心</li>
+          <li>社区</li>
+        </ul>
+        <div class="search">
+          <input type="text" value="空调">
+          <button></button>
+        </div>
+      </div>
+      <aside>
+        <ul>
+          <li>手机</li>
+          <li>电视</li>
+          <li>家电</li>
+          <li>笔记本 平板</li>
+          <li>出行 穿戴</li>
+          <li>健康 儿童</li>
+          <li>生活 箱包</li>
+          <li>智能 路由器</li>
+          <li>电源 配件</li>
+        </ul>
+      </aside>
+
+
+
+
+
+
+
+    </div>
+
+
+  </div>
+</body>
+</html>
