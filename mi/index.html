@@ -4,29 +4,28 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta http-equiv="refresh" content="3"> -->
   <title>小米商城</title>
   <base target="_blank">
   <style type="text/less">
+  /* 通用格式 */
     * {
       margin: 0;
       padding: 0;
       text-decoration: none;
       list-style: none;
       white-space: nowrap;
+      box-sizing: border-box;
     }
 
     html, body, .wrapper {
       width: 100%;
       min-width: 900px;
-    }
-    .container {
-      position: relative;
-      width: 1200px;
-      margin: auto;
+      overflow: auto;
     }
 
 
-    /* 顶部菜单栏 */
+  /* 顶部菜单栏 */
 
     .header {
       background-color: #333333;
@@ -74,38 +73,92 @@
     }
 
 
-    /* 搜索栏 */
+  /* 搜索栏 */
     .menuline {
       height: 100px;
-
-      > * {
-        position: absolute;
-      }
-
+      width: 1200px;
+      margin: auto;
+      display: flex;
+      xborder: 1px solid black;
+      justify-content: space-between;
+      align-items: center;
       .menu {
-        left: 250px;
-        top: 40px;
-
-        img {
-            width: 33%;
+        height: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 20px;
+        color: #333333;
+        > li {
+          height: 100%;
+          line-height: 100px;
+          &:hover {
+          color: #ed712e;
+            > ul {
+              display: block;
+            }
           }
           ul {
+            width: 100%;
+            position: absolute;
+            top: 140px;
+            left: 0;
+            z-index: 1000;
+            color: initial;
+            font-size: 0;
             display: none;
+            border-top: 1px solid #e0e0e0;
+            background-color: white;
+            transition: 1s;
+            box-shadow: 0 1px 5px rgb(121, 121, 121);
+            li {
+              display: inline-block;
+              font-size: 13px;
+              margin: 30px 20px 30px 0;
+              line-height: 30px;
+              xvertical-align: baseline;
+              &:first-child{
+                margin-left: 200px;
+              }
+              span {
+                display: block;
+                text-align: center;
+                &:last-child {
+                  color: #ed712e;
+                }
+              }
+              img {
+                width: 160px;
+                height: 110px;
+              }
+            }
           }
 
-        > li {
-          display: inline-block;
-          font-size: initial;
-          padding: 0 8px;
-          text-align: center;
-        }
-
-        li:hover ul {
-          display: block;
+          /* ul {
+            width: 100%;
+            position: absolute;
+            top: -1000px;
+            left: 0;
+            z-index: 999;
+            color: initial;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            border: 1px solid;
+            gap: 40px;
+            transition: 0.1s;
+            li {
+              display: flex;
+              flex-flow: column nowrap;
+              align-items: center;
+              img {
+                width: 160px;
+                height: 110px;
+              }
+            }
+          } */
         }
       }
 
-      
       .search {
         right: 0;
         top: 34px;
@@ -115,35 +168,155 @@
           vertical-align: bottom;
         }
         button {
-          height: 34px;
+          height: 30px;
           width: 40px;
           vertical-align: bottom;
         }
       }
-      img {
-        top: 22px;
-      }
     }
 
-    /* 侧边栏 */
 
-    aside {
+
+
+
+
+
+
+  /* 侧边栏+轮播图 */
+    .carousel {
+      width: 1200px;
       height: 460px;
-      width: 230px;
-      background-color: #a4a2a2;
+      margin: auto;
       position: relative;
-      color: white;
-      ul {
-        width: 100%;
-        position: absolute;
-        top: 41px;
-        li {
-          line-height: 42px;
-          padding-left: 30px;
+      aside {
+        height: 100%;
+        width: 230px;
+        background-color: #a4a2a2;
+        position: relative;
+        color: white;
+        ul {
+          width: 100%;
+          position: absolute;
+          top: 20px;
+          li {
+            height: 42px;
+            line-height: 42px;
+            padding-left: 30px;
+            xborder: 1px solid;
+            &:hover {
+              background-color: #ed712e;
+            }
+          }
         }
       }
 
+      .slider {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: calc(100% - 230px);
+        height: 460px;
+        cursor: pointer;
+        overflow: hidden;
+        xborder: 2px solid;
+
+        input {
+          display: none;
+
+          &:checked:first-child ~ img:first-of-type,
+          &:checked:nth-child(2) ~ img:nth-of-type(2),
+          &:checked:nth-child(3) ~ img:nth-of-type(3),
+          &:checked:nth-child(4) ~ img:nth-of-type(4),
+          &:checked:nth-child(5) ~ img:nth-of-type(5),
+          &:checked:nth-child(6) ~ img:nth-of-type(6),
+          &:checked:nth-child(7) ~ img:nth-of-type(7),
+          &:checked:nth-child(8) ~ img:nth-of-type(8),
+          &:checked:nth-child(9) ~ img:nth-of-type(9),
+          &:checked:nth-child(10) ~ img:nth-of-type(10)
+          {
+            opacity: 1;
+            z-index: 888;
+          }
+
+          &:checked:first-child ~ .arrowleft label:last-child,
+          &:checked:first-child ~ .arrowright label:nth-child(2),
+          &:checked:nth-child(2) ~ .arrowleft label:first-child,
+          &:checked:nth-child(2) ~ .arrowright label:nth-child(3),
+          &:checked:nth-child(3) ~ .arrowleft label:nth-child(2),
+          &:checked:nth-child(3) ~ .arrowright label:nth-child(4),
+          &:checked:nth-child(4) ~ .arrowleft label:nth-child(3),
+          &:checked:nth-child(4) ~ .arrowright label:nth-child(1)
+          {
+            display: block;
+          }
+
+          &:checked:first-child ~ .indicators label:first-child,
+          &:checked:nth-child(2) ~ .indicators label:nth-child(2),
+          &:checked:nth-child(3) ~ .indicators label:nth-child(3),
+          &:checked:nth-child(4) ~ .indicators label:nth-child(4),
+          &:checked:nth-child(5) ~ .indicators label:nth-child(5),
+          &:checked:nth-child(6) ~ .indicators label:nth-child(6),
+          &:checked:nth-child(7) ~ .indicators label:nth-child(7),
+          &:checked:nth-child(8) ~ .indicators label:nth-child(8),
+          &:checked:nth-child(9) ~ .indicators label:nth-child(9),
+          &:checked:nth-child(10) ~ .indicators label:nth-child(10)
+          {
+            background-color: transparent;
+          }
+        }
+        img {
+          width: auto;
+          height: 100%;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          opacity: 0;
+          transition: 1s;
+        }
+        .indicators {
+          position: absolute;
+          bottom: 30px;
+          right: 30px;
+          z-index: 999;
+
+          label {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 2px solid #a1a2a3;
+            border-radius: 20px;
+            background-color: #888786;
+          }
+        }
+        .arrowleft, .arrowright {
+          position: absolute;
+          top: 180px;
+          z-index: 999;
+          font-size: 40px;
+          label {
+            position: absolute;
+            width: 40px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            color: #d1d0d0;
+            display: none;
+            &:hover {
+              background-color: #7f7f7f;
+              color: white;
+            }
+          }
+        }
+        .arrowleft {
+          left: 0;
+        }
+        .arrowright {
+          right: 40px;
+        }
+      }
     }
+
+
 
 
 
@@ -157,6 +330,7 @@
   </style>
   <script src="https://cdn.jsdelivr.net/npm/less" ></script>
 </head>
+
 <body>
   <div class="wrapper">
     <section class="header">
@@ -184,33 +358,125 @@
         </div>
       </div>
     </section>
-    <div class="container">
-      <div class="menuline">
-        <img src="logo-mi2.png" width="56px" height="56px">
-        <ul class="menu">
-          <li>Xiaomi手机
-            <ul>
-              <li>
-                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=320&h=220&f=webp&q=90"><br>
-                Xiaomi 13 <br>
-                3999元起
-              </li>
-            </ul>
-          </li>
-          <li>Redmi手机</li>
-          <li>电视</li>
-          <li>笔记本</li>
-          <li>平板</li>
-          <li>家电</li>
-          <li>路由器</li>
-          <li>服务中心</li>
-          <li>社区</li>
-        </ul>
-        <div class="search">
-          <input type="text" value="空调">
-          <button></button>
-        </div>
+    <div class="menuline">
+      <img src="logo-mi2.png" width="56px" height="56px">
+      <ul class="menu">
+        <li>Xiaomi手机
+          <ul class="test">
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=320&h=220&f=webp&q=90">
+              <span>Xiaomi 13</span>
+              <span> 3999元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/11e28a0a7c6a2ca07f0dc2044d3858c2.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Xiaomi 13 Pro</span>
+              <span>4999元起</span>
+
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/581f3a690e6803add02e4c9fde98cb78.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Xiaomi MIX Fold 2</span>
+              <span>8999元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/4ef3713521fb9d7f114aa8bb152e220d.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span> Xiaomi Civi 2</span>
+              <span>2299元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/fea69fb5990da9dfc909aa8279aaea7e.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span> Xiaomi 11 青春活力版</span>
+              <span>1399元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9c06f92c3216c90a566916e719935018.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Xiaomi 13 限量定制色</span>
+              <span>4999元</span>
+            </li>
+          </ul>
+        </li>
+        <li>Redmi手机
+          <ul>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c98a369cd511f4bab30e6f4d73438f5d.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi Note 12 Turbo</span>
+              <span>1999元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8d5c2622cf50cf3d1a00c3753a2bf070.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi 12C</span>
+              <span>699元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/482a5df88357219be7f8f6a1a06ce20a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi K60 Pro</span>
+              <span>3299元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/040746283de6bbdf554fe879f842747c.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi K60</span>
+              <span>2499元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2c6cf6ba252d5db186016c3b044f600f.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi Note 12 Pro 极速版</span>
+              <span>1699元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/570184de014d26516f4c334f7132878a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi Note 12 5G</span>
+              <span>1199元起</span>
+            </li>
+          </ul>
+        </li>
+        <li>电视
+          <ul>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi智能电视X55 2022</span>
+              <span>2199元</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi智能电视X65 2022</span>
+              <span>2799元</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8871821795310769c1d3896c99b12381.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>小米电视6 65" OLED</span>
+              <span>6699元</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0a1ae5341d2dae66cd42566c60d2d666.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>小米电视 大师 77" OLED</span>
+              <span>17999元</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/932b583c6eccd8aabfa0771f8a854940.jpg?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>小米透明电视</span>
+              <span>49999元</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ea3390a20547c7298a258528e4aa69ad.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>小米电视 大师 65英寸OLED</span>
+              <span>8999元</span>
+            </li>
+          </ul>
+        </li>
+        <li>笔记本</li>
+        <li>平板</li>
+        <li>家电</li>
+        <li>路由器</li>
+        <li>服务中心</li>
+        <li>社区</li>
+      </ul>
+      <div class="search">
+        <input type="text" value="空调">
+        <button></button>
       </div>
+    </div>
+    <div class="carousel">
       <aside>
         <ul>
           <li>手机</li>
@@ -218,20 +484,51 @@
           <li>家电</li>
           <li>笔记本 平板</li>
           <li>出行 穿戴</li>
+          <li>耳机 音箱</li>
           <li>健康 儿童</li>
           <li>生活 箱包</li>
           <li>智能 路由器</li>
           <li>电源 配件</li>
         </ul>
       </aside>
-
-
-
-
-
-
-
+      <div class="slider">
+        <input type="radio" name="sl" id="sl1" checked>
+        <input type="radio" name="sl" id="sl2">
+        <input type="radio" name="sl" id="sl3">
+        <input type="radio" name="sl" id="sl4">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0d03df40a5e8ef760731a8f4f3f61172.jpg?w=2452&h=920" alt="">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6494adc68900269b551de5ba96bd10a9.jpg?thumb=1&w=2452&h=920&f=webp&q=90" alt="">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d7c21d01bbe93eafc7d07d3796a3c59c.jpg?thumb=1&w=2452&h=920&f=webp&q=90" alt="">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/08a9d7eec7b055bac247b5068f817b1d.jpg?thumb=1&w=2452&h=920&f=webp&q=90" alt="">
+        <div class="indicators">
+          <label for="sl1"></label>
+          <label for="sl2"></label>
+          <label for="sl3"></label>
+          <label for="sl4"></label>
+        </div>
+        <div class="arrowleft">
+          <label for="sl1"><span>&lt;</span></label>
+          <label for="sl2"><span>&lt;</span></label>
+          <label for="sl3"><span>&lt;</span></label>
+          <label for="sl4"><span>&lt;</span></label>
+        </div>
+        <div class="arrowright">
+          <label for="sl1">&gt;</label>
+          <label for="sl2">&gt;</label>
+          <label for="sl3">&gt;</label>
+          <label for="sl4">&gt;</label>
+        </div>
+      </div>
     </div>
+
+
+
+
+
+
+
+
+
 
 
   </div>
