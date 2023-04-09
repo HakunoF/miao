@@ -11,9 +11,10 @@
       margin: 0;
       padding: 0;
       position: relative;
-      width: 1000px;
-      height: 500px;
+      width: 996px;
+      height: 380px;
       cursor: pointer;
+      xborder: 2px solid;
 
       input {
         display: none;
@@ -27,7 +28,7 @@
         &:checked:nth-child(7) ~ img:nth-of-type(7),
         &:checked:nth-child(8) ~ img:nth-of-type(8),
         &:checked:nth-child(9) ~ img:nth-of-type(9),
-        &:checked:nth-child(10) ~ img:nth-of-type(10),
+        &:checked:nth-child(10) ~ img:nth-of-type(10)
         {
           opacity: 1;
           z-index: 888;
@@ -43,6 +44,20 @@
         &:checked:nth-child(4) ~ .arrowright label:nth-child(1)
         {
           display: block;
+        }
+
+        &:checked:first-child ~ .indicators label:first-child,
+        &:checked:nth-child(2) ~ .indicators label:nth-child(2),
+        &:checked:nth-child(3) ~ .indicators label:nth-child(3),
+        &:checked:nth-child(4) ~ .indicators label:nth-child(4),
+        &:checked:nth-child(5) ~ .indicators label:nth-child(5),
+        &:checked:nth-child(6) ~ .indicators label:nth-child(6),
+        &:checked:nth-child(7) ~ .indicators label:nth-child(7),
+        &:checked:nth-child(8) ~ .indicators label:nth-child(8),
+        &:checked:nth-child(9) ~ .indicators label:nth-child(9),
+        &:checked:nth-child(10) ~ .indicators label:nth-child(10)
+        {
+          background-color: transparent;
         }
       }
       img {
@@ -70,7 +85,7 @@
       }
       .arrowleft, .arrowright {
         position: absolute;
-        top: 180px;
+        top: 150px;
         z-index: 999;
         font-size: 40px;
         label {
@@ -91,7 +106,7 @@
         left: 0;
       }
       .arrowright {
-        right: 0;
+        right: 40px;
       }
     }
 
