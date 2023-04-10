@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+    /* table table-dark table-striped table-bordered table-hover table-sm
+        实现bootstrap的以上类名，以让它们可以像bootstrap里一样用
+        https://getbootstrap.com/docs/5.3/content/tables/
+        https://getbootstrap.com/docs/4.1/content/tables/ */
+
+  /* table格式 */
+    .table {
+      text-align: left;
+      border-collapse: collapse;
+      tr > * {
+        padding: 8px;
+        width: 150px;
+      }
+      tr > th:first-child {
+        width: 50px;
+      }
+    }
+
+  /* table-sm格式 */
+    .table-sm {
+      tr > * {
+        padding: 2px;
+      }
+    }
+
+  /* table-bordered格式 */
+      .table-bordered {
+        th, td {
+          border: 1px solid #dfe2e6;
+        }
+    }
+
+  /* table-dark格式 */
+    .table-dark {
+      background-color: #222529;
+      color: white;
+    }
+
+  /* table-striped格式 */
+    .table-striped {
+      th, td {
+        border-bottom: 1px solid #dfe2e6;
+      }
+      tbody tr:not(tr:nth-child(2)) {
+        background-color: #f2f2f2;
+      }
+    }
+
+  /* dark&striped格式 */
+      .table-dark.table-striped {
+      th, td {
+        border-bottom: 1px solid #383b3e;
+      }
+      tbody tr:not(tr:nth-child(2)) {
+        background-color: #2d3034;
+      }
+    }
+
+  /* table-hover格式 */
+    .table-hover {
+      tbody tr:hover {
+        background-color: #ececec;
+      }
+    }
+
+  /* dark&hover格式 */
+    .table-dark.table-hover {
+      tbody tr:hover {
+        background-color: #333539;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+</head>
+<body>
+
+  <table class="table xtable-dark xtable-striped xtable-hover xtable-bordered xtable-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th>2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+
+
+  </table>
+
+</body>
+</html>
