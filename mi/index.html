@@ -113,9 +113,8 @@
             li {
               display: inline-block;
               font-size: 13px;
-              margin: 30px 20px 30px 0;
+              margin: 30px 30px 30px 0;
               line-height: 30px;
-              xvertical-align: baseline;
               &:first-child{
                 margin-left: 200px;
               }
@@ -132,30 +131,6 @@
               }
             }
           }
-
-          /* ul {
-            width: 100%;
-            position: absolute;
-            top: -1000px;
-            left: 0;
-            z-index: 999;
-            color: initial;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
-            border: 1px solid;
-            gap: 40px;
-            transition: 0.1s;
-            li {
-              display: flex;
-              flex-flow: column nowrap;
-              align-items: center;
-              img {
-                width: 160px;
-                height: 110px;
-              }
-            }
-          } */
         }
       }
 
@@ -194,17 +169,36 @@
         background-color: #a4a2a2;
         position: relative;
         color: white;
-        ul {
+        > ul {
           width: 100%;
           position: absolute;
           top: 20px;
-          li {
+          > li {
             height: 42px;
             line-height: 42px;
             padding-left: 30px;
             xborder: 1px solid;
             &:hover {
               background-color: #ed712e;
+            }
+            ul {
+              padding-top: 20px;
+              color: black;
+              height: 460px;
+              width: 100%;
+              background-color: pink;
+              display: flex;
+              flex-flow: column wrap;
+              gap: 35px 50px;
+              position: absolute;
+              top: -20px;
+              left: 100%;
+              z-index: 1000;
+              display: none;
+              li:last-child {
+                flex-grow: 1;
+              }
+
             }
           }
         }
@@ -293,10 +287,11 @@
           top: 180px;
           z-index: 999;
           font-size: 40px;
+          width: 40px;
+          height: 70px;
           label {
             position: absolute;
             width: 40px;
-            height: 70px;
             line-height: 70px;
             text-align: center;
             color: #d1d0d0;
@@ -311,10 +306,42 @@
           left: 0;
         }
         .arrowright {
-          right: 40px;
+          right: 0;
         }
       }
     }
+
+  /* 保证服务栏目 */
+    .sale {
+      width: 1200px;
+      height: 200px;
+      margin: 20px auto;
+      background-color: #7fffd4;
+      position: relative;
+      aside {
+        width: 230px;
+        height: 170px;
+        background-color: #5e5851;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-around;
+        align-content: space-around;
+        div {
+          width: 70px;
+          height: 70px;
+          background-color: bisque;
+        }
+      }
+      main {
+        img {
+          height: 170px;
+          width: 360px;
+        }
+
+      }
+
+    }
+
 
 
 
@@ -333,6 +360,7 @@
 
 <body>
   <div class="wrapper">
+  <!-- 顶部菜单栏 -->
     <section class="header">
       <div class="header1">
         <div class="top topleft">
@@ -358,6 +386,7 @@
         </div>
       </div>
     </section>
+  <!-- 搜索栏 -->
     <div class="menuline">
       <img src="logo-mi2.png" width="56px" height="56px">
       <ul class="menu">
@@ -464,7 +493,41 @@
             </li>
           </ul>
         </li>
-        <li>笔记本</li>
+        <li>笔记本
+          <ul>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/1c921506c8a7cd4841b29b941685d57e.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Xiaomi Book 12.4 <br>
+                二合一 键盘套装</span>
+              <span>2999元</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/55c17a67fff345d161ae55b9fb0d6f6a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Xiaomi Book Air 13</span>
+              <span>5999元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi G 游戏本 锐龙版 R5</span>
+              <span>5999元</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi G Pro 游戏本 锐龙版 R7</span>
+              <span>8799元</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c926842a23c7316b17792e075be9d055.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Xiaomi Book Pro 14 锐龙版</span>
+              <span>6399元起</span>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+              <span>Redmi G 游戏本 2022</span>
+              <span>7499元起</span>
+            </li>
+          </ul>
+        </li>
         <li>平板</li>
         <li>家电</li>
         <li>路由器</li>
@@ -476,10 +539,22 @@
         <button></button>
       </div>
     </div>
+  <!-- 侧边栏+轮播图 -->
     <div class="carousel">
       <aside>
         <ul>
-          <li>手机</li>
+          <li>手机
+            <ul>
+              <li>Xiaomi MIX系列</li>
+              <li>Xiaomi 数字系列</li>
+              <li>Xiaomi Civi系列</li>
+              <li>Xiaomi青春系列</li>
+              <li>Redmi K系列</li>
+              <li>Redmi Note系列</li>
+              <li>Redmi 数字系列</li>
+              <li></li>
+            </ul>
+          </li>
           <li>电视</li>
           <li>家电</li>
           <li>笔记本 平板</li>
@@ -520,12 +595,27 @@
         </div>
       </div>
     </div>
+  <!-- 保障服务栏目 -->
+    <div class="sale">
+      <aside>
+        <div>a</div>
+        <div>a</div>
+        <div>a</div>
+        <div>a</div>
+        <div>a</div>
+        <div>a</div>
+      </aside>
+      <main>
+        <div><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0cf5e958bc88727b50c5c5fba7a8f47a.jpg?w=632&h=340" alt=""></div>
+        <div><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6dd2f3e0de4e6cbba98fd3799cfa5bf7.jpg?w=632&h=340" alt=""></div>
+        <div><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d7d4be1a9e701e16de498f89b1865867.jpg?w=632&h=340" alt=""></div>
+      </main>
+    </div>
 
 
 
 
-
-
+    
 
 
 
