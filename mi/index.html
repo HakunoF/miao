@@ -17,6 +17,10 @@
       white-space: nowrap;
       box-sizing: border-box;
     }
+    * {
+      xbackground-color: rgba(0,0,0,0.08);
+      box-shadow: inset 0 0 1px red;
+    }
 
     html, body, .wrapper {
       width: 100%;
@@ -316,7 +320,6 @@
       width: 1200px;
       height: 200px;
       margin: 20px auto;
-      background-color: #7fffd4;
       position: relative;
       aside {
         width: 230px;
@@ -333,24 +336,228 @@
         }
       }
       main {
-        img {
-          height: 170px;
-          width: 360px;
+        height: 170px;
+        position: absolute;
+        right: 0;
+        left: 240px;
+        top: 0;
+        display: flex;
+        flex: none;
+        justify-content: space-between;
+        div {
+          height: 100%;
+          img {
+            height: 100%;
+          }
+          &:hover {
+            box-shadow: 0 0 10px rgb(206, 206, 206);
+          }
         }
-
       }
-
     }
 
+  /* 下方主体区域 */
+    .container {
+      width: 100%;
+      background-color: #f5f5f5;
+      display: flow-root;
+    }
 
+  /* banner图 */
+    .banner {
+      width: 1200px;
+      margin: auto;
+      img {
+        width: 1200px;
+      }
+    }
 
+  /* 手机专区 */
+    .phone {
+      width: 1200px;
+      margin: 30px auto;
+      display: flow-root;
+      .phone-header {
+        height: 60px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
+      .phone-main {
+        display: flex;
+        height: 604px;
+        width: 100%;
+        div {
+          width: 230px;
+          height: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        ul {
+          height: 100%;
+          width: calc(100% - 230px);
+          flex: none;
+          display: flex;
+          flex-flow: row wrap;
+          padding-left: 20px;
+          justify-content: space-between;
+          align-content: space-between;
+          li {
+            height: 290px;
+            width: 220px;
+          }
+        }
+      }
+    }
 
+  /* 穿戴专区 */
+    .wear {
+      width: 1200px;
+      margin: 30px auto;
+      display: flow-root;
+      .wear-header {
+        height: 60px;
+        width: 100%;
+        position: relative;
+        > * {
+          position: absolute;
+          line-height: 60px;
+        }
+        span {
+          color: black;
+          transition: 0s 999999s;
+          &.header-watch {
+            right: 0;
+          }
+          &.header-earpods {
+            right: 60px;
+            color: #ed712e;
+            transition: 0s 999999s;
+          }
+          &:hover {
+            color: #ed712e;
+            transition: none;
+          }
+        }
+        &:has(span:hover) span:not(:hover) {
+          color: black;
+          text-decoration: none;
+          transition: none;
+        }
+      }
 
+      .wear-main {
+        display: flex;
+        height: 604px;
+        width: 100%;
+        .subaside {
+          width: 230px;
+          height: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
 
+        .subsection {
+          height: 100%;
+          width: calc(100% - 230px);
+          position: relative;
+        }
 
+        ul {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          padding-left: 20px;
+          transition: 0s 999999s;
+          flex: none;
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: space-between;
+          align-content: space-between;
+          li {
+            height: 290px;
+            width: 220px;
+          }
+          &.watch {
+            visibility: hidden;
+          }
+        }
+      }
+      .wear-header:has(.header-watch:hover) ~ .wear-main .watch,
+      .wear-header:has(.header-earpods:hover) ~ .wear-main .earpods {
+        visibility: visible;
+        transition: none;
+      }
+      .wear-header:has(.header-watch:hover) ~ .wear-main ul:not(.watch),
+      .wear-header:has(.header-earpods:hover) ~ .wear-main ul:not(.earpods) {
+        visibility: hidden;
+        transition: none;
+      }
+    }
 
+  /* 平板专区 */
+    .laptop {
+      width: 1200px;
+      margin: 30px auto;
+      display: flow-root;
+      .laptop-header {
+        height: 60px;
+        width: 100%;
+        position: relative;
+        > * {
+          position: absolute;
+          line-height: 60px;
+        }
+        span {
+          color: #ed712e;
+          right: 0;
+          transition: 0s 999999s;
+        }
+      }
 
+      .laptop-main {
+        display: flex;
+        height: 604px;
+        width: 100%;
+        .subaside {
+          width: 230px;
+          height: 100%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .subsection {
+          height: 100%;
+          width: calc(100% - 230px);
+          position: relative;
+        }
+
+        ul {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          padding-left: 20px;
+          transition: 0s 999999s;
+          flex: none;
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: space-between;
+          align-content: space-between;
+          li {
+            height: 290px;
+            width: 220px;
+          }
+        }
+      }
+    }
 
 
 
@@ -612,14 +819,101 @@
       </main>
     </div>
 
+  <!-- 下方主体区域 -->
+    <div class="container">
+  <!-- banner区域 -->
+      <div class="banner">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8bfb50f1aa84b32bf2de165a72c2870e.jpg?thumb=1&w=2452&h=240&f=webp&q=90" alt="">
+      </div>
+  <!-- 手机专区 -->
+      <div class="phone">
+        <header class="phone-header">
+          <h3>手机</h3>
+          <span>查看更多</span>
+        </header>
+        <main class="phone-main">
+          <div>
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d91bb6cf7da0947e8a6e50e03f4daf06.jpg?thumb=1&w=468&h=1228&f=webp&q=90" alt="">
+          </div>
+          <ul>
+           <li>1</li>
+           <li>2</li>
+           <li>3</li>
+           <li>4</li>
+           <li>5</li>
+           <li>6</li>
+           <li>7</li>
+           <li>8</li>
+          </ul>
+        </main>
+      </div>
+  <!-- 穿戴专区 -->
+      <div class="wear">
+        <header class="wear-header">
+          <h3>智能穿戴</h3>
+          <span class="header-earpods">耳机</span>
+          <span class="header-watch">穿戴</span>
+        </header>
+        <main class="wear-main">
+          <div class="subaside">
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c9550c95ee33a22dc8db677dada00f09.jpg?thumb=1&w=468&h=1228&f=webp&q=90" alt="">
+          </div>
+          <div class="subsection">
+            <ul class="earpods">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            </ul>
+            <ul class="watch">
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+            </ul>
+          </div>
+        </main>
+      </div>
+  <!-- 平板专区 -->
+      <div class="laptop">
+        <header class="laptop-header">
+          <h3>笔记本 | 平板</h3>
+          <span class="header-hot">热门</span>
+        </header>
+        <main class="laptop-main">
+          <div class="subaside">
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/06d75467973ea188caa56e18a67647b4.png?thumb=1&w=468&h=1228&f=webp&q=90" alt="">
+          </div>
+          <div class="subsection">
+            <ul class="pad">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            </ul>
+          </div>
+        </main>
+      </div>
 
 
 
-    
 
 
 
 
+    </div>
 
   </div>
 </body>
