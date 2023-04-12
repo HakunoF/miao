@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 基本格式 */
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: rgba(0,0,0,0.08);
+      box-shadow: inset 0 0 1px red;
+     }
+
+     html, body, .wrapper {
+      height: 100%;
+      min-width: 900px;
+     }
+
+     .movie {
+      width: 300px;
+     }
+
+     .movie > * {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-auto-rows: 50px;
+      place-items: center;
+     }
+
+     .movie > * > span:first-child {
+      grid-row: 1 / span 2;
+     }
+
+     .director span:first-child {
+      grid-row: 1 / span 5;
+     }
+
+     
+
+
+
+  </style>
+</head>
+<body>
+  <section class="wrapper">
+    <section class="movie">
+      <div class="director">
+        <span>导演</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+      </div>
+      <div class="actors">
+        <span>主演</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+      </div>
+      <div class="producer">
+        <span>制片人</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+        <span>aaaaa</span>
+      </div>
+    </section>
+  </section>
+</body>
+</html>

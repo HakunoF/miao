@@ -184,25 +184,24 @@
             xborder: 1px solid;
             &:hover {
               background-color: #ed712e;
+              > ul {
+                visibility: visible;
+              }
             }
             ul {
-              padding-top: 20px;
+              padding: 20px 50px 20px 30px;
               color: black;
               height: 460px;
-              width: 100%;
-              background-color: pink;
-              display: flex;
-              flex-flow: column wrap;
-              gap: 35px 50px;
+              background-color: white;
               position: absolute;
               top: -20px;
               left: 100%;
               z-index: 1000;
-              display: none;
-              li:last-child {
-                flex-grow: 1;
-              }
-
+              display: grid;
+              grid-auto-flow: column;
+              grid-template-rows: repeat(6, 1fr);
+              gap: 30px;
+              visibility: hidden;
             }
           }
         }
@@ -216,7 +215,6 @@
         height: 460px;
         cursor: pointer;
         overflow: hidden;
-        xborder: 2px solid;
 
         input {
           display: none;
@@ -243,7 +241,9 @@
           &:checked:nth-child(3) ~ .arrowleft label:nth-child(2),
           &:checked:nth-child(3) ~ .arrowright label:nth-child(4),
           &:checked:nth-child(4) ~ .arrowleft label:nth-child(3),
-          &:checked:nth-child(4) ~ .arrowright label:nth-child(1)
+          &:checked:nth-child(4) ~ .arrowright label:nth-child(5),
+          &:checked:nth-child(5) ~ .arrowleft label:nth-child(4),
+          &:checked:nth-child(5) ~ .arrowright label:nth-child(1)
           {
             display: block;
           }
@@ -284,6 +284,10 @@
             border: 2px solid #a1a2a3;
             border-radius: 20px;
             background-color: #888786;
+            &:hover {
+              background-color: transparent;
+              cursor: pointer;
+            }
           }
         }
         .arrowleft, .arrowright {
@@ -409,6 +413,10 @@
           li {
             height: 290px;
             width: 220px;
+            background-color: white;
+            &:hover {
+            box-shadow: 0 0 10px rgb(206, 206, 206);
+            }
           }
         }
       }
@@ -483,6 +491,21 @@
           li {
             height: 290px;
             width: 220px;
+            background-color: white;
+            &:not(:last-child):hover {
+            box-shadow: 0 0 10px rgb(206, 206, 206);
+            }
+            &:last-child {
+              background-color: unset;
+              div{
+                height: 135px;
+                margin-bottom: 20px;
+                background-color: white;
+                &:hover {
+                  box-shadow: 0 0 10px rgb(206, 206, 206);
+                }
+              }
+            }
           }
           &.watch {
             visibility: hidden;
@@ -554,9 +577,129 @@
           li {
             height: 290px;
             width: 220px;
+            background-color: white;
+            &:not(:last-child):hover {
+            box-shadow: 0 0 10px rgb(206, 206, 206);
+            }
+            &:last-child {
+              background-color: unset;
+              div{
+                height: 135px;
+                margin-bottom: 20px;
+                background-color: white;
+                &:hover {
+                  box-shadow: 0 0 10px rgb(206, 206, 206);
+                }
+              }
+            }
           }
         }
       }
+    }
+
+  /* 家电专区 */
+    .homeapp {
+        width: 1200px;
+        margin: 30px auto;
+        display: flow-root;
+        .homeapp-header {
+          height: 60px;
+          width: 100%;
+          position: relative;
+          > * {
+            position: absolute;
+            line-height: 60px;
+          }
+          span {
+            color: black;
+            transition: 0s 999999s;
+            &.header-tv {
+              right: 0;
+            }
+            &.header-hot {
+              right: 100px;
+              color: #ed712e;
+              transition: 0s 999999s;
+            }
+            &:hover {
+              color: #ed712e;
+              transition: none;
+            }
+          }
+          &:has(span:hover) span:not(:hover) {
+            color: black;
+            text-decoration: none;
+            transition: none;
+          }
+        }
+
+        .homeapp-main {
+          display: flex;
+          height: 604px;
+          width: 100%;
+          .subaside {
+            width: 230px;
+            height: 100%;
+            display: flex;
+            flex-flow: column;
+            flex: 1 0;
+            justify-content: space-between;
+            img {
+              width: 100%;
+              height: 290px;
+            }
+          }
+
+          .subsection {
+            height: 100%;
+            width: calc(100% - 230px);
+            position: relative;
+          }
+
+          ul {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            padding-left: 20px;
+            transition: 0s 999999s;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-gap: 24px;
+            li {
+              &:not(:last-child) {
+                background-color: white;
+                &:hover {
+                  box-shadow: 0 0 10px rgb(206, 206, 206);
+                }
+              }
+              div {
+                height: 135px;
+                background-color: white;
+                &:first-child {
+                  margin-bottom: 20px;
+                }
+                &:hover {
+                  box-shadow: 0 0 10px rgb(206, 206, 206);
+                }
+              }
+            }
+
+            &.tv {
+              visibility: hidden;
+            }
+          }
+        }
+        .homeapp-header:has(.header-tv:hover) ~ .homeapp-main .tv,
+        .homeapp-header:has(.header-hot:hover) ~ .homeapp-main .hot {
+          visibility: visible;
+          transition: none;
+        }
+        .homeapp-header:has(.header-tv:hover) ~ .homeapp-main ul:not(.tv),
+        .homeapp-header:has(.header-hot:hover) ~ .homeapp-main ul:not(.hot) {
+          visibility: hidden;
+          transition: none;
+        }
     }
 
 
@@ -742,7 +885,7 @@
         <li>社区</li>
       </ul>
       <div class="search">
-        <input type="text" value="空调">
+        <input type="text" placeholder="空调">
         <button></button>
       </div>
     </div>
@@ -759,18 +902,224 @@
               <li>Redmi K系列</li>
               <li>Redmi Note系列</li>
               <li>Redmi 数字系列</li>
-              <li></li>
             </ul>
           </li>
-          <li>电视</li>
-          <li>家电</li>
-          <li>笔记本 平板</li>
-          <li>出行 穿戴</li>
-          <li>耳机 音箱</li>
-          <li>健康 儿童</li>
-          <li>生活 箱包</li>
-          <li>智能 路由器</li>
-          <li>电源 配件</li>
+          <li>电视
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+              <li>13</li>
+              <li>14</li>
+              <li>15</li>
+              <li>16</li>
+              <li>17</li>
+              <li>18</li>
+              <li>19</li>
+              <li>20</li>
+              <li>21</li>
+              <li>22</li>
+              <li>23</li>
+              <li>24</li>
+            </ul>
+          </li>
+          <li>家电
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+              <li>13</li>
+              <li>14</li>
+              <li>15</li>
+              <li>16</li>
+              <li>17</li>
+              <li>18</li>
+              <li>19</li>
+              <li>20</li>
+              <li>21</li>
+              <li>22</li>
+              <li>23</li>
+              <li>24</li>
+            </ul>
+          </li>
+          <li>笔记本 平板
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+              <li>13</li>
+              <li>14</li>
+              <li>15</li>
+              <li>16</li>
+              <li>17</li>
+              <li>18</li>
+              <li>19</li>
+              <li>20</li>
+              <li>21</li>
+              <li>22</li>
+              <li>23</li>
+              <li>24</li>
+            </ul>
+          </li>
+          <li>出行 穿戴
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+              <li>13</li>
+              <li>14</li>
+              <li>15</li>
+              <li>16</li>
+              <li>17</li>
+              <li>18</li>
+              <li>19</li>
+              <li>20</li>
+              <li>21</li>
+              <li>22</li>
+              <li>23</li>
+              <li>24</li>
+            </ul>
+          </li>
+          <li>耳机 音箱
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+              <li>13</li>
+              <li>14</li>
+              <li>15</li>
+              <li>16</li>
+              <li>17</li>
+              <li>18</li>
+              <li>19</li>
+              <li>20</li>
+              <li>21</li>
+              <li>22</li>
+              <li>23</li>
+              <li>24</li>
+            </ul>
+          </li>
+          <li>健康 儿童
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+              <li>13</li>
+              <li>14</li>
+              <li>15</li>
+              <li>16</li>
+              <li>17</li>
+              <li>18</li>
+            </ul>
+          </li>
+          <li>生活 箱包
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+              <li>13</li>
+              <li>14</li>
+              <li>15</li>
+              <li>16</li>
+              <li>17</li>
+              <li>18</li>
+            </ul>
+          </li>
+          <li>智能 路由器
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+            </ul>
+          </li>
+          <li>电源 配件
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>8</li>
+              <li>9</li>
+              <li>10</li>
+              <li>11</li>
+              <li>12</li>
+            </ul>
+          </li>
         </ul>
       </aside>
       <div class="slider">
@@ -778,6 +1127,8 @@
         <input type="radio" name="sl" id="sl2">
         <input type="radio" name="sl" id="sl3">
         <input type="radio" name="sl" id="sl4">
+        <input type="radio" name="sl" id="sl5">
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6b996f91f354815eb138d63f2e7e9391.jpg?w=2452&h=920" alt="">
         <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0d03df40a5e8ef760731a8f4f3f61172.jpg?w=2452&h=920" alt="">
         <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6494adc68900269b551de5ba96bd10a9.jpg?thumb=1&w=2452&h=920&f=webp&q=90" alt="">
         <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d7c21d01bbe93eafc7d07d3796a3c59c.jpg?thumb=1&w=2452&h=920&f=webp&q=90" alt="">
@@ -787,18 +1138,21 @@
           <label for="sl2"></label>
           <label for="sl3"></label>
           <label for="sl4"></label>
+          <label for="sl5"></label>
         </div>
         <div class="arrowleft">
           <label for="sl1"><span>&lt;</span></label>
           <label for="sl2"><span>&lt;</span></label>
           <label for="sl3"><span>&lt;</span></label>
           <label for="sl4"><span>&lt;</span></label>
+          <label for="sl5"><span>&lt;</span></label>
         </div>
         <div class="arrowright">
           <label for="sl1">&gt;</label>
           <label for="sl2">&gt;</label>
           <label for="sl3">&gt;</label>
           <label for="sl4">&gt;</label>
+          <label for="sl5">&gt;</label>
         </div>
       </div>
     </div>
@@ -867,7 +1221,10 @@
             <li>5</li>
             <li>6</li>
             <li>7</li>
-            <li>8</li>
+            <li>
+              <div>8</div>
+              <div>9</div>
+            </li>
             </ul>
             <ul class="watch">
               <li>2</li>
@@ -877,7 +1234,9 @@
               <li>2</li>
               <li>2</li>
               <li>2</li>
-              <li>2</li>
+              <li>
+                <div>3</div>
+              </li>
             </ul>
           </div>
         </main>
@@ -901,11 +1260,57 @@
             <li>5</li>
             <li>6</li>
             <li>7</li>
-            <li>8</li>
+            <li>
+              <div>8</div>
+              <div>9</div>
+            </li>
             </ul>
           </div>
         </main>
       </div>
+
+  <!-- 家电专区 -->
+      <div class="homeapp">
+        <header class="homeapp-header">
+          <h3>家电</h3>
+          <span class="header-hot">热门</span>
+          <span class="header-tv">电视影音</span>
+        </header>
+        <main class="homeapp-main">
+          <div class="subaside">
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3d47879ec183e25a36e67e0219636e60.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/65e186001431a799d30fa84359f4b84e.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+          </div>
+          <div class="subsection">
+            <ul class="hot">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>
+              <div>8</div>
+              <div>9</div>
+            </li>
+            </ul>
+            <ul class="tv">
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>2</li>
+              <li>
+                <div>3</div>
+              </li>
+            </ul>
+          </div>
+        </main>
+      </div>
+
 
 
 
