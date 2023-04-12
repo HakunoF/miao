@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 基本格式 */
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: rgba(0,0,0,0.08);
+      box-shadow: inset 0 0 1px red;
+     }
+
+     html, body {
+      height: 100%;
+      min-width: 900px;
+     }
+
+     .wrapper {
+      width: 300px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 100px;
+     }
+
+     section:nth-child(4) {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 2;
+     }
+
+     section:nth-child(16) {
+      grid-column: 1 / span 2;
+      grid-row: 8 / span 2;
+     }
+
+     section:nth-child(11) {
+      grid-column: 2 / span 2;
+      grid-row: 6 / span 2;
+     }
+
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <section>1</section>
+    <section>2</section>
+    <section>3</section>
+    <section>4</section>
+    <section>5</section>
+    <section>6</section>
+    <section>7</section>
+    <section>8</section>
+    <section>9</section>
+    <section>10</section>
+    <section>11</section>
+    <section>12</section>
+    <section>13</section>
+    <section>14</section>
+    <section>15</section>
+    <section>16</section>
+    <section>17</section>
+    <section>18</section>
+  </div>
+
+
+
+</body>
+</html>
