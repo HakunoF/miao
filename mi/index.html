@@ -28,6 +28,11 @@
       overflow: auto;
     }
 
+    @font-face {
+      font-family: mi-font;
+      src: url(mi-font.ttf);
+      font-weight: 400;
+    }
 
   /* 顶部菜单栏 */
 
@@ -181,6 +186,13 @@
             height: 42px;
             line-height: 42px;
             padding-left: 30px;
+            &::after{
+              content: "\E623";
+              font-family: mi-font;
+              font-size: 20px;
+              position: absolute;
+              right: 20px;
+            }
             &:hover {
               background-color: #ed712e;
               > ul {
@@ -199,8 +211,6 @@
               display: grid;
               grid-auto-flow: column;
               grid-template-rows: repeat(6, 1fr);
-              xgrid-template-columns: ;
-              xgrid-auto-columns: ;
               gap: 30px;
               visibility: hidden;
             }
@@ -400,6 +410,9 @@
           img {
             width: 100%;
             height: 100%;
+            &:hover {
+              box-shadow: 0 0 10px rgb(206, 206, 206);
+            }
           }
         }
         ul {
@@ -469,6 +482,9 @@
           img {
             width: 100%;
             height: 100%;
+            &:hover {
+              box-shadow: 0 0 10px rgb(206, 206, 206);
+            }
           }
         }
 
@@ -555,6 +571,9 @@
           img {
             width: 100%;
             height: 100%;
+            &:hover {
+              box-shadow: 0 0 10px rgb(206, 206, 206);
+            }
           }
         }
 
@@ -648,6 +667,9 @@
             img {
               width: 100%;
               height: 290px;
+              &:hover {
+                box-shadow: 0 0 10px rgb(206, 206, 206);
+              }
             }
           }
 
@@ -701,6 +723,95 @@
           visibility: hidden;
           transition: none;
         }
+    }
+
+  /* 生活电器专区 */
+    .household {
+      width: 1200px;
+      margin: 30px auto;
+      .household-header {
+        height: 60px;
+        position: relative;
+        > * {
+          position: absolute;
+          line-height: 60px;
+        }
+        .household-header-option {
+          right: 0;
+          &:has(span:hover) span:not(:hover) {
+            color: black;
+            transition: none;
+          }
+          span {
+            margin-left: 20px;
+            transition: 0s 999999s;
+            &:hover {
+              transition: none;
+              color: #ed712e;
+            }
+            &:first-child {
+              color: #ed712e;
+            }
+          }
+
+        }
+      }
+
+      .household-main {
+        width: 100%;
+        height: 604px;
+        position: relative;
+        > * {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          display: grid;
+          grid-auto-flow: column;
+          grid-template-columns: 230px repeat(4, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          grid-gap: 24px;
+          transition: 0s 999999s;
+          visibility: hidden;
+          span {
+            background-color: white;
+            img {
+              height: 100%;
+              width: 100%;
+            }
+            &:hover {
+              box-shadow: 0 0 10px rgb(206, 206, 206);
+            }
+            &:not(:nth-last-child(-n+2)) {
+            grid-row-end: span 2;
+            }
+          }
+        }
+        .heater-main {
+          visibility: visible;
+        }
+      }
+
+      .household-header:has(span:nth-child(1):hover) + .household-main > div:nth-child(1),
+      .household-header:has(span:nth-child(2):hover) + .household-main > div:nth-child(2),
+      .household-header:has(span:nth-child(3):hover) + .household-main > div:nth-child(3),
+      .household-header:has(span:nth-child(4):hover) + .household-main > div:nth-child(4),
+      .household-header:has(span:nth-child(5):hover) + .household-main > div:nth-child(5),
+      .household-header:has(span:nth-child(6):hover) + .household-main > div:nth-child(6)
+      {
+        visibility: visible;
+        transition: none;
+      }
+
+      .household-header:has(span:nth-child(1):hover) + .household-main > :not(:nth-child(1)),
+      .household-header:has(span:nth-child(2):hover) + .household-main > :not(:nth-child(2)),
+      .household-header:has(span:nth-child(3):hover) + .household-main > :not(:nth-child(3)),
+      .household-header:has(span:nth-child(4):hover) + .household-main > :not(:nth-child(4)),
+      .household-header:has(span:nth-child(5):hover) + .household-main > :not(:nth-child(5)),
+      .household-header:has(span:nth-child(6):hover) + .household-main > :not(:nth-child(6))
+      {
+        visibility: hidden;
+        transition: none;
+      }
     }
 
 
@@ -895,6 +1006,7 @@
       <aside>
         <ul>
           <li>手机
+            <i class="right-arrow"></i>
             <ul>
               <li>Xiaomi MIX系列</li>
               <li>Xiaomi 数字系列</li>
@@ -907,30 +1019,25 @@
           </li>
           <li>电视
             <ul>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>6</li>
-              <li>7</li>
-              <li>8</li>
-              <li>9</li>
-              <li>10</li>
-              <li>11</li>
-              <li>12</li>
-              <li>13</li>
-              <li>14</li>
-              <li>15</li>
-              <li>16</li>
-              <li>17</li>
-              <li>18</li>
-              <li>19</li>
-              <li>20</li>
-              <li>21</li>
-              <li>22</li>
-              <li>23</li>
-              <li>24</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>aaa</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>ggggggggg</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>fouyfufoluglug</li>
+              <li>1 Lorem, ipsum dolor.</li>
+              <li>1 Lorem, ipsum dolor.</li>
             </ul>
           </li>
           <li>家电
@@ -1284,21 +1391,19 @@
           </div>
           <div class="subsection">
             <ul class="hot">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>
-              <div>8</div>
-              <div>9</div>
-            </li>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+              <li>
+                <div>8</div>
+                <div>9</div>
+              </li>
             </ul>
             <ul class="tv">
-              <li>2</li>
-              <li>2</li>
               <li>2</li>
               <li>2</li>
               <li>2</li>
@@ -1308,6 +1413,89 @@
                 <div>3</div>
               </li>
             </ul>
+          </div>
+        </main>
+      </div>
+  <!-- 生活电器专区 -->
+      <div class="household">
+        <header class="household-header">
+          <h3>生活电器</h3>
+          <div class="household-header-option">
+            <span class="heater">电暖器</span>
+            <span class="sweeper">扫地机</span>
+            <span class="aircleaner">空净</span>
+            <span class="cleaner">清洁</span>
+          </div>
+        </header>
+
+        <main class="household-main">
+          <div class="heater-main">
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c1f1dbfa1f47c2a7d8a0fff6d9930c4a.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/92a420f42eda98f401d650ea9b52409e.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            </span>
+            <span>1111</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+            <span>11</span>
+          </div>
+          <div class="sweeper-main">
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c1f1dbfa1f47c2a7d8a0fff6d9930c4a.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/92a420f42eda98f401d650ea9b52409e.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            </span>
+            <span>22222</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+            <span>11</span>
+          </div>
+          <div class="aircleaner-main">
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c1f1dbfa1f47c2a7d8a0fff6d9930c4a.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/92a420f42eda98f401d650ea9b52409e.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            </span>
+            <span>33333</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+            <span>11</span>
+          </div>
+          <div class="cleaner-main">
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c1f1dbfa1f47c2a7d8a0fff6d9930c4a.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/92a420f42eda98f401d650ea9b52409e.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
+            </span>
+            <span>44444</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+            <span>11</span>
           </div>
         </main>
       </div>
