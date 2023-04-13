@@ -20,6 +20,7 @@
       min-width: 900px;
      }
 
+     /* grid布局 */
      .wrapper {
       width: 300px;
       display: grid;
@@ -27,19 +28,14 @@
       grid-auto-rows: 100px;
      }
 
-     section:nth-child(4) {
-      grid-column: 1 / span 2;
-      grid-row: 2 / span 2;
+     section:nth-child(12n+4) {
+      grid-column: span 2;
+      grid-row: span 2;
      }
 
-     section:nth-child(16) {
-      grid-column: 1 / span 2;
-      grid-row: 8 / span 2;
-     }
-
-     section:nth-child(11) {
-      grid-column: 2 / span 2;
-      grid-row: 6 / span 2;
+     section:nth-child(12n+11) {
+      grid-column: span 2;
+      grid-row: span 2;
      }
 
 
