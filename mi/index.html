@@ -8,621 +8,440 @@
   <title>小米商城</title>
   <base target="_blank">
   <style type="text/less">
-  /* 通用格式 */
-    * {
-      margin: 0;
-      padding: 0;
-      text-decoration: none;
-      list-style: none;
-      white-space: nowrap;
-      box-sizing: border-box;
-    }
-    * {
-      xbackground-color: rgba(0,0,0,0.08);
-      box-shadow: inset 0 0 1px red;
-    }
-
-    html, body, .wrapper {
-      width: 100%;
-      min-width: 900px;
-      overflow: auto;
-    }
-
-    @font-face {
-      font-family: mi-font;
-      src: url(mi-font.ttf);
-      font-weight: 400;
-    }
-
-  /* 顶部菜单栏 */
-
-    .header {
-      background-color: #333333;
-      height: 40px;
-      width: 100%;
-    }
-
-    .header1 {
-      background-color: #333333;
-      margin: auto;
-      padding: 0;
-      width: 1200px;
-      height: 100%;
-      font-family: "Helvetica Neue" Helvetica Arial "Microsoft Yahei" "Hiragino Sans GB" "Heiti SC" "WenQuanYi Micro Hei" sans-serif;
-      line-height: 40px;
-      font-size: 0;
-      position: relative;
-
-      .top {
-      display: inline-block;
-      font-size: 12px;
-      position: absolute;
-        a {
-      color:#b0b0b0;
-      display: inline-block;
-      padding: 0 5px;
-        }
-        a:hover {
-          color: #ffffff;
-        }
-        span {
-      color: #424242;
-      font-size: 14px;
-      line-height: 40px;
-        }
+    /* 通用格式 */
+      * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        white-space: nowrap;
+        box-sizing: border-box;
+      }
+      * {
+        xbackground-color: rgba(0,0,0,0.08);
+        box-shadow: inset 0 0 1px red;
       }
 
-        .topleft {
-        left: 0;
+      html, body, .wrapper {
+        width: 100%;
+        min-width: 900px;
+        overflow: auto;
       }
 
-      .topright {
-        right: 0;
+      @font-face {
+        font-family: mi-font;
+        src: url(mi-font.ttf);
+        font-weight: 400;
       }
-    }
 
+    /* 顶部菜单栏 */
 
-  /* 搜索栏 */
-    .menuline {
-      height: 100px;
-      width: 1200px;
-      margin: auto;
-      display: flex;
-      xborder: 1px solid black;
-      justify-content: space-between;
-      align-items: center;
-      .menu {
+      .header {
+        background-color: #333333;
+        height: 40px;
+        width: 100%;
+      }
+
+      .header1 {
+        background-color: #333333;
+        margin: auto;
+        padding: 0;
+        width: 1200px;
         height: 100%;
-        display: flex;
-        flex-flow: row nowrap;
-        gap: 20px;
-        color: #333333;
-        > li {
-          height: 100%;
-          line-height: 100px;
-          &:hover {
-          color: #ed712e;
-            > ul {
-              display: block;
-            }
-          }
-          ul {
-            width: 100%;
-            position: absolute;
-            top: 140px;
-            left: 0;
-            z-index: 1000;
-            color: initial;
-            font-size: 0;
-            display: none;
-            border-top: 1px solid #e0e0e0;
-            background-color: white;
-            transition: 1s;
-            box-shadow: 0 1px 5px rgb(121, 121, 121);
-            li {
-              display: inline-block;
-              font-size: 13px;
-              margin: 30px 30px 30px 0;
-              line-height: 30px;
-              &:first-child{
-                margin-left: 200px;
-              }
-              span {
-                display: block;
-                text-align: center;
-                &:last-child {
-                  color: #ed712e;
-                }
-              }
-              img {
-                width: 160px;
-                height: 110px;
-              }
-            }
-          }
-        }
-      }
-
-      .search {
-        right: 0;
-        top: 34px;
-
-        input {
-          height: 30px;
-          vertical-align: bottom;
-        }
-        button {
-          height: 30px;
-          width: 40px;
-          vertical-align: bottom;
-        }
-      }
-    }
-
-
-
-
-
-
-
-
-  /* 侧边栏+轮播图 */
-    .carousel {
-      width: 1200px;
-      height: 460px;
-      margin: auto;
-      position: relative;
-      aside {
-        height: 100%;
-        width: 230px;
-        background-color: #a4a2a2;
+        font-family: "Helvetica Neue" Helvetica Arial "Microsoft Yahei" "Hiragino Sans GB" "Heiti SC" "WenQuanYi Micro Hei" sans-serif;
+        line-height: 40px;
+        font-size: 0;
         position: relative;
-        color: white;
-        > ul {
-          width: 100%;
-          position: absolute;
-          top: 20px;
+
+        .top {
+        display: inline-block;
+        font-size: 12px;
+        position: absolute;
+          a {
+        color:#b0b0b0;
+        display: inline-block;
+        padding: 0 5px;
+          }
+          a:hover {
+            color: #ffffff;
+          }
+          span {
+        color: #424242;
+        font-size: 14px;
+        line-height: 40px;
+          }
+        }
+
+          .topleft {
+          left: 0;
+        }
+
+        .topright {
+          right: 0;
+        }
+      }
+
+
+    /* 搜索栏 */
+      .menuline {
+        height: 100px;
+        width: 1200px;
+        margin: auto;
+        display: flex;
+        xborder: 1px solid black;
+        justify-content: space-between;
+        align-items: center;
+        .menu {
+          height: 100%;
+          display: flex;
+          flex-flow: row nowrap;
+          gap: 20px;
+          color: #333333;
           > li {
-            height: 42px;
-            line-height: 42px;
-            padding-left: 30px;
-            &::after{
-              content: "\E623";
-              font-family: mi-font;
-              font-size: 20px;
-              position: absolute;
-              right: 20px;
-            }
+            height: 100%;
+            line-height: 100px;
             &:hover {
-              background-color: #ed712e;
+            color: #ed712e;
               > ul {
-                visibility: visible;
+                display: block;
               }
             }
             ul {
-              padding: 20px 50px 20px 30px;
-              color: black;
-              height: 460px;
-              background-color: white;
+              width: 100%;
               position: absolute;
-              top: -20px;
-              left: 100%;
+              top: 140px;
+              left: 0;
               z-index: 1000;
-              display: grid;
-              grid-auto-flow: column;
-              grid-template-rows: repeat(6, 1fr);
-              gap: 30px;
-              visibility: hidden;
+              color: initial;
+              font-size: 0;
+              display: none;
+              border-top: 1px solid #e0e0e0;
+              background-color: white;
+              transition: 1s;
+              box-shadow: 0 1px 5px rgb(121, 121, 121);
+              li {
+                display: inline-block;
+                font-size: 13px;
+                margin: 30px 30px 30px 0;
+                line-height: 30px;
+                &:first-child{
+                  margin-left: 200px;
+                }
+                span {
+                  display: block;
+                  text-align: center;
+                  &:last-child {
+                    color: #ed712e;
+                  }
+                }
+                img {
+                  width: 160px;
+                  height: 110px;
+                }
+              }
             }
           }
         }
-      }
 
-      .slider {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: calc(100% - 230px);
-        height: 460px;
-        cursor: pointer;
-        overflow: hidden;
-
-        input {
-          display: none;
-
-          &:checked:first-child ~ img:first-of-type,
-          &:checked:nth-child(2) ~ img:nth-of-type(2),
-          &:checked:nth-child(3) ~ img:nth-of-type(3),
-          &:checked:nth-child(4) ~ img:nth-of-type(4),
-          &:checked:nth-child(5) ~ img:nth-of-type(5),
-          &:checked:nth-child(6) ~ img:nth-of-type(6),
-          &:checked:nth-child(7) ~ img:nth-of-type(7),
-          &:checked:nth-child(8) ~ img:nth-of-type(8),
-          &:checked:nth-child(9) ~ img:nth-of-type(9),
-          &:checked:nth-child(10) ~ img:nth-of-type(10)
-          {
-            opacity: 1;
-            z-index: 888;
-          }
-
-          &:checked:first-child ~ .arrowleft label:last-child,
-          &:checked:first-child ~ .arrowright label:nth-child(2),
-          &:checked:nth-child(2) ~ .arrowleft label:first-child,
-          &:checked:nth-child(2) ~ .arrowright label:nth-child(3),
-          &:checked:nth-child(3) ~ .arrowleft label:nth-child(2),
-          &:checked:nth-child(3) ~ .arrowright label:nth-child(4),
-          &:checked:nth-child(4) ~ .arrowleft label:nth-child(3),
-          &:checked:nth-child(4) ~ .arrowright label:nth-child(5),
-          &:checked:nth-child(5) ~ .arrowleft label:nth-child(4),
-          &:checked:nth-child(5) ~ .arrowright label:nth-child(1)
-          {
-            display: block;
-          }
-
-          &:checked:first-child ~ .indicators label:first-child,
-          &:checked:nth-child(2) ~ .indicators label:nth-child(2),
-          &:checked:nth-child(3) ~ .indicators label:nth-child(3),
-          &:checked:nth-child(4) ~ .indicators label:nth-child(4),
-          &:checked:nth-child(5) ~ .indicators label:nth-child(5),
-          &:checked:nth-child(6) ~ .indicators label:nth-child(6),
-          &:checked:nth-child(7) ~ .indicators label:nth-child(7),
-          &:checked:nth-child(8) ~ .indicators label:nth-child(8),
-          &:checked:nth-child(9) ~ .indicators label:nth-child(9),
-          &:checked:nth-child(10) ~ .indicators label:nth-child(10)
-          {
-            background-color: transparent;
-          }
-        }
-        img {
-          width: auto;
-          height: 100%;
-          position: absolute;
+        .search {
           right: 0;
-          bottom: 0;
-          opacity: 0;
-          transition: 1s;
-        }
-        .indicators {
-          position: absolute;
-          bottom: 30px;
-          right: 30px;
-          z-index: 999;
+          top: 34px;
 
-          label {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border: 2px solid #a1a2a3;
-            border-radius: 20px;
-            background-color: #888786;
-            &:hover {
-              background-color: transparent;
-              cursor: pointer;
-            }
+          input {
+            height: 30px;
+            vertical-align: bottom;
           }
-        }
-        .arrowleft, .arrowright {
-          position: absolute;
-          top: 180px;
-          z-index: 999;
-          font-size: 40px;
-          width: 40px;
-          height: 70px;
-          label {
-            position: absolute;
+          button {
+            height: 30px;
             width: 40px;
-            line-height: 70px;
-            text-align: center;
-            color: #d1d0d0;
-            display: none;
-            &:hover {
-              background-color: #7f7f7f;
-              color: white;
-            }
-          }
-        }
-        .arrowleft {
-          left: 0;
-        }
-        .arrowright {
-          right: 0;
-        }
-      }
-    }
-
-  /* 保证服务栏目 */
-    .sale {
-      width: 1200px;
-      height: 200px;
-      margin: 20px auto;
-      position: relative;
-      aside {
-        width: 230px;
-        height: 170px;
-        background-color: #5e5851;
-        display: flex;
-        flex-flow: wrap;
-        justify-content: space-around;
-        align-content: space-around;
-        div {
-          width: 70px;
-          height: 70px;
-          background-color: bisque;
-        }
-      }
-      main {
-        height: 170px;
-        position: absolute;
-        right: 0;
-        left: 240px;
-        top: 0;
-        display: flex;
-        flex: none;
-        justify-content: space-between;
-        div {
-          height: 100%;
-          img {
-            height: 100%;
-          }
-          &:hover {
-            box-shadow: 0 0 10px rgb(206, 206, 206);
+            vertical-align: bottom;
           }
         }
       }
-    }
 
-  /* 下方主体区域 */
-    .container {
-      width: 100%;
-      background-color: #f5f5f5;
-      display: flow-root;
-    }
 
-  /* banner图 */
-    .banner {
-      width: 1200px;
-      margin: auto;
-      img {
+
+
+
+
+
+
+    /* 侧边栏+轮播图 */
+      .carousel {
         width: 1200px;
-      }
-    }
-
-  /* 手机专区 */
-    .phone {
-      width: 1200px;
-      margin: 30px auto;
-      display: flow-root;
-      .phone-header {
-        height: 60px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .phone-main {
-        display: flex;
-        height: 604px;
-        width: 100%;
-        div {
-          width: 230px;
-          height: 100%;
-          img {
-            width: 100%;
-            height: 100%;
-            &:hover {
-              box-shadow: 0 0 10px rgb(206, 206, 206);
-            }
-          }
-        }
-        ul {
-          height: 100%;
-          width: calc(100% - 230px);
-          flex: none;
-          display: flex;
-          flex-flow: row wrap;
-          padding-left: 20px;
-          justify-content: space-between;
-          align-content: space-between;
-          li {
-            height: 290px;
-            width: 220px;
-            background-color: white;
-            &:hover {
-            box-shadow: 0 0 10px rgb(206, 206, 206);
-            }
-          }
-        }
-      }
-    }
-
-  /* 穿戴专区 */
-    .wear {
-      width: 1200px;
-      margin: 30px auto;
-      display: flow-root;
-      .wear-header {
-        height: 60px;
-        width: 100%;
+        height: 460px;
+        margin: auto;
         position: relative;
-        > * {
-          position: absolute;
-          line-height: 60px;
+        aside {
+          height: 100%;
+          width: 230px;
+          background-color: #a4a2a2;
+          position: relative;
+          color: white;
+          > ul {
+            width: 100%;
+            position: absolute;
+            top: 20px;
+            > li {
+              height: 42px;
+              line-height: 42px;
+              padding-left: 30px;
+              &::after{
+                content: "\E623";
+                font-family: mi-font;
+                font-size: 20px;
+                position: absolute;
+                right: 20px;
+              }
+              &:hover {
+                background-color: #ed712e;
+                > ul {
+                  visibility: visible;
+                }
+              }
+              ul {
+                padding: 20px 50px 20px 30px;
+                color: black;
+                height: 460px;
+                background-color: white;
+                position: absolute;
+                top: -20px;
+                left: 100%;
+                z-index: 1000;
+                display: grid;
+                grid-auto-flow: column;
+                grid-template-rows: repeat(6, 1fr);
+                gap: 30px;
+                visibility: hidden;
+              }
+            }
+          }
         }
-        span {
-          color: black;
-          transition: 0s 999999s;
-          &.header-watch {
+
+        .slider {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: calc(100% - 230px);
+          height: 460px;
+          cursor: pointer;
+          overflow: hidden;
+
+          input {
+            display: none;
+
+            &:checked:first-child ~ img:first-of-type,
+            &:checked:nth-child(2) ~ img:nth-of-type(2),
+            &:checked:nth-child(3) ~ img:nth-of-type(3),
+            &:checked:nth-child(4) ~ img:nth-of-type(4),
+            &:checked:nth-child(5) ~ img:nth-of-type(5),
+            &:checked:nth-child(6) ~ img:nth-of-type(6),
+            &:checked:nth-child(7) ~ img:nth-of-type(7),
+            &:checked:nth-child(8) ~ img:nth-of-type(8),
+            &:checked:nth-child(9) ~ img:nth-of-type(9),
+            &:checked:nth-child(10) ~ img:nth-of-type(10)
+            {
+              opacity: 1;
+              z-index: 888;
+            }
+
+            &:checked:first-child ~ .arrowleft label:last-child,
+            &:checked:first-child ~ .arrowright label:nth-child(2),
+            &:checked:nth-child(2) ~ .arrowleft label:first-child,
+            &:checked:nth-child(2) ~ .arrowright label:nth-child(3),
+            &:checked:nth-child(3) ~ .arrowleft label:nth-child(2),
+            &:checked:nth-child(3) ~ .arrowright label:nth-child(4),
+            &:checked:nth-child(4) ~ .arrowleft label:nth-child(3),
+            &:checked:nth-child(4) ~ .arrowright label:nth-child(5),
+            &:checked:nth-child(5) ~ .arrowleft label:nth-child(4),
+            &:checked:nth-child(5) ~ .arrowright label:nth-child(1)
+            {
+              display: block;
+            }
+
+            &:checked:first-child ~ .indicators label:first-child,
+            &:checked:nth-child(2) ~ .indicators label:nth-child(2),
+            &:checked:nth-child(3) ~ .indicators label:nth-child(3),
+            &:checked:nth-child(4) ~ .indicators label:nth-child(4),
+            &:checked:nth-child(5) ~ .indicators label:nth-child(5),
+            &:checked:nth-child(6) ~ .indicators label:nth-child(6),
+            &:checked:nth-child(7) ~ .indicators label:nth-child(7),
+            &:checked:nth-child(8) ~ .indicators label:nth-child(8),
+            &:checked:nth-child(9) ~ .indicators label:nth-child(9),
+            &:checked:nth-child(10) ~ .indicators label:nth-child(10)
+            {
+              background-color: transparent;
+            }
+          }
+          img {
+            width: auto;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: 1s;
+          }
+          .indicators {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+
+            label {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border: 2px solid #a1a2a3;
+              border-radius: 20px;
+              background-color: #888786;
+              &:hover {
+                background-color: transparent;
+                cursor: pointer;
+              }
+            }
+          }
+          .arrowleft, .arrowright {
+            position: absolute;
+            top: 180px;
+            z-index: 999;
+            font-size: 40px;
+            width: 40px;
+            height: 70px;
+            label {
+              position: absolute;
+              width: 40px;
+              line-height: 70px;
+              text-align: center;
+              color: #d1d0d0;
+              display: none;
+              &:hover {
+                background-color: #7f7f7f;
+                color: white;
+              }
+            }
+          }
+          .arrowleft {
+            left: 0;
+          }
+          .arrowright {
             right: 0;
           }
-          &.header-earpods {
-            right: 60px;
-            color: #ed712e;
-            transition: 0s 999999s;
-          }
-          &:hover {
-            color: #ed712e;
-            transition: none;
-          }
-        }
-        &:has(span:hover) span:not(:hover) {
-          color: black;
-          text-decoration: none;
-          transition: none;
         }
       }
 
-      .wear-main {
-        display: flex;
-        height: 604px;
-        width: 100%;
-        .subaside {
-          width: 230px;
-          height: 100%;
-          img {
-            width: 100%;
-            height: 100%;
-            &:hover {
-              box-shadow: 0 0 10px rgb(206, 206, 206);
-            }
-          }
-        }
-
-        .subsection {
-          height: 100%;
-          width: calc(100% - 230px);
-          position: relative;
-        }
-
-        ul {
-          position: absolute;
-          height: 100%;
-          width: 100%;
-          padding-left: 20px;
-          transition: 0s 999999s;
-          flex: none;
-          display: flex;
-          flex-flow: row wrap;
-          justify-content: space-between;
-          align-content: space-between;
-          li {
-            height: 290px;
-            width: 220px;
-            background-color: white;
-            &:not(:last-child):hover {
-            box-shadow: 0 0 10px rgb(206, 206, 206);
-            }
-            &:last-child {
-              background-color: unset;
-              div{
-                height: 135px;
-                margin-bottom: 20px;
-                background-color: white;
-                &:hover {
-                  box-shadow: 0 0 10px rgb(206, 206, 206);
-                }
-              }
-            }
-          }
-          &.watch {
-            visibility: hidden;
-          }
-        }
-      }
-      .wear-header:has(.header-watch:hover) ~ .wear-main .watch,
-      .wear-header:has(.header-earpods:hover) ~ .wear-main .earpods {
-        visibility: visible;
-        transition: none;
-      }
-      .wear-header:has(.header-watch:hover) ~ .wear-main ul:not(.watch),
-      .wear-header:has(.header-earpods:hover) ~ .wear-main ul:not(.earpods) {
-        visibility: hidden;
-        transition: none;
-      }
-    }
-
-  /* 平板专区 */
-    .laptop {
-      width: 1200px;
-      margin: 30px auto;
-      display: flow-root;
-      .laptop-header {
-        height: 60px;
-        width: 100%;
+    /* 保证服务栏目 */
+      .sale {
+        width: 1200px;
+        height: 200px;
+        margin: 20px auto;
         position: relative;
-        > * {
-          position: absolute;
-          line-height: 60px;
-        }
-        span {
-          color: #ed712e;
-          right: 0;
-          transition: 0s 999999s;
-        }
-      }
-
-      .laptop-main {
-        display: flex;
-        height: 604px;
-        width: 100%;
-        .subaside {
+        aside {
           width: 230px;
-          height: 100%;
-          img {
-            width: 100%;
+          height: 170px;
+          background-color: #5e5851;
+          display: flex;
+          flex-flow: wrap;
+          justify-content: space-around;
+          align-content: space-around;
+          div {
+            width: 70px;
+            height: 70px;
+            background-color: bisque;
+          }
+        }
+        main {
+          height: 170px;
+          position: absolute;
+          right: 0;
+          left: 240px;
+          top: 0;
+          display: flex;
+          flex: none;
+          justify-content: space-between;
+          div {
             height: 100%;
+            img {
+              height: 100%;
+            }
             &:hover {
               box-shadow: 0 0 10px rgb(206, 206, 206);
             }
           }
         }
+      }
 
-        .subsection {
-          height: 100%;
-          width: calc(100% - 230px);
-          position: relative;
-        }
+    /* 下方主体区域 */
+      .container {
+        width: 100%;
+        background-color: #f5f5f5;
+        display: flow-root;
+      }
 
-        ul {
-          position: absolute;
-          height: 100%;
-          width: 100%;
-          padding-left: 20px;
-          transition: 0s 999999s;
-          flex: none;
-          display: flex;
-          flex-flow: row wrap;
-          justify-content: space-between;
-          align-content: space-between;
-          li {
-            height: 290px;
-            width: 220px;
-            background-color: white;
-            &:not(:last-child):hover {
-            box-shadow: 0 0 10px rgb(206, 206, 206);
-            }
-            &:last-child {
-              background-color: unset;
-              div{
-                height: 135px;
-                margin-bottom: 20px;
-                background-color: white;
-                &:hover {
-                  box-shadow: 0 0 10px rgb(206, 206, 206);
-                }
-              }
-            }
-          }
+    /* banner图 */
+      .banner {
+        width: 1200px;
+        margin: auto;
+        img {
+          width: 1200px;
         }
       }
-    }
 
-  /* 家电专区 */
-    .homeapp {
+    /* 手机专区 */
+      .phone {
         width: 1200px;
         margin: 30px auto;
         display: flow-root;
-        .homeapp-header {
+        .phone-header {
+          height: 60px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .phone-main {
+          display: flex;
+          height: 604px;
+          width: 100%;
+          div {
+            width: 230px;
+            height: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+              &:hover {
+                box-shadow: 0 0 10px rgb(206, 206, 206);
+              }
+            }
+          }
+          ul {
+            height: 100%;
+            width: calc(100% - 230px);
+            flex: none;
+            display: flex;
+            flex-flow: row wrap;
+            padding-left: 20px;
+            justify-content: space-between;
+            align-content: space-between;
+            li {
+              height: 290px;
+              width: 220px;
+              background-color: white;
+              &:hover {
+              box-shadow: 0 0 10px rgb(206, 206, 206);
+              }
+            }
+          }
+        }
+      }
+
+    /* 穿戴专区 */
+      .wear {
+        width: 1200px;
+        margin: 30px auto;
+        display: flow-root;
+        .wear-header {
           height: 60px;
           width: 100%;
           position: relative;
@@ -633,11 +452,11 @@
           span {
             color: black;
             transition: 0s 999999s;
-            &.header-tv {
+            &.header-watch {
               right: 0;
             }
-            &.header-hot {
-              right: 100px;
+            &.header-earpods {
+              right: 60px;
               color: #ed712e;
               transition: 0s 999999s;
             }
@@ -653,20 +472,16 @@
           }
         }
 
-        .homeapp-main {
+        .wear-main {
           display: flex;
           height: 604px;
           width: 100%;
           .subaside {
             width: 230px;
             height: 100%;
-            display: flex;
-            flex-flow: column;
-            flex: 1 0;
-            justify-content: space-between;
             img {
               width: 100%;
-              height: 290px;
+              height: 100%;
               &:hover {
                 box-shadow: 0 0 10px rgb(206, 206, 206);
               }
@@ -685,134 +500,319 @@
             width: 100%;
             padding-left: 20px;
             transition: 0s 999999s;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            grid-gap: 24px;
+            flex: none;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-content: space-between;
             li {
-              &:not(:last-child) {
-                background-color: white;
-                &:hover {
-                  box-shadow: 0 0 10px rgb(206, 206, 206);
-                }
+              height: 290px;
+              width: 220px;
+              background-color: white;
+              &:not(:last-child):hover {
+              box-shadow: 0 0 10px rgb(206, 206, 206);
               }
-              div {
-                height: 135px;
-                background-color: white;
-                &:first-child {
+              &:last-child {
+                background-color: unset;
+                div{
+                  height: 135px;
                   margin-bottom: 20px;
-                }
-                &:hover {
-                  box-shadow: 0 0 10px rgb(206, 206, 206);
+                  background-color: white;
+                  &:hover {
+                    box-shadow: 0 0 10px rgb(206, 206, 206);
+                  }
                 }
               }
             }
-
-            &.tv {
+            &.watch {
               visibility: hidden;
             }
           }
         }
-        .homeapp-header:has(.header-tv:hover) ~ .homeapp-main .tv,
-        .homeapp-header:has(.header-hot:hover) ~ .homeapp-main .hot {
+        .wear-header:has(.header-watch:hover) ~ .wear-main .watch,
+        .wear-header:has(.header-earpods:hover) ~ .wear-main .earpods {
           visibility: visible;
           transition: none;
         }
-        .homeapp-header:has(.header-tv:hover) ~ .homeapp-main ul:not(.tv),
-        .homeapp-header:has(.header-hot:hover) ~ .homeapp-main ul:not(.hot) {
+        .wear-header:has(.header-watch:hover) ~ .wear-main ul:not(.watch),
+        .wear-header:has(.header-earpods:hover) ~ .wear-main ul:not(.earpods) {
           visibility: hidden;
           transition: none;
         }
-    }
+      }
 
-  /* 生活电器专区 */
-    .household {
-      width: 1200px;
-      margin: 30px auto;
-      .household-header {
-        height: 60px;
-        position: relative;
-        > * {
-          position: absolute;
-          line-height: 60px;
-        }
-        .household-header-option {
-          right: 0;
-          &:has(span:hover) span:not(:hover) {
-            color: black;
-            transition: none;
+    /* 平板专区 */
+      .laptop {
+        width: 1200px;
+        margin: 30px auto;
+        display: flow-root;
+        .laptop-header {
+          height: 60px;
+          width: 100%;
+          position: relative;
+          > * {
+            position: absolute;
+            line-height: 60px;
           }
           span {
-            margin-left: 20px;
+            color: #ed712e;
+            right: 0;
             transition: 0s 999999s;
-            &:hover {
-              transition: none;
-              color: #ed712e;
-            }
-            &:first-child {
-              color: #ed712e;
+          }
+        }
+
+        .laptop-main {
+          display: flex;
+          height: 604px;
+          width: 100%;
+          .subaside {
+            width: 230px;
+            height: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+              &:hover {
+                box-shadow: 0 0 10px rgb(206, 206, 206);
+              }
             }
           }
 
+          .subsection {
+            height: 100%;
+            width: calc(100% - 230px);
+            position: relative;
+          }
+
+          ul {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            padding-left: 20px;
+            transition: 0s 999999s;
+            flex: none;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-content: space-between;
+            li {
+              height: 290px;
+              width: 220px;
+              background-color: white;
+              &:not(:last-child):hover {
+              box-shadow: 0 0 10px rgb(206, 206, 206);
+              }
+              &:last-child {
+                background-color: unset;
+                div{
+                  height: 135px;
+                  margin-bottom: 20px;
+                  background-color: white;
+                  &:hover {
+                    box-shadow: 0 0 10px rgb(206, 206, 206);
+                  }
+                }
+              }
+            }
+          }
         }
       }
 
-      .household-main {
-        width: 100%;
-        height: 604px;
-        position: relative;
-        > * {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          display: grid;
-          grid-auto-flow: column;
-          grid-template-columns: 230px repeat(4, 1fr);
-          grid-template-rows: repeat(4, 1fr);
-          grid-gap: 24px;
-          transition: 0s 999999s;
-          visibility: hidden;
-          span {
-            background-color: white;
-            img {
+    /* 家电专区 */
+      .homeapp {
+          width: 1200px;
+          margin: 30px auto;
+          display: flow-root;
+          .homeapp-header {
+            height: 60px;
+            width: 100%;
+            position: relative;
+            > * {
+              position: absolute;
+              line-height: 60px;
+            }
+            span {
+              color: black;
+              transition: 0s 999999s;
+              &.header-tv {
+                right: 0;
+              }
+              &.header-hot {
+                right: 100px;
+                color: #ed712e;
+                transition: 0s 999999s;
+              }
+              &:hover {
+                color: #ed712e;
+                transition: none;
+              }
+            }
+            &:has(span:hover) span:not(:hover) {
+              color: black;
+              text-decoration: none;
+              transition: none;
+            }
+          }
+
+          .homeapp-main {
+            display: flex;
+            height: 604px;
+            width: 100%;
+            .subaside {
+              width: 230px;
+              height: 100%;
+              display: flex;
+              flex-flow: column;
+              flex: 1 0;
+              justify-content: space-between;
+              img {
+                width: 100%;
+                height: 290px;
+                &:hover {
+                  box-shadow: 0 0 10px rgb(206, 206, 206);
+                }
+              }
+            }
+
+            .subsection {
+              height: 100%;
+              width: calc(100% - 230px);
+              position: relative;
+            }
+
+            ul {
+              position: absolute;
               height: 100%;
               width: 100%;
-            }
-            &:hover {
-              box-shadow: 0 0 10px rgb(206, 206, 206);
-            }
-            &:not(:nth-last-child(-n+2)) {
-            grid-row-end: span 2;
+              padding-left: 20px;
+              transition: 0s 999999s;
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              grid-template-rows: repeat(2, 1fr);
+              grid-gap: 24px;
+              li {
+                &:not(:last-child) {
+                  background-color: white;
+                  &:hover {
+                    box-shadow: 0 0 10px rgb(206, 206, 206);
+                  }
+                }
+                div {
+                  height: 135px;
+                  background-color: white;
+                  &:first-child {
+                    margin-bottom: 20px;
+                  }
+                  &:hover {
+                    box-shadow: 0 0 10px rgb(206, 206, 206);
+                  }
+                }
+              }
+
+              &.tv {
+                visibility: hidden;
+              }
             }
           }
+          .homeapp-header:has(.header-tv:hover) ~ .homeapp-main .tv,
+          .homeapp-header:has(.header-hot:hover) ~ .homeapp-main .hot {
+            visibility: visible;
+            transition: none;
+          }
+          .homeapp-header:has(.header-tv:hover) ~ .homeapp-main ul:not(.tv),
+          .homeapp-header:has(.header-hot:hover) ~ .homeapp-main ul:not(.hot) {
+            visibility: hidden;
+            transition: none;
+          }
+      }
+
+    /* 生活电器专区 */
+      .household {
+        width: 1200px;
+        margin: 30px auto;
+        .household-header {
+          height: 60px;
+          position: relative;
+          > * {
+            position: absolute;
+            line-height: 60px;
+          }
+          .household-header-option {
+            right: 0;
+            &:has(span:hover) span:not(:hover) {
+              color: black;
+              transition: none;
+            }
+            span {
+              margin-left: 20px;
+              transition: 0s 999999s;
+              &:hover {
+                transition: none;
+                color: #ed712e;
+              }
+              &:first-child {
+                color: #ed712e;
+              }
+            }
+
+          }
         }
-        .heater-main {
+
+        .household-main {
+          width: 100%;
+          height: 604px;
+          position: relative;
+          > * {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: 230px repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            grid-gap: 24px;
+            transition: 0s 999999s;
+            visibility: hidden;
+            span {
+              background-color: white;
+              img {
+                height: 100%;
+                width: 100%;
+              }
+              &:hover {
+                box-shadow: 0 0 10px rgb(206, 206, 206);
+              }
+              &:not(:nth-last-child(-n+2)) {
+              grid-row-end: span 2;
+              }
+            }
+          }
+          .heater-main {
+            visibility: visible;
+          }
+        }
+
+        .household-header:has(span:nth-child(1):hover) + .household-main > div:nth-child(1),
+        .household-header:has(span:nth-child(2):hover) + .household-main > div:nth-child(2),
+        .household-header:has(span:nth-child(3):hover) + .household-main > div:nth-child(3),
+        .household-header:has(span:nth-child(4):hover) + .household-main > div:nth-child(4),
+        .household-header:has(span:nth-child(5):hover) + .household-main > div:nth-child(5),
+        .household-header:has(span:nth-child(6):hover) + .household-main > div:nth-child(6)
+        {
           visibility: visible;
+          transition: none;
+        }
+
+        .household-header:has(span:nth-child(1):hover) + .household-main > :not(:nth-child(1)),
+        .household-header:has(span:nth-child(2):hover) + .household-main > :not(:nth-child(2)),
+        .household-header:has(span:nth-child(3):hover) + .household-main > :not(:nth-child(3)),
+        .household-header:has(span:nth-child(4):hover) + .household-main > :not(:nth-child(4)),
+        .household-header:has(span:nth-child(5):hover) + .household-main > :not(:nth-child(5)),
+        .household-header:has(span:nth-child(6):hover) + .household-main > :not(:nth-child(6))
+        {
+          visibility: hidden;
+          transition: none;
         }
       }
-
-      .household-header:has(span:nth-child(1):hover) + .household-main > div:nth-child(1),
-      .household-header:has(span:nth-child(2):hover) + .household-main > div:nth-child(2),
-      .household-header:has(span:nth-child(3):hover) + .household-main > div:nth-child(3),
-      .household-header:has(span:nth-child(4):hover) + .household-main > div:nth-child(4),
-      .household-header:has(span:nth-child(5):hover) + .household-main > div:nth-child(5),
-      .household-header:has(span:nth-child(6):hover) + .household-main > div:nth-child(6)
-      {
-        visibility: visible;
-        transition: none;
-      }
-
-      .household-header:has(span:nth-child(1):hover) + .household-main > :not(:nth-child(1)),
-      .household-header:has(span:nth-child(2):hover) + .household-main > :not(:nth-child(2)),
-      .household-header:has(span:nth-child(3):hover) + .household-main > :not(:nth-child(3)),
-      .household-header:has(span:nth-child(4):hover) + .household-main > :not(:nth-child(4)),
-      .household-header:has(span:nth-child(5):hover) + .household-main > :not(:nth-child(5)),
-      .household-header:has(span:nth-child(6):hover) + .household-main > :not(:nth-child(6))
-      {
-        visibility: hidden;
-        transition: none;
-      }
-    }
 
 
 
@@ -1006,7 +1006,6 @@
       <aside>
         <ul>
           <li>手机
-            <i class="right-arrow"></i>
             <ul>
               <li>Xiaomi MIX系列</li>
               <li>Xiaomi 数字系列</li>
