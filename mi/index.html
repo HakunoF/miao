@@ -19,7 +19,7 @@
       }
       * {
         xbackground-color: rgba(0,0,0,0.08);
-        xbox-shadow: inset 0 0 1px red;
+        box-shadow: inset 0 0 1px red;
       }
 
       html, body, .wrapper {
@@ -218,23 +218,68 @@
         .search {
           right: 0;
           top: 34px;
-
-          input {
-            height: 30px;
-            vertical-align: bottom;
+          font-size: 0;
+          &:hover button {
+            border: #c7c7c7 1px solid;
           }
-          button {
+          &:hover .search-field input {
+            border: #c7c7c7 1px solid;
+          }
+          > .search-field {
+            height: 30px;
+            width: 180px;
+            vertical-align: bottom;
+            display: inline-block;
+            position: relative;
+            > input {
+              height: 100%;
+              width: 100%;
+              outline: none;
+              border: 1px solid #ececec;
+              &:focus {
+                border: #ed712e 1px solid;
+                + ul {
+                  display: block;
+                }
+              }
+            }
+            > ul {
+              display: none;
+              width: 100%;
+              z-index: 1000;
+              background-color: white;
+              color: #717171;
+              font-size: 12px;
+              position: absolute;
+              border: #ed712e 1px solid;
+              > li {
+                padding: 5px 0 5px 5px;
+              }
+            }
+            &:has(input:focus) ~button {
+              border: #ed712e 1px solid;
+            }
+          }
+          > button {
             height: 30px;
             width: 40px;
             vertical-align: bottom;
+            background-color: #fff;
+            border: 1px solid #ececec;
+            &:hover {
+              background-color: #ed712e;
+              span {
+                color: white;
+              }
+            }
+            > .search-button::before {
+              content: "\E616";
+              font-size: 20px;
+              line-height: 30px;
+            }
           }
         }
       }
-
-
-
-
-
 
 
 
@@ -432,12 +477,23 @@
           background-color: #5e5851;
           display: flex;
           flex-flow: wrap;
-          justify-content: space-around;
-          align-content: space-around;
-          div {
-            width: 70px;
-            height: 70px;
-            background-color: bisque;
+          gap: 0px;
+          justify-content: center;
+          align-content: center;
+          > div {
+            width: 75px;
+            height: 80px;
+            color: #cfcdcb;
+            font-size: 12px;
+            text-align: center;
+            border: 1px solid #655e58;
+            &:hover > * {
+              color: white;
+            }
+            > img {
+              display: block;
+              margin: 10px auto 5px;
+            }
           }
         }
         main {
@@ -1370,8 +1426,22 @@
         <li>社区</li>
       </ul>
       <div class="search">
-        <input type="text" placeholder="空调">
-        <button></button>
+        <div class="search-field">
+          <input type="text" placeholder="空调">
+          <ul>
+            <li>全部商品</li>
+            <li>空调</li>
+            <li>手机</li>
+            <li>redmi note 12 turbo</li>
+            <li>冰箱</li>
+            <li>笔记本</li>
+            <li>电视</li>
+            <li>耳机</li>
+          </ul>
+        </div>
+        <button>
+          <span class="mi-icon search-button"></span>
+        </button>
       </div>
     </div>
   <!-- 侧边栏+轮播图 -->
@@ -1644,12 +1714,30 @@
   <!-- 保障服务栏目 -->
     <div class="sale">
       <aside>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
-        <div>a</div>
+        <div>
+          <img width="24" height="24" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82abdba456e8caaea5848a0cddce03db.png?w=48&h=48" alt="">
+          <span>保障服务</span>
+        </div>
+        <div>
+          <img width="24" height="24" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/806f2dfb2d27978e33fe3815d3851fa3.png?w=48&h=48" alt="">
+          <span>企业团购</span>
+        </div>
+        <div>
+          <img width="24" height="24" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/eded6fa3b897a058163e2485532c4f10.png?w=48&h=48" alt="">
+          <span>F码通道</span>
+        </div>
+        <div>
+          <img width="24" height="24" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/43a3195efa6a3cc7662efed8e7abe8bf.png?w=48&h=48" alt="">
+          <span>米粉卡</span>
+        </div>
+        <div>
+          <img width="24" height="24" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f4846bca6010a0deb9f85464409862af.png?w=48&h=48" alt="">
+          <span>以旧换新</span>
+        </div>
+        <div>
+          <img width="24" height="24" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9a76d7636b08e0988efb4fc384ae497b.png?w=48&h=48" alt="">
+          <span>话费充值</span>
+        </div>
       </aside>
       <main>
         <div><img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0cf5e958bc88727b50c5c5fba7a8f47a.jpg?w=632&h=340" alt=""></div>
