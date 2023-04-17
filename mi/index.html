@@ -49,7 +49,6 @@
 
 
     /* 顶部菜单栏 */
-
       .header {
         background-color: #333333;
         height: 40px;
@@ -71,7 +70,7 @@
           display: inline-block;
           font-size: 12px;
           position: absolute;
-          a {
+          > a {
             color:#b0b0b0;
             display: inline-block;
             &:not(:last-child){
@@ -81,7 +80,7 @@
               color: #ffffff;
             }
           }
-          span {
+          > span {
             color: #424242;
             font-size: 14px;
             line-height: 40px;
@@ -90,19 +89,60 @@
         }
         .topleft {
           left: 0;
+          > a.download {
+            position: relative;
+            &:hover .appcode {
+              height: 140px;
+            }
+            .appcode {
+              position: absolute;
+              height: 0;
+              top: 40px;
+              left: -60%;
+              text-align: center;
+              z-index: 999;
+              background-color: white;
+              color: #333333;
+              overflow: hidden;
+              transition: 0.4s;
+              > img {
+                display: block;
+                margin: 10px 10px 0;
+              }
+            }
+          }
         }
         .topright {
           right: 0;
-          a:last-child{
+          > a.cart-option {
             padding: 0 20px;
             background-color: #424242;
             height: 39px;
+            position: relative;
+            &:hover > span.cart {
+              height: 98px;
+              box-shadow: 0 0 10px rgb(206, 206, 206);
+            }
             &::before {
               content: "\E60C  ";
               font-size: 20px;
               font-family: mi-font;
               white-space: pre;
               vertical-align: bottom;
+            }
+            > span.cart {
+              position: absolute;
+              width: 300px;
+              top: 40px;
+              right: 0;
+              text-align: center;
+              height: 0;
+              line-height: 98px;
+              z-index: 999;
+              background-color: white;
+              color: #333333;
+              overflow: hidden;
+              transition: 0.4s;
             }
           }
         }
@@ -115,7 +155,6 @@
         width: 1200px;
         margin: auto;
         display: flex;
-        xborder: 1px solid black;
         justify-content: space-between;
         align-items: center;
         .menu {
@@ -128,31 +167,37 @@
             height: 100%;
             line-height: 100px;
             &:hover {
-            color: #ed712e;
-              > ul {
-                display: block;
+              color: #ed712e;
+              > div.dropdown {
+                height: 250px;
+                box-shadow: 0 1px 5px rgb(121, 121, 121);
+                border-top: 1px solid #e0e0e0;
               }
             }
-            ul {
-              width: 100%;
+            .dropdown {
               position: absolute;
               top: 140px;
               left: 0;
+              right: 0;
+              height: 0;
+              overflow: hidden;
               z-index: 1000;
               color: initial;
               font-size: 0;
-              display: none;
-              border-top: 1px solid #e0e0e0;
               background-color: white;
-              transition: 1s;
-              box-shadow: 0 1px 5px rgb(121, 121, 121);
+              transition: 0.3s;
+              ul {
+                width: 1200px;
+                margin: auto;
+              }
               li {
                 display: inline-block;
                 font-size: 13px;
                 margin: 30px 30px 30px 0;
                 line-height: 30px;
+                vertical-align: top;
                 &:first-child{
-                  margin-left: 200px;
+                  margin-left: 40px;
                 }
                 span {
                   display: block;
@@ -1000,15 +1045,18 @@
 
 
     /* 右侧固定定位栏 */
-      .fixed-moudle1, .fixed-moudle1 {
-        width: 90px;
+      .fixed-moudle {
         position: fixed;
+        width: 90px;
         right: 0;
         bottom: 150px;
         div {
           width: 100%;
           height: 85px;
         }
+        /* @media screen (width < 1400px) {
+
+        } */
       }
 
 
@@ -1035,14 +1083,24 @@
           <a href="">企业团购</a><span>|</span>
           <a href="">资质证照</a><span>|</span>
           <a href="">协议规则</a><span>|</span>
-          <a href="">下载app</a><span>|</span>
+          <a class="download" href="">下载app</span>
+            <span class="appcode">
+              <img src="https://i1.mifile.cn/f/i/17/appdownload/download.png?1" width="90" height="90" alt="">
+              小米商城APP
+            </span>
+          </a>
+          <span>|</span>
           <a href="">Select Location</a>
         </div>
         <div class="top topright">
           <a href="">登录</a><span>|</span>
           <a href="">注册</a><span>|</span>
           <a href="">消息通知</a>
-          <a href="">购物车</a>
+          <a class="cart-option" href="">购物车
+            <span class="cart">
+              购物车中还没有商品，赶紧选购吧！
+            </span>
+          </a>
         </div>
       </div>
     </section>
@@ -1051,146 +1109,259 @@
       <img src="logo-mi2.png" width="56px" height="56px">
       <ul class="menu">
         <li>Xiaomi手机
-          <ul class="test">
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=320&h=220&f=webp&q=90">
-              <span>Xiaomi 13</span>
-              <span> 3999元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/11e28a0a7c6a2ca07f0dc2044d3858c2.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Xiaomi 13 Pro</span>
-              <span>4999元起</span>
+          <div class="dropdown">
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=320&h=220&f=webp&q=90">
+                <span>Xiaomi 13</span>
+                <span> 3999元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/11e28a0a7c6a2ca07f0dc2044d3858c2.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Xiaomi 13 Pro</span>
+                <span>4999元起</span>
 
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/581f3a690e6803add02e4c9fde98cb78.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Xiaomi MIX Fold 2</span>
-              <span>8999元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/4ef3713521fb9d7f114aa8bb152e220d.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span> Xiaomi Civi 2</span>
-              <span>2299元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/fea69fb5990da9dfc909aa8279aaea7e.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span> Xiaomi 11 青春活力版</span>
-              <span>1399元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9c06f92c3216c90a566916e719935018.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Xiaomi 13 限量定制色</span>
-              <span>4999元</span>
-            </li>
-          </ul>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/581f3a690e6803add02e4c9fde98cb78.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Xiaomi MIX Fold 2</span>
+                <span>8999元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/4ef3713521fb9d7f114aa8bb152e220d.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span> Xiaomi Civi 2</span>
+                <span>2299元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/fea69fb5990da9dfc909aa8279aaea7e.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span> Xiaomi 11 青春活力版</span>
+                <span>1399元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9c06f92c3216c90a566916e719935018.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Xiaomi 13 限量定制色</span>
+                <span>4999元</span>
+              </li>
+            </ul>
+          </div>
         </li>
         <li>Redmi手机
-          <ul>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c98a369cd511f4bab30e6f4d73438f5d.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi Note 12 Turbo</span>
-              <span>1999元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8d5c2622cf50cf3d1a00c3753a2bf070.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi 12C</span>
-              <span>699元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/482a5df88357219be7f8f6a1a06ce20a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi K60 Pro</span>
-              <span>3299元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/040746283de6bbdf554fe879f842747c.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi K60</span>
-              <span>2499元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2c6cf6ba252d5db186016c3b044f600f.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi Note 12 Pro 极速版</span>
-              <span>1699元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/570184de014d26516f4c334f7132878a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi Note 12 5G</span>
-              <span>1199元起</span>
-            </li>
-          </ul>
+          <div class="dropdown">
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c98a369cd511f4bab30e6f4d73438f5d.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Turbo</span>
+                <span>1999元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8d5c2622cf50cf3d1a00c3753a2bf070.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi 12C</span>
+                <span>699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/482a5df88357219be7f8f6a1a06ce20a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi K60 Pro</span>
+                <span>3299元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/040746283de6bbdf554fe879f842747c.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi K60</span>
+                <span>2499元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2c6cf6ba252d5db186016c3b044f600f.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi Note 12 Pro 极速版</span>
+                <span>1699元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/570184de014d26516f4c334f7132878a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi Note 12 5G</span>
+                <span>1199元起</span>
+              </li>
+            </ul>
+          </div>
         </li>
         <li>电视
-          <ul>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi智能电视X55 2022</span>
-              <span>2199元</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi智能电视X65 2022</span>
-              <span>2799元</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8871821795310769c1d3896c99b12381.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>小米电视6 65" OLED</span>
-              <span>6699元</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0a1ae5341d2dae66cd42566c60d2d666.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>小米电视 大师 77" OLED</span>
-              <span>17999元</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/932b583c6eccd8aabfa0771f8a854940.jpg?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>小米透明电视</span>
-              <span>49999元</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ea3390a20547c7298a258528e4aa69ad.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>小米电视 大师 65英寸OLED</span>
-              <span>8999元</span>
-            </li>
-          </ul>
+          <div class="dropdown">
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi智能电视X55 2022</span>
+                <span>2199元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi智能电视X65 2022</span>
+                <span>2799元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8871821795310769c1d3896c99b12381.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视6 65" OLED</span>
+                <span>6699元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0a1ae5341d2dae66cd42566c60d2d666.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视 大师 77" OLED</span>
+                <span>17999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/932b583c6eccd8aabfa0771f8a854940.jpg?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米透明电视</span>
+                <span>49999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ea3390a20547c7298a258528e4aa69ad.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视 大师 65英寸OLED</span>
+                <span>8999元</span>
+              </li>
+            </ul>
+          </div>
         </li>
         <li>笔记本
-          <ul>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/1c921506c8a7cd4841b29b941685d57e.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Xiaomi Book 12.4 <br>
-                二合一 键盘套装</span>
-              <span>2999元</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/55c17a67fff345d161ae55b9fb0d6f6a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Xiaomi Book Air 13</span>
-              <span>5999元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi G 游戏本 锐龙版 R5</span>
-              <span>5999元</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi G Pro 游戏本 锐龙版 R7</span>
-              <span>8799元</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c926842a23c7316b17792e075be9d055.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Xiaomi Book Pro 14 锐龙版</span>
-              <span>6399元起</span>
-            </li>
-            <li>
-              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
-              <span>Redmi G 游戏本 2022</span>
-              <span>7499元起</span>
-            </li>
-          </ul>
+          <div class="dropdown">
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/1c921506c8a7cd4841b29b941685d57e.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Xiaomi Book 12.4 <br>
+                  二合一 键盘套装</span>
+                <span>2999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/55c17a67fff345d161ae55b9fb0d6f6a.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Xiaomi Book Air 13</span>
+                <span>5999元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi G 游戏本 锐龙版 R5</span>
+                <span>5999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi G Pro 游戏本 锐龙版 R7</span>
+                <span>8799元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c926842a23c7316b17792e075be9d055.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Xiaomi Book Pro 14 锐龙版</span>
+                <span>6399元起</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c86a7877e4ed76f50e204875e7372428.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi G 游戏本 2022</span>
+                <span>7499元起</span>
+              </li>
+            </ul>
+          </div>
         </li>
-        <li>平板</li>
-        <li>家电</li>
-        <li>路由器</li>
+        <li>平板
+          <div class="dropdown">
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi智能电视X55 2022</span>
+                <span>2199元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi智能电视X65 2022</span>
+                <span>2799元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8871821795310769c1d3896c99b12381.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视6 65" OLED</span>
+                <span>6699元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0a1ae5341d2dae66cd42566c60d2d666.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视 大师 77" OLED</span>
+                <span>17999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/932b583c6eccd8aabfa0771f8a854940.jpg?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米透明电视</span>
+                <span>49999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ea3390a20547c7298a258528e4aa69ad.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视 大师 65英寸OLED</span>
+                <span>8999元</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>家电
+          <div class="dropdown">
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi智能电视X55 2022</span>
+                <span>2199元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi智能电视X65 2022</span>
+                <span>2799元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8871821795310769c1d3896c99b12381.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视6 65" OLED</span>
+                <span>6699元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0a1ae5341d2dae66cd42566c60d2d666.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视 大师 77" OLED</span>
+                <span>17999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/932b583c6eccd8aabfa0771f8a854940.jpg?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米透明电视</span>
+                <span>49999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ea3390a20547c7298a258528e4aa69ad.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视 大师 65英寸OLED</span>
+                <span>8999元</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>路由器
+          <div class="dropdown">
+            <ul>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi智能电视X55 2022</span>
+                <span>2199元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6511d77270e94146c0b1f96b66d8cc58.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>Redmi智能电视X65 2022</span>
+                <span>2799元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8871821795310769c1d3896c99b12381.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视6 65" OLED</span>
+                <span>6699元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0a1ae5341d2dae66cd42566c60d2d666.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视 大师 77" OLED</span>
+                <span>17999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/932b583c6eccd8aabfa0771f8a854940.jpg?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米透明电视</span>
+                <span>49999元</span>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ea3390a20547c7298a258528e4aa69ad.png?thumb=1&w=320&h=220&f=webp&q=90" alt="">
+                <span>小米电视 大师 65英寸OLED</span>
+                <span>8999元</span>
+              </li>
+            </ul>
+          </div>
+        </li>
         <li>服务中心</li>
         <li>社区</li>
       </ul>
@@ -1838,16 +2009,7 @@
 
     </div>
   <!-- 右侧固定定位栏 -->
-    <div class="fixed-moudle1">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
-    <div class="fixed-moudle2">
-      <div></div>
+    <div class="fixed-moudle">
       <div></div>
       <div></div>
       <div></div>
