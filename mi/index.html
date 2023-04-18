@@ -19,7 +19,7 @@
       }
       * {
         xbackground-color: rgba(0,0,0,0.08);
-        xbox-shadow: inset 0 0 1px red;
+        box-shadow: inset 0 0 1px red;
       }
 
       html, body, .wrapper {
@@ -493,10 +493,12 @@
             border: 1px solid #655e58;
             &:hover > * {
               color: white;
+              opacity: 1;
             }
             > img {
               display: block;
               margin: 10px auto 5px;
+              opacity: 0.6;
             }
           }
         }
@@ -554,10 +556,10 @@
           display: flex;
           height: 604px;
           width: 100%;
-          div {
+          > div {
             width: 230px;
             height: 100%;
-            img {
+            > img {
               width: 100%;
               height: 100%;
               transition: 0.5s;
@@ -567,7 +569,7 @@
               }
             }
           }
-          ul {
+          > ul {
             height: 100%;
             width: calc(100% - 230px);
             flex: none;
@@ -576,15 +578,51 @@
             padding-left: 20px;
             justify-content: space-between;
             align-content: space-between;
-            li {
+            > li {
               height: 290px;
               width: 220px;
               background-color: white;
               transition: 0.5s;
+              padding-top: 20px;
               &:hover {
               box-shadow: 0 0 10px rgb(206, 206, 206);
               transform: translate(0, -2px);
               }
+              > img {
+                height: 160px;
+                width: 160px;
+                display: block;
+                margin: auto;
+                margin-bottom: 15px;
+              }
+              > p.m-title {
+                text-align: center;
+                color: #333;
+                font-size: 14px;
+                margin-bottom: 5px;
+              }
+              > p.m-intro {
+                text-align: center;
+                color: #b0b0b0;
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 8px;
+                padding: 0 5px;
+              }
+              > p.m-price {
+                text-align: center;
+                font-size: 14px;
+                > span.price-new {
+                  color: #ed712e;
+                }
+                > span.price-old {
+                  color: #b0b0b0;
+                  text-decoration: line-through;
+                }
+              }
+
             }
           }
         }
@@ -666,13 +704,50 @@
               width: 220px;
               background-color: white;
               transition: 0.5s;
+              &:nth-child(-n+7){
+                padding-top: 20px;
+                > img {
+                height: 160px;
+                width: 160px;
+                display: block;
+                margin: auto;
+                margin-bottom: 5px;
+                }
+                > p.m-title {
+                  text-align: center;
+                  color: #333;
+                  font-size: 14px;
+                  margin-bottom: 10px;
+                }
+                > p.m-intro {
+                  text-align: center;
+                  color: #b0b0b0;
+                  font-size: 12px;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  margin-bottom: 8px;
+                  padding: 0 5px;
+                }
+                > p.m-price {
+                  text-align: center;
+                  font-size: 14px;
+                  > span.price-new {
+                    color: #ed712e;
+                  }
+                  > span.price-old {
+                    color: #b0b0b0;
+                    text-decoration: line-through;
+                  }
+                }
+              }
               &:not(:last-child):hover {
               box-shadow: 0 0 10px rgb(206, 206, 206);
               transform: translate(0, -2px);
               }
               &:last-child {
                 background-color: unset;
-                div{
+                > div {
                   height: 135px;
                   margin-bottom: 20px;
                   background-color: white;
@@ -680,6 +755,61 @@
                   &:hover {
                     box-shadow: 0 0 10px rgb(206, 206, 206);
                     transform: translate(0, -2px);
+                  }
+                  &:first-child {
+                    position: relative;
+                    padding-top: 30px;
+                    > img {
+                      width: 80px;
+                      height: 80px;
+                      position: absolute;
+                      top: 30px;
+                      right: 20px;
+                    }
+                    > p.m-title {
+                      white-space: initial;
+                      width: 90px;
+                      color: #333;
+                      font-size: 14px;
+                      margin: 0 auto 10px 20px;
+                    }
+                    > p.m-price {
+                      font-size: 14px;
+                      width: 90px;
+                      margin-left: 20px;
+                      > span.price-new {
+                        color: #ed712e;
+                      }
+                      > span.price-old {
+                        color: #b0b0b0;
+                        text-decoration: line-through;
+                      }
+                    }
+
+                  }
+                  &:last-child {
+                    position: relative;
+                    padding-top: 45px;
+                    > p.m-title {
+                      color: #333;
+                      font-size: 18px;
+                      margin-bottom: 5px;
+                      margin-left: 20px;
+                    }
+                    > p.m-intro {
+                      color: #b0b0b0;
+                      font-size: 12px;
+                      margin-left: 20px;
+                    }
+                    > span.mi-icon::before {
+                      content: "\E615";
+                      font-size: 50px;
+                      color: #ed712e;
+                      position: absolute;
+                      right: 30px;
+
+                    }
+
                   }
                 }
               }
@@ -1181,8 +1311,9 @@
         @media (max-width: 1200px) {
             right: 0;
             left: auto;
-          }
+        }
       }
+
 
 
 
@@ -1828,14 +1959,54 @@
             <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d91bb6cf7da0947e8a6e50e03f4daf06.jpg?thumb=1&w=468&h=1228&f=webp&q=90" alt="">
           </div>
           <ul>
-           <li>1</li>
-           <li>2</li>
-           <li>3</li>
-           <li>4</li>
-           <li>5</li>
-           <li>6</li>
-           <li>7</li>
-           <li>8</li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8b046feca0a7bb3f7b961a9690babb1b.jpg?thumb=1&w=320&h=320&f=webp&q=90" alt="">
+              <p class="m-title">Redmi Note 12 Turbo</p>
+              <p class="m-intro">狂暴引擎 超强性能释放</p>
+              <p class="m-price"><span class="price-new">1999元起</span><span class="price-old"></span></p>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">Redmi K60</p>
+              <p class="m-intro">骁龙8+｜2K 高光直屏｜5500mAh+67W闪充</p>
+              <p class="m-price"><span class="price-new">2499元起</span> <span class="price-old">2699元</span></p>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">Redmi K60</p>
+              <p class="m-intro">骁龙8+｜2K 高光直屏｜5500mAh+67W闪充</p>
+              <p class="m-price"><span class="price-new">2499元起</span> <span class="price-old">2699元</span></p>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">Redmi K60</p>
+              <p class="m-intro">骁龙8+｜2K 高光直屏｜5500mAh+67W闪充</p>
+              <p class="m-price"><span class="price-new">2499元起</span> <span class="price-old">2699元</span></p>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">Redmi K60</p>
+              <p class="m-intro">骁龙8+｜2K 高光直屏｜5500mAh+67W闪充</p>
+              <p class="m-price"><span class="price-new">2499元起</span> <span class="price-old">2699元</span></p>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">Redmi K60</p>
+              <p class="m-intro">骁龙8+｜2K 高光直屏｜5500mAh+67W闪充</p>
+              <p class="m-price"><span class="price-new">2499元起</span> <span class="price-old">2699元</span></p>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">Redmi K60</p>
+              <p class="m-intro">骁龙8+｜2K 高光直屏｜5500mAh+67W闪充</p>
+              <p class="m-price"><span class="price-new">2499元起</span> <span class="price-old">2699元</span></p>
+            </li>
+            <li>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">Redmi K60</p>
+              <p class="m-intro">骁龙8+｜2K 高光直屏｜5500mAh+67W闪充</p>
+              <p class="m-price"><span class="price-new">2499元起</span> <span class="price-old">2699元</span></p>
+            </li>
           </ul>
         </main>
       </div>
@@ -1852,28 +2023,110 @@
           </div>
           <div class="subsection">
             <ul class="earpods">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>
-              <div>8</div>
-              <div>9</div>
-            </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208111200_c1016839eae2c1f5bb79d5afde498e81.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Xiaomi Buds 4 Pro</p>
+                <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208111200_c1016839eae2c1f5bb79d5afde498e81.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Xiaomi Buds 4 Pro</p>
+                <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208111200_c1016839eae2c1f5bb79d5afde498e81.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Xiaomi Buds 4 Pro</p>
+                <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208111200_c1016839eae2c1f5bb79d5afde498e81.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Xiaomi Buds 4 Pro</p>
+                <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208111200_c1016839eae2c1f5bb79d5afde498e81.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Xiaomi Buds 4 Pro</p>
+                <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208111200_c1016839eae2c1f5bb79d5afde498e81.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Xiaomi Buds 4 Pro</p>
+                <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208111200_c1016839eae2c1f5bb79d5afde498e81.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Xiaomi Buds 4 Pro</p>
+                <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
+              <li>
+                <div>
+                  <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202209261427_67cd5fddb341f0e0fb0a2295e643b0d8.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                  <p class="m-title">xiaomi降噪蓝牙耳机Necklace</p>
+                  <p class="m-price"><span class="price-new">949元</span> <span class="price-old"></span></p>
+                </div>
+                <div>
+                  <span class="mi-icon"></span>
+                  <p class="m-title">浏览更多</p>
+                  <p class="m-intro">耳机</p>
+                </div>
+              </li>
             </ul>
             <ul class="watch">
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
               <li>
-                <div>3</div>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202207011906_e7f02b803d3da16ec56a611e790243ba.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米手环7 Pro</p>
+                <p class="m-intro">全彩方形大屏 | 独立GPS定位 | 全天连续血氧饱和度监测</p>
+                <p class="m-price"><span class="price-new">359元</span> <span class="price-old">399元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202207011906_e7f02b803d3da16ec56a611e790243ba.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米手环7 Pro</p>
+                <p class="m-intro">全彩方形大屏 | 独立GPS定位 | 全天连续血氧饱和度监测</p>
+                <p class="m-price"><span class="price-new">359元</span> <span class="price-old">399元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202207011906_e7f02b803d3da16ec56a611e790243ba.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米手环7 Pro</p>
+                <p class="m-intro">全彩方形大屏 | 独立GPS定位 | 全天连续血氧饱和度监测</p>
+                <p class="m-price"><span class="price-new">359元</span> <span class="price-old">399元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202207011906_e7f02b803d3da16ec56a611e790243ba.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米手环7 Pro</p>
+                <p class="m-intro">全彩方形大屏 | 独立GPS定位 | 全天连续血氧饱和度监测</p>
+                <p class="m-price"><span class="price-new">359元</span> <span class="price-old">399元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202207011906_e7f02b803d3da16ec56a611e790243ba.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米手环7 Pro</p>
+                <p class="m-intro">全彩方形大屏 | 独立GPS定位 | 全天连续血氧饱和度监测</p>
+                <p class="m-price"><span class="price-new">359元</span> <span class="price-old">399元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202207011906_e7f02b803d3da16ec56a611e790243ba.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米手环7 Pro</p>
+                <p class="m-intro">全彩方形大屏 | 独立GPS定位 | 全天连续血氧饱和度监测</p>
+                <p class="m-price"><span class="price-new">359元</span> <span class="price-old">399元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202207011906_e7f02b803d3da16ec56a611e790243ba.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米手环7 Pro</p>
+                <p class="m-intro">全彩方形大屏 | 独立GPS定位 | 全天连续血氧饱和度监测</p>
+                <p class="m-price"><span class="price-new">359元</span> <span class="price-old">399元</span></p>
+              </li>
+              <li>
+                <div>
+                  <span class="mi-icon"></span>
+                  <p class="m-title">浏览更多</p>
+                  <p class="m-intro">穿戴</p>
+                </div>
               </li>
             </ul>
           </div>
@@ -1891,13 +2144,12 @@
           </div>
           <div class="subsection">
             <ul class="pad">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/50b73aeedeeb27392a15d9d479e5d793.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Xiaomi Buds 4 Pro</p>
+                <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
             <li>
               <div>8</div>
               <div>9</div>
