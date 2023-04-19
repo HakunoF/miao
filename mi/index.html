@@ -19,7 +19,7 @@
       }
       * {
         xbackground-color: rgba(0,0,0,0.08);
-        box-shadow: inset 0 0 1px red;
+        xbox-shadow: inset 0 0 1px red;
       }
 
       html, body, .wrapper {
@@ -891,9 +891,46 @@
               width: 220px;
               background-color: white;
               transition: 0.5s;
+              &:nth-child(-n+7){
+                padding-top: 20px;
+                > img {
+                height: 160px;
+                width: 160px;
+                display: block;
+                margin: auto;
+                margin-bottom: 5px;
+                }
+                > p.m-title {
+                  text-align: center;
+                  color: #333;
+                  font-size: 14px;
+                  margin-bottom: 10px;
+                }
+                > p.m-intro {
+                  text-align: center;
+                  color: #b0b0b0;
+                  font-size: 12px;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  margin-bottom: 8px;
+                  padding: 0 5px;
+                }
+                > p.m-price {
+                  text-align: center;
+                  font-size: 14px;
+                  > span.price-new {
+                    color: #ed712e;
+                  }
+                  > span.price-old {
+                    color: #b0b0b0;
+                    text-decoration: line-through;
+                  }
+                }
+              }
               &:not(:last-child):hover {
-              box-shadow: 0 0 10px rgb(206, 206, 206);
-              transform: translate(0, -2px);
+                box-shadow: 0 0 10px rgb(206, 206, 206);
+                transform: translate(0, -2px);
               }
               &:last-child {
                 background-color: unset;
@@ -905,6 +942,61 @@
                   &:hover {
                     box-shadow: 0 0 10px rgb(206, 206, 206);
                     transform: translate(0, -2px);
+                  }
+                  &:first-child {
+                    position: relative;
+                    padding-top: 30px;
+                    > img {
+                      width: 80px;
+                      height: 80px;
+                      position: absolute;
+                      top: 30px;
+                      right: 20px;
+                    }
+                    > p.m-title {
+                      white-space: initial;
+                      width: 90px;
+                      color: #333;
+                      font-size: 14px;
+                      margin: 10px auto 10px 20px;
+                    }
+                    > p.m-price {
+                      font-size: 14px;
+                      width: 90px;
+                      margin-left: 20px;
+                      > span.price-new {
+                        color: #ed712e;
+                      }
+                      > span.price-old {
+                        color: #b0b0b0;
+                        text-decoration: line-through;
+                      }
+                    }
+
+                  }
+                  &:last-child {
+                    position: relative;
+                    padding-top: 45px;
+                    > p.m-title {
+                      color: #333;
+                      font-size: 18px;
+                      margin-bottom: 5px;
+                      margin-left: 20px;
+                    }
+                    > p.m-intro {
+                      color: #b0b0b0;
+                      font-size: 12px;
+                      margin-left: 20px;
+                    }
+                    > span.mi-icon::before {
+                      content: "\E615";
+                      font-size: 50px;
+                      color: #ed712e;
+                      position: absolute;
+                      right: 30px;
+
+                    }
+
                   }
                 }
               }
@@ -950,9 +1042,9 @@
           }
 
           .homeapp-main {
-            display: flex;
             height: 604px;
             width: 100%;
+            position: relative;
             .subaside {
               width: 230px;
               height: 100%;
@@ -974,7 +1066,9 @@
             .subsection {
               height: 100%;
               width: calc(100% - 230px);
-              position: relative;
+              position: absolute;
+              top: 0;
+              right: 0;
             }
 
             ul {
@@ -987,25 +1081,114 @@
               grid-template-columns: repeat(4, 1fr);
               grid-template-rows: repeat(2, 1fr);
               grid-gap: 24px;
-              li {
+              > li {
                 &:not(:last-child) {
                   background-color: white;
                   transition: 0.5s;
+                  height: 290px;
+                  width: 219.5px;
+                  > img {
+                    height: 160px;
+                    width: 160px;
+                    display: block;
+                    margin: auto;
+                    margin-bottom: 5px;
+                  }
+                  > p.m-title {
+                    text-align: center;
+                    color: #333;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                  }
+                  > p.m-intro {
+                    text-align: center;
+                    color: #b0b0b0;
+                    font-size: 12px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-bottom: 8px;
+                    padding: 0 5px;
+                  }
+                  > p.m-price {
+                    text-align: center;
+                    font-size: 14px;
+                    > span.price-new {
+                      color: #ed712e;
+                    }
+                    > span.price-old {
+                      color: #b0b0b0;
+                      text-decoration: line-through;
+                    }
+                  }
                   &:hover {
                     box-shadow: 0 0 10px rgb(206, 206, 206);
                     transform: translate(0, -2px);
                   }
                 }
-                div {
-                  height: 135px;
-                  background-color: white;
-                  transition: 0.5s;
-                  &:first-child {
-                    margin-bottom: 20px;
-                  }
-                  &:hover {
-                    box-shadow: 0 0 10px rgb(206, 206, 206);
-                    transform: translate(0, -2px);
+                &:last-child {
+                  background-color: unset;
+                  > div {
+                    height: 135px;
+                    background-color: white;
+                    transition: 0.5s;
+                    &:hover {
+                      box-shadow: 0 0 10px rgb(206, 206, 206);
+                      transform: translate(0, -2px);
+                    }
+                    &:first-child {
+                      margin-bottom: 20px;
+                      position: relative;
+                      padding-top: 20px;
+                      > img {
+                        width: 80px;
+                        height: 80px;
+                        position: absolute;
+                        top: 30px;
+                        right: 20px;
+                      }
+                      > p.m-title {
+                        white-space: initial;
+                        width: 90px;
+                        color: #333;
+                        font-size: 14px;
+                        margin: 10px auto 10px 20px;
+                      }
+                      > p.m-price {
+                        font-size: 14px;
+                        width: 90px;
+                        margin-left: 20px;
+                        > span.price-new {
+                          color: #ed712e;
+                        }
+                        > span.price-old {
+                          color: #b0b0b0;
+                          text-decoration: line-through;
+                        }
+                      }
+                    }
+                    &:last-child {
+                      position: relative;
+                      padding-top: 35px;
+                      > p.m-title {
+                        color: #333;
+                        font-size: 18px;
+                        margin-bottom: 5px;
+                        margin-left: 20px;
+                      }
+                      > p.m-intro {
+                        color: #b0b0b0;
+                        font-size: 12px;
+                        margin-left: 20px;
+                      }
+                      > span.mi-icon::before {
+                        content: "\E615";
+                        font-size: 50px;
+                        color: #ed712e;
+                        position: absolute;
+                        right: 30px;
+                      }
+                    }
                   }
                 }
               }
@@ -1063,30 +1246,123 @@
           width: 100%;
           height: 604px;
           position: relative;
-          > * {
+          > div {
             width: 100%;
             height: 100%;
             position: absolute;
             display: grid;
             grid-auto-flow: column;
-            grid-template-columns: 230px repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: 230px repeat(4, 218.5px);
+            grid-template-rows: repeat(4, 133px);
             grid-gap: 24px;
             transition: 0s 999999s;
             visibility: hidden;
-            span {
+            > span {
               background-color: white;
               transition: 0.5s;
-              img {
-                height: 100%;
-                width: 100%;
+              &:nth-child(-n+2) {
+                > img {
+                  height: 100%;
+                  width: 100%;
+                }
               }
               &:hover {
                 box-shadow: 0 0 10px rgb(206, 206, 206);
                 transform: translate(0, -2px);
               }
               &:not(:nth-last-child(-n+2)) {
-              grid-row-end: span 2;
+                grid-row-end: span 2;
+              }
+              &:nth-child(n+3):nth-child(-n+9) {
+                > img {
+                  height: 160px;
+                  width: 160px;
+                  display: block;
+                  margin: auto;
+                  margin-bottom: 5px;
+                }
+                > p.m-title {
+                  text-align: center;
+                  color: #333;
+                  font-size: 14px;
+                  margin-bottom: 10px;
+                }
+                > p.m-intro {
+                  text-align: center;
+                  color: #b0b0b0;
+                  font-size: 12px;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  margin-bottom: 8px;
+                  padding: 0 5px;
+                }
+                > p.m-price {
+                  text-align: center;
+                  font-size: 14px;
+                  > span.price-new {
+                    color: #ed712e;
+                  }
+                  > span.price-old {
+                    color: #b0b0b0;
+                    text-decoration: line-through;
+                  }
+                }
+              }
+              &:nth-child(10) {
+                position: relative;
+                padding-top: 30px;
+                > img {
+                  width: 80px;
+                  height: 80px;
+                  position: absolute;
+                  top: 30px;
+                  right: 20px;
+                }
+                > p.m-title {
+                  white-space: initial;
+                  width: 90px;
+                  color: #333;
+                  font-size: 14px;
+                  margin: 0 auto 10px 20px;
+                }
+                > p.m-price {
+                  font-size: 14px;
+                  width: 90px;
+                  margin-left: 20px;
+                  > span.price-new {
+                    color: #ed712e;
+                  }
+                  > span.price-old {
+                    color: #b0b0b0;
+                    text-decoration: line-through;
+                  }
+                }
+
+              }
+              &:nth-child(11) {
+                position: relative;
+                padding-top: 45px;
+                > p.m-title {
+                  color: #333;
+                  font-size: 18px;
+                  margin-bottom: 5px;
+                  margin-left: 20px;
+                  text-align: left;
+                }
+                > p.m-intro {
+                  color: #b0b0b0;
+                  font-size: 12px;
+                  margin-left: 20px;
+                  text-align: left;
+                }
+                > span.mi-icon::before {
+                  content: "\E615";
+                  font-size: 50px;
+                  color: #ed712e;
+                  position: absolute;
+                  right: 30px;
+                }
               }
             }
           }
@@ -2068,7 +2344,7 @@
               <li>
                 <div>
                   <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202209261427_67cd5fddb341f0e0fb0a2295e643b0d8.png?thumb=1&w=200&h=200&f=webp&q=90" alt="">
-                  <p class="m-title">xiaomi降噪蓝牙耳机Necklace</p>
+                  <p class="m-title">Xiaomi降噪蓝牙耳机Necklace</p>
                   <p class="m-price"><span class="price-new">949元</span> <span class="price-old"></span></p>
                 </div>
                 <div>
@@ -2150,10 +2426,54 @@
                 <p class="m-intro">48dB智能动态降噪｜骨声纹通话降噪 | 独立空间音频</p>
                 <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
               </li>
-            <li>
-              <div>8</div>
-              <div>9</div>
-            </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/63532c3fce30e7beb763d804d6a40f75.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米笔记本Pro X 14</p>
+                <p class="m-intro">高能旗舰 轻薄力作</p>
+                <p class="m-price"><span class="price-new">949元</span> <span class="price-old">1099元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e3c300330221ad788569e4fb1e6f932f.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Redmi Book Pro 14 2022</p>
+                <p class="m-intro">全新12代英特尔处理器，2.5K 120Hz高清屏，可选MX550独立显卡,CNC一体精雕工艺</p>
+                <p class="m-price"><span class="price-new">5399元起</span> <span class="price-old"></span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e3c300330221ad788569e4fb1e6f932f.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Redmi Book Pro 14 2022</p>
+                <p class="m-intro">全新12代英特尔处理器，2.5K 120Hz高清屏，可选MX550独立显卡,CNC一体精雕工艺</p>
+                <p class="m-price"><span class="price-new">5399元起</span> <span class="price-old"></span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e3c300330221ad788569e4fb1e6f932f.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Redmi Book Pro 14 2022</p>
+                <p class="m-intro">全新12代英特尔处理器，2.5K 120Hz高清屏，可选MX550独立显卡,CNC一体精雕工艺</p>
+                <p class="m-price"><span class="price-new">5399元起</span> <span class="price-old"></span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e3c300330221ad788569e4fb1e6f932f.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Redmi Book Pro 14 2022</p>
+                <p class="m-intro">全新12代英特尔处理器，2.5K 120Hz高清屏，可选MX550独立显卡,CNC一体精雕工艺</p>
+                <p class="m-price"><span class="price-new">5399元起</span> <span class="price-old"></span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e3c300330221ad788569e4fb1e6f932f.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">Redmi Book Pro 14 2022</p>
+                <p class="m-intro">全新12代英特尔处理器，2.5K 120Hz高清屏，可选MX550独立显卡,CNC一体精雕工艺</p>
+                <p class="m-price"><span class="price-new">5399元起</span> <span class="price-old"></span></p>
+              </li>
+              <li>
+                <div>
+                  <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7d4b9d5790e07d2fe68864f76095ec56.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                  <p class="m-title">小米平板5</p>
+                  <p class="m-price"><span class="price-new">1999元起</span> <span class="price-old"></span></p>
+                </div>
+                <div>
+                  <span class="mi-icon"></span>
+                  <p class="m-title">浏览更多</p>
+                  <p class="m-intro">热门</p>
+                </div>
+              </li>
             </ul>
           </div>
         </main>
@@ -2173,26 +2493,98 @@
           </div>
           <div class="subsection">
             <ul class="hot">
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>6</li>
-              <li>7</li>
               <li>
-                <div>8</div>
-                <div>9</div>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视6 65” OLED</p>
+                <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+                <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视6 65” OLED</p>
+                <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+                <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视6 65” OLED</p>
+                <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+                <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视6 65” OLED</p>
+                <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+                <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9cd8a5a447b4f84faeb3791811a179f9.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">米家新风空调 立式3匹</p>
+                <p class="m-intro">全屋快通风，就要大新风</p>
+                <p class="m-price"><span class="price-new">6999元</span> <span class="price-old">7299元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9cd8a5a447b4f84faeb3791811a179f9.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">米家新风空调 立式3匹</p>
+                <p class="m-intro">全屋快通风，就要大新风</p>
+                <p class="m-price"><span class="price-new">6999元</span> <span class="price-old">7299元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9cd8a5a447b4f84faeb3791811a179f9.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">米家新风空调 立式3匹</p>
+                <p class="m-intro">全屋快通风，就要大新风</p>
+                <p class="m-price"><span class="price-new">6999元</span> <span class="price-old">7299元</span></p>
+              </li>
+              <li>
+                <div>
+                  <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/db032eeb9e8efe9551161ee18bf70d3f.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                  <p class="m-title">米家波轮洗衣机 10kg</p>
+                  <p class="m-price"><span class="price-new">999元</span> <span class="price-old"></span></p>
+                </div>
+                <div>
+                  <span class="mi-icon"></span>
+                  <p class="m-title">浏览更多</p>
+                  <p class="m-intro">热门</p>
+                </div>
               </li>
             </ul>
             <ul class="tv">
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
-              <li>2</li>
               <li>
-                <div>3</div>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/363bf63e1ca2c6b21a0e5e21cd284368.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视EA65 2022款65英寸</p>
+                <p class="m-intro">金属全面屏 | 4K超高清 | 远场语音</p>
+                <p class="m-price"><span class="price-new">1999元</span> <span class="price-old">2899元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/363bf63e1ca2c6b21a0e5e21cd284368.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视EA65 2022款65英寸</p>
+                <p class="m-intro">金属全面屏 | 4K超高清 | 远场语音</p>
+                <p class="m-price"><span class="price-new">1999元</span> <span class="price-old">2899元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/363bf63e1ca2c6b21a0e5e21cd284368.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视EA65 2022款65英寸</p>
+                <p class="m-intro">金属全面屏 | 4K超高清 | 远场语音</p>
+                <p class="m-price"><span class="price-new">1999元</span> <span class="price-old">2899元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/363bf63e1ca2c6b21a0e5e21cd284368.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视EA65 2022款65英寸</p>
+                <p class="m-intro">金属全面屏 | 4K超高清 | 远场语音</p>
+                <p class="m-price"><span class="price-new">1999元</span> <span class="price-old">2899元</span></p>
+              </li>
+              <li>
+                <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/363bf63e1ca2c6b21a0e5e21cd284368.png?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+                <p class="m-title">小米电视EA65 2022款65英寸</p>
+                <p class="m-intro">金属全面屏 | 4K超高清 | 远场语音</p>
+                <p class="m-price"><span class="price-new">1999元</span> <span class="price-old">2899元</span></p>
+              </li>
+              <li>
+                <div>
+                  <span class="mi-icon"></span>
+                  <p class="m-title">浏览更多</p>
+                  <p class="m-intro">电视影音</p>
+                </div>
               </li>
             </ul>
           </div>
@@ -2218,15 +2610,58 @@
             <span>
               <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/92a420f42eda98f401d650ea9b52409e.jpg?thumb=1&w=468&h=600&f=webp&q=90" alt="">
             </span>
-            <span>1111</span>
-            <span>4</span>
-            <span>5</span>
-            <span>6</span>
-            <span>7</span>
-            <span>8</span>
-            <span>9</span>
-            <span>10</span>
-            <span>11</span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">小米电视6 65” OLED</p>
+              <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+              <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">小米电视6 65” OLED</p>
+              <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+              <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">小米电视6 65” OLED</p>
+              <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+              <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">小米电视6 65” OLED</p>
+              <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+              <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">小米电视6 65” OLED</p>
+              <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+              <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">小米电视6 65” OLED</p>
+              <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+              <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82ff5ea76730fdf6f91aba5d3b2e5739.jpg?thumb=1&w=400&h=400&f=webp&q=90" alt="">
+              <p class="m-title">小米电视6 65” OLED</p>
+              <p class="m-intro">OLED自发光屏 | 百万级对比度 | 4.6mm超薄全面屏</p>
+              <p class="m-price"><span class="price-new">6699元</span> <span class="price-old">6999元</span></p>
+            </span>
+            <span>
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/db032eeb9e8efe9551161ee18bf70d3f.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+              <p class="m-title">米家波轮洗衣机 10kg</p>
+              <p class="m-price"><span class="price-new">999元</span> <span class="price-old"></span></p>
+            </span>
+            <span>
+              <span class="mi-icon"></span>
+              <p class="m-title">浏览更多</p>
+              <p class="m-intro">热门</p>
+            </span>
           </div>
           <div class="sweeper-main">
             <span>
