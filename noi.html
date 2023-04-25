@@ -302,12 +302,19 @@
     console.log(d)
   </script>
 
-  <script id="ch0104/20" type="xx">
+  <script id="ch0104/20" type="">
     var a = +prompt("a")
     var b = +prompt("b")
     var c = +prompt("c")
-    var d = z =="+" ? (x + y) : 0
-    console.log(d)
+    var m = ((-b + Math.sqrt(b * b - 4 * a * c)) / ( 2 * a)).toFixed(5)
+    var n = ((-b - Math.sqrt(b * b - 4 * a * c)) / ( 2 * a)).toFixed(5)
+    var d = b ** 2
+    var e = 4 * a * c
+    var p = (-b / (2 * a)).toFixed(5)
+    var q = (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5)
+    // var f = (d == e) ? ("x1=x2=" + m) : (d > e) ? ("x1=" + Math.max(m,n) + ";x2=" + Math.min(m,n)) : ("x1=" + p + q + "i" + ";x2=" + p - q + "i")
+    var f = (d == e) ? ("x1=x2=" + m) : (d > e) ? ("x1=" + Math.max(m,n) + ";x2=" + Math.min(m,n)) : ("x1=" + p + "+" + q + "i" + ";x2=" + p + "-" + q + "i")
+    console.log(f)
   </script>
 
   <script id="ch0104/21" type="xx">
