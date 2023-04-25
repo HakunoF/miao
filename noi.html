@@ -185,9 +185,10 @@
   </script>
 
   <script id="ch0104/04" type="xx">
-    var n = +prompt("n"); "n".charCodeAt(0);
-    var s = ("n" % 2 == 1) ? "YES" : "NO"
-    console.log(s)
+    var n = prompt(n)
+    var s = n.charCodeAt();
+    var d = s % 2 == 1 ? "YES" : "NO"
+    console.log(d)
   </script>
 
   <script id="ch0104/05" type="xx">
@@ -258,7 +259,7 @@
 
   <script id="ch0104/14" type="xx">
     var a = +prompt("a")
-    var b = +prompt("b")
+    var b = prompt(b)
     var c = a <= 1000 ? 8 : (Math.ceil((a - 1000) / 500) * 4 + 8)
     var d = b == "y" ? 5 : 0
     console.log(c + d)
@@ -303,10 +304,9 @@
   </script>
 
   <script id="ch0104/20" type="xx">
-    var x = +prompt("x")
-    var y = +prompt("y")
-    var z = +prompt("z")
-    // var d = z == "+" ? (x + y) : z == "-" ? (x - y) : z == "*" ? (x * y) : z == "/" && y == 0 ? "Divided by zero!" : z == "/" && y!= 0 ? (x / y) : "Invalid operator!"
+    var a = +prompt("a")
+    var b = +prompt("b")
+    var c = +prompt("c")
     var d = z =="+" ? (x + y) : 0
     console.log(d)
   </script>
