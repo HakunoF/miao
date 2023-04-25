@@ -297,9 +297,8 @@
   <script id="ch0104/19" type="xx">
     var x = +prompt("x")
     var y = +prompt("y")
-    var z = +prompt("z")
-    // var d = z == "+" ? (x + y) : z == "-" ? (x - y) : z == "*" ? (x * y) : z == "/" && y == 0 ? "Divided by zero!" : z == "/" && y!= 0 ? (x / y) : "Invalid operator!"
-    var d = z =="+" ? (x + y) : 0
+    var z = prompt(z)
+    var d = z == "+" ? (x + y) : z == "-" ? (x - y) : z == "*" ? (x * y) : z == "/" && y == 0 ? "Divided by zero!" : z == "/" && y!= 0 ? (x / y) : "Invalid operator!"
     console.log(d)
   </script>
 
