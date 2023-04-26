@@ -149,7 +149,7 @@
     var a1 = +prompt("a1")
     var a2 = +prompt("a2")
     var n = +prompt("n")
-    var X = (a1 + (n - 1) * (a2 - a1)) * 1
+    var X = a1 + (n - 1) * (a2 - a1)
     console.log(X)
   </script>
 
@@ -166,19 +166,29 @@
     console.log(X)
   </script>
 
-  <script id="ch0104/01" type="xx">
-    var N = +prompt("N")
-    // console.log((N > 0 && "positive") || (N < 0 && "negative") || (N = 0 && "zero"))
-    console.log(N === 0 ? "zero" : (N > 0 ? "positive" : "negative"))
+  <script id="ch0104/01" type="x">
+    var N = +prompt("请输入")
+    if (N < 0) {
+      console.log('negative')
+    } else if (N > 0) {
+      console.log('positive')
+    } else {
+      console.log('zero')
+    }
+    // console.log(N === 0 ? "zero" : (N > 0 ? "positive" : "negative"))
   </script>
 
-  <script id="ch0104/02" type="xx">
+  <script id="ch0104/02" type="x">
     var n = +prompt("n")
-    var r = Math.sqrt(n ** 2).toFixed(2)
-    console.log(r)
+    if (n < 0) {
+      console.log((-n).toFixed(2))
+    } else {
+      console.log(n.toFixed(2))
+    }
+    // console.log(Math.sqrt(n ** 2).toFixed(2))
   </script>
 
-  <script id="ch0104/03" type="xx">
+  <script id="ch0104/03" type="x">
     var n = +prompt("n")
     var r = (n % 2) == 0 ? "even" : "odd"
     console.log(r)
@@ -191,11 +201,17 @@
     console.log(d)
   </script>
 
-  <script id="ch0104/05" type="xx">
+  <script id="ch0104/05" type="x">
     var x = +prompt("x")
     var y = +prompt("y")
-    var z = x > y ? ">" : x < y ? "<" : "="
-    console.log(z)
+    if (x > y) {
+      console.log('>')
+    } else if (x == y) {
+      console.log('=')
+    } else {
+      console.log('<')
+    }
+    // var z = x > y ? ">" : x < y ? "<" : "="
   </script>
 
   <script id="ch0104/06" type="xx">
@@ -204,7 +220,7 @@
     console.log(z)
   </script>
 
-  <script id="ch0104/07" type="xx">
+  <script id="ch0104/07" type="x">
     var luck = +prompt("l")
     var en = +prompt("en")
     var z = luck >= 10 || en >= 20 ? "1" : "0"
@@ -217,23 +233,49 @@
     console.log(z)
   </script>
 
-  <script id="ch0104/09" type="xx">
-    var n = +prompt("n")
-    var z = (n % 3 == 0 && n % 5 == 0 && n % 7 == 0) ? "3 5 7": (n % 3 == 0 && n % 5 == 0 && n % 7 != 0) ? "3 5"
-    : (n % 3 != 0 && n % 5 == 0 && n % 7 == 0) ? "5 7"
-    : (n % 3 == 0 && n % 5 != 0 && n % 7 == 0) ? "3 7"
-    : (n % 3 == 0 && n % 5 != 0 && n % 7 != 0) ? "3"
-    : (n % 3 != 0 && n % 5 == 0 && n % 7 != 0) ? "5"
-    : (n % 3 != 0 && n % 5 != 0 && n % 7 == 0) ? "7"
-    : "n"
-    console.log(z)
+  <script id="ch0104/09" type="x">
+    var x = +prompt("请输入")
+    var m = "n"
+    if (x % 3 == 0) {
+      console.log(3)
+      m = "y"
+    }
+    if (x % 5 ==0) {
+      console.log(5)
+      m = "y"
+    }
+    if (x % 7 ==0) {
+      console.log(7)
+      m = "y"
+    }
+    if (m == "n") {
+      console.log(m)
+    }
+    // var z = (n % 3 == 0 && n % 5 == 0 && n % 7 == 0) ? "3 5 7": (n % 3 == 0 && n % 5 == 0 && n % 7 != 0) ? "3 5"
+    // : (n % 3 != 0 && n % 5 == 0 && n % 7 == 0) ? "5 7"
+    // : (n % 3 == 0 && n % 5 != 0 && n % 7 == 0) ? "3 7"
+    // : (n % 3 == 0 && n % 5 != 0 && n % 7 != 0) ? "3"
+    // : (n % 3 != 0 && n % 5 == 0 && n % 7 != 0) ? "5"
+    // : (n % 3 != 0 && n % 5 != 0 && n % 7 == 0) ? "7"
+    // : "n"
   </script>
 
-  <script id="ch0104/10" type="xx">
+  <script id="ch0104/10" type="x">
     var c = +prompt("c")
     var m = +prompt("m")
-    var z = c < 60 && m > 60 || c > 60 && m < 60 ? "1" : "0"
-    console.log(z)
+    var flag = 0
+    if (c < 60) {
+      flag = flag + 1
+    }
+    if (m < 60) {
+      flag = flag + 1
+    }
+    if (flag == 1) {
+      console.log(1)
+    } else {
+      console.log(0)
+    }
+    // var z = c < 60 && m > 60 || c > 60 && m < 60 ? "1" : "0"
   </script>
 
   <script id="ch0104/11" type="xx">
@@ -250,11 +292,16 @@
     console.log(z)
   </script>
 
-  <script id="ch0104/13" type="xx">
-    var N = +prompt("N")
-    var x = N
-    var y = ((x >= 0 && x < 5) ? (x * (-1) + 2.5) : (x >= 10 && x < 20) ? (x / 2 - 1.5) : (2 - 1.5 * (x - 3) * (x - 3))).toFixed(3)
-    console.log(y)
+  <script id="ch0104/13" type="x">
+    var x = +prompt("x")
+    if ((x >= 0 && x < 5)) {
+      console.log((-x + 2.5).toFixed(3))
+    } else if (x >= 10 && x < 20) {
+      console.log((x / 2 - 1.5).toFixed(3))
+    } else {
+      console.log((2 - 1.5 * (x - 3) * (x - 3)).toFixed(3))
+    }
+    // var y = ((x >= 0 && x < 5) ? (x * (-1) + 2.5) : (x >= 10 && x < 20) ? (x / 2 - 1.5) : (2 - 1.5 * (x - 3) * (x - 3))).toFixed(3)
   </script>
 
   <script id="ch0104/14" type="xx">
@@ -302,7 +349,7 @@
     console.log(d)
   </script>
 
-  <script id="ch0104/20" type="">
+  <script id="ch0104/20" type="xx">
     var a = +prompt("a")
     var b = +prompt("b")
     var c = +prompt("c")
@@ -312,7 +359,6 @@
     var e = 4 * a * c
     var p = (-b / (2 * a)).toFixed(5)
     var q = (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5)
-    // var f = (d == e) ? ("x1=x2=" + m) : (d > e) ? ("x1=" + Math.max(m,n) + ";x2=" + Math.min(m,n)) : ("x1=" + p + q + "i" + ";x2=" + p - q + "i")
     var f = (d == e) ? ("x1=x2=" + m) : (d > e) ? ("x1=" + Math.max(m,n) + ";x2=" + Math.min(m,n)) : ("x1=" + p + "+" + q + "i" + ";x2=" + p + "-" + q + "i")
     console.log(f)
   </script>
@@ -325,9 +371,13 @@
     console.log(d)
   </script>
 
-
-
-
+  <script id="ch0105/01" type="xx">
+    var n = +prompt("n")
+    var x = +prompt("x")
+    var y = +prompt("y")
+    var d = n - Math.ceil(y / x)
+    console.log(d)
+  </script>
 
 </body>
 </html>
