@@ -344,7 +344,7 @@
   <script id="ch0104/19" type="xx">
     var x = +prompt("x")
     var y = +prompt("y")
-    var z = prompt(z)
+    var z = prompt(“z”)
     var d = z == "+" ? (x + y) : z == "-" ? (x - y) : z == "*" ? (x * y) : z == "/" && y == 0 ? "Divided by zero!" : z == "/" && y!= 0 ? (x / y) : "Invalid operator!"
     console.log(d)
   </script>
@@ -370,6 +370,61 @@
     var d = n - Math.ceil(y / x)
     console.log(d)
   </script>
+
+  <script id="ch0105/01" type="x">
+    var n = +prompt("n")
+    var sum = 0
+    for (i = 1; i <= n; i++){
+      var age = +prompt("age")
+      sum += age
+    }
+    var avg = sum / n
+    console.log(avg.toFixed(2))
+  </script>
+
+  <script id="ch0105/02" type="x">
+    var sum = 0
+    for (i = 1; i <= 12; i++){
+      var left = +prompt("left")
+      sum += left
+    }
+    var avg = sum / 12
+    console.log('$' + avg.toFixed(2))
+  </script>
+
+  <script id="ch0105/03" type="x">
+    var n = +prompt("n")
+    var sum = 0
+    for (i = 1; i <= n; i++){
+      var num = +prompt("num")
+      sum += num
+    }
+    var avg = sum / n
+    console.log(avg.toFixed(4))
+  </script>
+
+  <script id="ch0105/04" type="x">
+    var n = +prompt("n")
+    var sum = 0
+    for (i = 1; i <= n; i++){
+      var num = +prompt("num")
+      sum += num
+    }
+    var avg = sum / n
+    console.log(sum,avg.toFixed(5))
+  </script>
+
+  <script id="" type="">
+    var n = +prompt("n")
+    var sum = 0
+    for (i = 1; i <= n; i++){
+      var num = +prompt("num")
+      sum += num
+    }
+    var avg = sum / n
+    console.log(avg.toFixed(4))
+  </script>
+
 
 </body>
 </html>
