@@ -739,15 +739,14 @@
     console.log(n)
   </script>
 
-  <script id="ch0105/28" type="">
+  <script id="ch0105/28" type="x">
     var n = +prompt('n')
     var res = ''
     do {
       var a = n % 10
-      res = res + a
+      res = res + ' ' + a
       n = (n - a) / 10
     } while (n > 0)
-
     console.log(res)
   </script>
 
@@ -786,7 +785,7 @@
       }
   </script>
 
-  <script id="ch0105/31" type="x">
+  <script id="ch0105/31" type="">
     var m = +prompt('m')
     var k = +prompt('k')
     var count = 0
