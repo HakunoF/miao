@@ -615,9 +615,9 @@
     var s = -h
     for (i = 1; i <= 10; i++){
       s += h * 2
-      h *= 0.5
+      h = 0.5 * h
     }
-    console.log(s,h)
+    console.log(s.toFixed(4),h.toFixed(7))
   </script>
 
   <script id="ch0105/21" type="x">
@@ -739,10 +739,9 @@
     console.log(n)
   </script>
 
-  <script id="ch0105/28" type="x">
+  <script id="ch0105/28" type="">
     var n = +prompt('n')
     var res = ''
-
     do {
       var a = n % 10
       res = res + a
@@ -787,7 +786,7 @@
       }
   </script>
 
-  <script id="ch0105/" type="">
+  <script id="ch0105/31" type="x">
     var m = +prompt('m')
     var k = +prompt('k')
     var count = 0
