@@ -744,7 +744,7 @@
     var res = ''
     do {
       var a = n % 10
-      res = res + ' ' + a
+      res = res + a + ' '
       n = (n - a) / 10
     } while (n > 0)
     console.log(res)
