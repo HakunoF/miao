@@ -783,23 +783,36 @@
       }
   </script>
 
-  <script id="ch0105/31" type="">
-    var n = +prompt('n')
-    var m = +prompt('m')
-    var count = 0
-    var n = m
-      do {
-      var a = m % 10
-      m = (m - a) / 10
-        if (a == 3) {
-          count++
+  <script id="ch0105/31" type="x">
+    var n = +prompt('灯')
+    var m = +prompt('人')
+    var off = '1'
+    for (i = 2; i <= n ; i++){
+      var light = true
+      for (a = 1; a <= m ; a++){
+        if (i % a == 0) {
+          light = !light
         }
-      } while (m > 0)
-      if (count == k && n % 19 ==0) {
-        console.log('YES')
-      } else {
-        console.log('NO')
       }
+      if (light == false) {
+        off = off + ',' + i
+      }
+    }
+    console.log(off)
+  </script>
+
+  <script id="ch0105/32" type="x">
+    var n = +prompt('n')
+    var p = 1
+    var q = 1
+    sum = 0
+    for (i = 1; i <= n ; i++){
+      q = q + p
+      p = q - p
+      var unit = q / p
+      sum += unit
+    }
+    console.log(sum.toFixed(4))
   </script>
 
 
