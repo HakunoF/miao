@@ -873,8 +873,102 @@
     console.log(n)
   </script>
 
+  <script id="ch0105/" type="x">
+
+  </script>
+
+  <script id="ch0105/39" type="x">
+    var n = +prompt('n')
+    var sum = 0
+    for (i = 1; i <= n ; i++){
+      var a = i % 10
+      var b = (i - a) / 10 % 10
+      if (i % 7 != 0 && a != 7 && b != 7) {
+        sum += i ** 2
+      }
+    }
+    console.log(sum)
+  </script>
+
+  <script id="ch0105/40" type="x">
+    var n = +prompt('n')
+    var count = 0
+    for (i = 1; i <= n ; i++){
+      var x = i
+      do{
+        var a = x % 10
+        x = (x - a) / 10 % 10
+        if (a == 1) {
+          count++
+        }
+      } while (x > 0)
+    }
+    console.log(count)
+  </script>
+
+  <script id="ch0105/41" type="x">
+    var l = +prompt('l')
+    var r = +prompt('r')
+    var count = 0
+    for (i = l; i <= r ; i++){
+      var x = i
+      do{
+        var a = x % 10
+        x = (x - a) / 10 % 10
+        if (a == 2) {
+          count++
+        }
+      } while (x > 0)
+    }
+    console.log(count)
+  </script>
+
+  <script id="ch0105/42" type="x">
+    var h = +prompt('h')
+    var w = +prompt('')
+    var icon = prompt('')
+    var aaa = +prompt('0||1')
+    for (i = 1; i <= h ; i++){
+      if (i == 1 || i == h) {
+        var plus = ''
+        for (x = 1; x <= w; x++){
+          plus += icon
+        }
+      } else {
+        var plus = ''
+        if (aaa == 1) {
+          for (x = 1; x <= w; x++){
+          plus += icon
+          }
+        } else {
+          for (x = 1; x <= w; x++){
+            if (x == 1 || x == w) {
+              plus += icon
+            } else {
+              plus += ' '
+            }
+          }
+        }
+      }
+      console.log(plus)
+    }
+  </script>
+
   <script id="ch0105/" type="">
-    
+    var l = +prompt('l')
+    var r = +prompt('r')
+    var count = 0
+    for (i = l; i <= r ; i++){
+      var x = i
+      do{
+        var a = x % 10
+        x = (x - a) / 10 % 10
+        if (a == 2) {
+          count++
+        }
+      } while (x > 0)
+    }
+    console.log(count)
   </script>
 
 
