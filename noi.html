@@ -1201,12 +1201,13 @@
     console.log(lcf,lcm)
   </script>
 
-  <script id="sqrt" type="x">
+  <script id="sqrt" type="">
     var n = +prompt('n')
+    var a = ''
     for (i = 1; i < n; i++) {
       i--
       if (i ** 2 >= n) {
-        var a = i
+        a = i
         break
       } else {
         i += 0.0001
@@ -1214,14 +1215,6 @@
     }
     console.log(a.toFixed(3))
   </script>
-
-
-
-
-
-
-
-
 
 
 
