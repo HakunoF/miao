@@ -873,8 +873,29 @@
     console.log(n)
   </script>
 
-  <script id="ch0105/" type="x">
-
+  <script id="ch0105/38" type="x">
+    var n = +prompt('多项式组数')
+    for (i = 1; i <= n; i++) {
+      var maxmi = +prompt('最高次幂')
+      var result = ''
+      var d = 0
+      for (x = maxmi; x >= 0; x--) {
+        var C = +prompt('多项式中系数')
+        if (x == 1) {
+          result += C
+        } else if (x == 0) {
+          break
+        } else {
+          result += C * x + ' '
+          d += C * x
+        }
+      }
+      if (d == 0) {
+        console.log(0)
+      } else {
+        console.log(result)
+      }
+    }
   </script>
 
   <script id="ch0105/39" type="x">
@@ -956,7 +977,7 @@
 
   <script id="ch0105/43" type="x">
     var n = +prompt('n')
-    for (i = 2; i <= n / 2 ; i++){
+    for (i = 2; i <= Math.sqrt(n) ; i++){
       var b = n % i
       var a = n / i
       if (b == 0) {
@@ -976,6 +997,7 @@
   </script>
 
   <!-- <script id="ch0105/43" type="x">
+    只对给定样例有效
     var n = +prompt('输入一个正整数')
     var max = 0
     for(i = 2 ; i < Math.sqrt(n); i++){  //找到一个数能够被n整除，这个数一定是质数
@@ -1039,7 +1061,37 @@
       sum = sum + (n - i + m) * m
     }
     console.log(sum)
+  </script>
 
+  <script id="narcissistic" type="x">
+    var n = +prompt('n')
+    var x = n
+    var sum = 0
+    do {
+      var a = x % 10
+      var x = (x - a) / 10
+      sum += a ** 3
+    } while (x > 0)
+    if (sum == n) {
+      console.log('YES')
+    } else {
+      console.log('NO')
+    }
+  </script>
+
+  <script id="narcissistics" type="x">
+    for (i = 0; i <= 10000 ; i++) {
+      var x = i
+      var sum = 0
+      do {
+        var a = x % 10
+        var x = (x - a) / 10
+        sum += a ** 3
+      } while (x > 0)
+      if (sum == i) {
+      console.log(i)
+      }
+    }
   </script>
 
 
