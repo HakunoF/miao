@@ -1203,19 +1203,17 @@
 
   <script id="sqrt" type="">
     var n = +prompt('n')
-    var a = ''
     for (i = 1; i < n; i++) {
       i--
       if (i ** 2 >= n) {
-        a = i
+        var a = i
         break
       } else {
-        i += 0.0001
+        i += 0.00001
       }
     }
     console.log(a.toFixed(3))
   </script>
-
 
 
 </body>
