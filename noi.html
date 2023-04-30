@@ -1113,7 +1113,7 @@
   <script id="weekday" type="x">
     var year = +prompt('year')
     var month = +prompt('month')
-    var x = new Date('$(y)-$(m)-1')
+    var x = new Date(`${year}-${month}-1`)
     var date = x.getDay()
     console.log(date)
   </script>
