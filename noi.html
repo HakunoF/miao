@@ -1110,21 +1110,12 @@
     }
   </script>
 
-  <script id="week" type="x">
+  <script id="weekday" type="x">
     var year = +prompt('year')
     var month = +prompt('month')
-    var x = n
-    var res = ''
-    do {
-      var a = x % 10
-      res += a
-      var x = (x - a) / 10
-    } while (x > 0)
-    if (res == n) {
-      console.log('YES')
-    } else {
-      console.log('NO')
-    }
+    var x = new Date('$(y)-$(m)-1')
+    var date = x.getDay()
+    console.log(date)
   </script>
 
   <script id="complete-number" type="x">
@@ -1210,12 +1201,18 @@
     console.log(lcf,lcm)
   </script>
 
-  <script id="sqr" type="">
+  <script id="sqrt" type="x">
     var n = +prompt('n')
-    for (i = 0; i < n; i++) {
-
-
+    for (i = 1; i < n; i++) {
+      i--
+      if (i ** 2 >= n) {
+        var a = i
+        break
+      } else {
+        i += 0.0001
+      }
     }
+    console.log(a.toFixed(3))
   </script>
 
 
