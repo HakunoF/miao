@@ -1201,7 +1201,9 @@
     console.log(lcf,lcm)
   </script>
 
-  <script id="sqrt" type="x">
+
+  <!-- 系统判定代码报错
+  <script id="sqrt" type="">
     var n = +prompt('n')
     for (i = 1; i < n; i++) {
       i--
@@ -1213,9 +1215,31 @@
       }
     }
     console.log(a.toFixed(3))
+  </script> -->
+
+  <script id="sqrt" type="">
+    var n = +prompt('n')
+    var right = n
+    var left = 0
+    while(right != left){
+      var mid = (right + left) / 2
+      if(mid * mid > n){
+        right = mid
+      }else{
+        left = mid
+      }
+      var x = right.toFixed(3)
+      var y = left.toFixed(3)
+      var z = mid.toFixed(3)
+      if(x == y && y == z && x == z){
+        break
+      }
+    }
+    console.log(z)
   </script>
 
 </body>
 </html>
+
 
 
