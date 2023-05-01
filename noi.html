@@ -1128,7 +1128,7 @@
       month += 12
     }
     var sum = year * 365
-    var m = 30 * (month - 3) + Math.trunc((month * 3 - 7) / 5) + 1 - 306
+    var m = 30 * (month - 3) + Math.trunc((month * 3 - 7) / 5) - 306
     sum += m
     console.log(sum % 7)
 
