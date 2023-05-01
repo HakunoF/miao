@@ -1111,11 +1111,27 @@
   </script>
 
   <script id="weekday" type="x">
+    // 蔡勒公式 将本年的1-2月转换为13-14月
+    // 每月首天与3/1日差值的个位拟合函数Math.trunc((m*3-7)/5)
     var year = +prompt('year')
     var month = +prompt('month')
-    var x = new Date(`${year}-${month}-1`)
-    var date = x.getDay()
-    console.log(date)
+    for (i = 0; i <= year - 1; i++) {
+      if (i % 4 == 0) {
+        sum++
+      }
+      if (i % 100 == 0 && i % 400 != 0) {
+        sum--
+      }
+    }
+    if (month == 1 || month == 2) {
+      year--
+      month += 12
+    }
+    var sum = year * 365
+    var m = 30 * (month - 3) + Math.trunc((month * 3 - 7) / 5) + 1 - 306
+    sum += m
+    console.log(sum % 7)
+
   </script>
 
   <script id="complete-number" type="x">
@@ -1217,7 +1233,7 @@
     console.log(a.toFixed(3))
   </script> -->
 
-  <script id="sqrt" type="">
+  <script id="sqrt" type="x">
     var n = +prompt('n')
     var right = n
     var left = 0
