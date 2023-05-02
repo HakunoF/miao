@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="500" height="400"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated' //放大时的插帧方式：不插帧，直接放大像素
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    x = Math.trunc(x)
+    y = Math.trunc(y)
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+  /**
+   * 你的任务：通过调用dot函数，实现：
+   * 需要注意，dot函数不能接收浮点数，如果参数为浮点数，会被转换为整数后绘制
+      * 在 坐标 (42, 42) 画出一个点
+      * 画一条水平实线，粗细为一个像素
+      * 画一条垂直实线，粗细为一个像素
+      * 画一条一个实点一个空点的虚线
+      * 画一条两个实点两个空点的虚线
+      * 画一条三个实点两个空点的虚线
+      * 画一条45度的斜线
+      * 画一条30度的斜线（与x轴的夹角呈30度）
+      * 画一条60度的斜线（与x轴的夹角呈60度）
+      * 画一条跨越画布左上角和右下角的对角线
+      * 画一个空心矩形
+      * 画一个实心矩形
+      * 画两个空心的圆，圆心在画布中心：
+        * 一个半径为50像素
+        * 一个半径为200像素
+      * 画一个实心的圆，半径至少为100像素
+      * 画一个【大小位置都合适】的sin(x)的图像
+
+      * 画出rgb色彩空间的某一面（尺寸要大于100x100）
+      * 如果做出上一题后，尝试将其每个点的坐标乘以一个矩阵（如(2,0,0,2)或(1,0.27得到新的位置，即绘制出被线性变换后的色彩空间某一面
+        可以考虑如下几种矩阵：
+           2 0
+           0 2
+           ------
+           1  0.27
+           0  1
+           ------
+           0.5    0.87
+           -0.87  0.5
+
+   */
+</script>
+<script>
+  // 不可更改上面的代码
+  // 你的代码写在这里
+
+  // 在 坐标 (42, 42) 画出一个点
+  var x1 = 42
+  var y1 = 42
+  console.log(dot(x1, y1, 'lightblue'))
+
+  // 画一条水平实线，粗细为一个像素
+  for (x2 = 0; x2 <= 500; x2++) {
+    console.log(dot(x2, 60, 'lightblue'))
+  }
+
+  // 画一条垂直实线，粗细为一个像素
+  for (y3 = 0; y3 <= 400; y3++) {
+    console.log(dot(60, y3, 'lightblue'))
+  }
+
+  // 画一条一个实点一个空点的虚线
+  for (x4 = 0; x4 <= 500; x4 += 2) {
+    console.log(dot(x4, 70, 'black'))
+  }
+
+  // 画一条两个实点两个空点的虚线
+  for (x5 = 0; x5 <= 500; x5 += 3) {
+    console.log(dot(x5, 80, 'black'))
+    x5++
+    console.log(dot(x5, 80, 'black'))
+  }
+  // 画一条三个实点两个空点的虚线
+  for (x6 = 0; x6 <= 500; x6 += 3) {
+    console.log(dot(x6, 90, 'black'))
+    x6++
+    console.log(dot(x6, 90, 'black'))
+    x6++
+    console.log(dot(x6, 90, 'black'))
+  }
+
+  // 画一条45度的斜线
+  for (x7 = 0; x7 <= 500; x7++) {
+    var y7 = x7
+    console.log(dot(x7, y7, 'black'))
+  }
+
+  // 画一条30度的斜线（与x轴的夹角呈30度）
+  for (x8 = 0; x8 <= 500; x8++) {
+    var y8 = x8 / Math.sqrt(3)
+    console.log(dot(x8, y8, 'black'))
+  }
+
+  // 画一条60度的斜线（与x轴的夹角呈60度）
+  for (x9 = 0; x9 <= 500; x9++) {
+    var y9 = x9 * Math.sqrt(3)
+    console.log(dot(x9, y9, 'black'))
+  }
+
+  // 画一条跨越画布左上角和右下角的对角线
+  for (x10 = 0; x10 <= 500; x10++) {
+    var y10 = x10 * 0.8
+    console.log(dot(x10, y10, 'black'))
+  }
+
+  // 画一个空心矩形
+  for (x11 = 50; x11 <= 150; x11++) {
+    console.log(dot(x11, 100, 'black'))
+    console.log(dot(x11, 150, 'black'))
+  }
+
+  for (y11 = 100; y11 <= 150; y11++) {
+    console.log(dot(50, y11, 'black'))
+    console.log(dot(150, y11, 'black'))
+  }
+
+  // 画一个实心矩形
+  for (x12 = 50; x12 <= 150; x12++) {
+    for (y12 = 200; y12 <= 250; y12++) {
+    console.log(dot(x12, y12, 'black'))
+    }
+  }
+
+  // 画两个空心的圆，圆心在画布中心：(250, 200)
+  // 一个半径为50像素
+  var r1 = 50
+  for (x13 = -50; x13 <= 50; x13++) {
+    var y13 = Math.sqrt(r1 ** 2 - x13 ** 2)
+    console.log(dot(250 + x13, 200 - y13, 'black'))
+    console.log(dot(250 + x13, 200 + y13, 'black'))
+  }
+
+  // for (x13 = -50; x13 <= 50; x13++) {
+  //   var y13 = Math.sqrt(r1 ** 2 - x13 ** 2)
+  //   console.log(dot(250 + x13, 200 - y13, 'black'))
+  //   console.log(dot(250 + x13, 200 + y13, 'black'))
+  // }
+
+  //       * 一个半径为200像素
+  //     * 画一个实心的圆，半径至少为100像素
+  //     * 画一个【大小位置都合适】的sin(x)的图像
+
+  //     * 画出rgb色彩空间的某一面（尺寸要大于100x100）
+  //     * 如果做出上一题后，尝试将其每个点的坐标乘以一个矩阵（如(2,0,0,2)或(1,0.27得到新的位置，即绘制出被线性变换后的色彩空间某一面
+  //       可以考虑如下几种矩阵：
+  //          2 0
+  //          0 2
+  //          ------
+  //          1  0.27
+  //          0  1
+  //          ------
+  //          0.5    0.87
+  //          -0.87  0.5
+
+</script>
+</html>
