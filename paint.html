@@ -144,19 +144,32 @@
   // 画两个空心的圆，圆心在画布中心：(250, 200)
   // 一个半径为50像素
   var r1 = 50
-  for (x13 = -50; x13 <= 50; x13++) {
-    var y13 = Math.sqrt(r1 ** 2 - x13 ** 2)
-    console.log(dot(250 + x13, 200 - y13, 'black'))
-    console.log(dot(250 + x13, 200 + y13, 'black'))
+  for (x13a = -50; x13a <= 50; x13a++) {
+    var y13a = Math.sqrt(r1 ** 2 - x13a ** 2)
+    console.log(dot(250 + x13a, 200 - y13a, 'black'))
+    console.log(dot(250 + x13a, 200 + y13a, 'black'))
   }
 
-  // for (x13 = -50; x13 <= 50; x13++) {
-  //   var y13 = Math.sqrt(r1 ** 2 - x13 ** 2)
-  //   console.log(dot(250 + x13, 200 - y13, 'black'))
-  //   console.log(dot(250 + x13, 200 + y13, 'black'))
-  // }
+  for (y13b = -50; y13b <= 50; y13b++) {
+    var x13b = Math.sqrt(r1 ** 2 - y13b ** 2)
+    console.log(dot(250 - x13b, 200 + y13b, 'black'))
+    console.log(dot(250 + x13b, 200 + y13b, 'black'))
+  }
 
-  //       * 一个半径为200像素
+  // 一个半径为200像素
+  var r2 = 200
+  for (x13c = -200; x13c <= 200; x13c++) {
+    var y13c = Math.sqrt(r2 ** 2 - x13c ** 2)
+    console.log(dot(250 + x13c, 200 - y13c, 'black'))
+    console.log(dot(250 + x13c, 200 + y13c, 'black'))
+  }
+
+  for (y13d = -200; y13d <= 200; y13d++) {
+    var x13d = Math.sqrt(r2 ** 2 - y13d ** 2)
+    console.log(dot(250 - x13d, 200 + y13d, 'black'))
+    console.log(dot(250 + x13d, 200 + y13d, 'black'))
+  }
+
   //     * 画一个实心的圆，半径至少为100像素
   //     * 画一个【大小位置都合适】的sin(x)的图像
 
