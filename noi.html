@@ -749,19 +749,30 @@
   </script>
 
   <script id="ch0105/29" type="x">
+    // 负数的模运算可行
     var n = +prompt('n')
-    var res = ''
-    var x = Math.sqrt(n ** 2)
-      do {
-      var a = x % 10
-      res = res + a
-      x = (x - a) / 10
-      } while (x > 0)
-      if (n > 0) {
-        console.log(res)
-      } else {
-        console.log(-res)
-      }
+    var result = 0
+    var sign = Math.sign(n) //取n的符号
+    var n = Math.abs(n) //取n的绝对值
+    while (n != 0) {
+      var a = n % 10
+      result = result * 10 + a
+      n = (n - a) / 10
+    }
+    console.log(result)
+    // 需要以数值的形式显示
+    // var res = ''
+    // var x = Math.sqrt(n ** 2)
+    //   do {
+    //   var a = x % 10
+    //   res = res + a
+    //   x = (x - a) / 10
+    //   } while (x > 0)
+    //   if (n > 0) {
+    //     console.log(res)
+    //   } else {
+    //     console.log(-res)
+    //   }
   </script>
 
   <script id="ch0105/30" type="x">
@@ -769,18 +780,18 @@
     var k = +prompt('k')
     var count = 0
     var n = m
-      do {
+    while (m > 0) {
       var a = m % 10
       m = (m - a) / 10
         if (a == 3) {
           count++
         }
-      } while (m > 0)
-      if (count == k && n % 19 ==0) {
-        console.log('YES')
-      } else {
-        console.log('NO')
       }
+    if (count == k && n % 19 ==0) {
+      console.log('YES')
+    } else {
+      console.log('NO')
+    }
   </script>
 
   <script id="ch0105/31" type="x">
@@ -872,30 +883,36 @@
     } while (x >= 0)
     console.log(n)
   </script>
+  
 
   <script id="ch0105/38" type="x">
     var n = +prompt('多项式组数')
     for (i = 1; i <= n; i++) {
-      var maxmi = +prompt('最高次幂')
-      var result = ''
-      var d = 0
-      for (x = maxmi; x >= 0; x--) {
+      var max = +prompt('最高次幂')
+      for (x = max; x >= 0; x--) {
         var C = +prompt('多项式中系数')
-        if (x == 1) {
-          result += C
-        } else if (x == 0) {
-          break
-        } else {
-          result += C * x + ' '
-          d += C * x
+        if (max == 0) {  //最高次幂为0则直接输出0
+          console.log(0)
+        } else if (x != 0) {  //最高次幂不为0，且x不为0（不输出最后一项0）
+          var Cm = x * C
+          console.log(Cm)
         }
       }
-      if (d == 0) {
-        console.log(0)
-      } else {
-        console.log(result)
-      }
     }
+    // if (x == 1) {
+    //       result += C
+    //     } else if (x == 0) {
+    //       break
+    //     } else {
+    //       result += C * x + ' '
+    //       d += C * x
+    //     }
+    //   }
+    //   if (d == 0) {
+    //     console.log(0)
+    //   } else {
+    //     console.log(result)
+    //   }
   </script>
 
   <script id="ch0105/39" type="x">
@@ -977,7 +994,7 @@
 
   <script id="ch0105/43" type="x">
     var n = +prompt('n')
-    for (i = 2; i <= Math.sqrt(n) ; i++){
+    for (i = 2; i <= Math.sqrt(n); i++){
       var b = n % i
       var a = n / i
       if (b == 0) {
