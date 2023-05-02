@@ -158,19 +158,29 @@
 
   // 一个半径为200像素
   var r2 = 200
-  for (x13c = -200; x13c <= 200; x13c++) {
+  for (x13c = -r2; x13c <= r2; x13c++) {
     var y13c = Math.sqrt(r2 ** 2 - x13c ** 2)
     console.log(dot(250 + x13c, 200 - y13c, 'black'))
     console.log(dot(250 + x13c, 200 + y13c, 'black'))
   }
 
-  for (y13d = -200; y13d <= 200; y13d++) {
+  for (y13d = -r2; y13d <= r2; y13d++) {
     var x13d = Math.sqrt(r2 ** 2 - y13d ** 2)
     console.log(dot(250 - x13d, 200 + y13d, 'black'))
     console.log(dot(250 + x13d, 200 + y13d, 'black'))
   }
 
-  //     * 画一个实心的圆，半径至少为100像素
+  // 画一个实心的圆，半径至少为100像素
+  var r3 = 100
+  var a = 400, b = 200
+  for (x14 = -r3; x14 <= r3; x14++) {
+    var y = Math.sqrt(r3 ** 2 - x14 ** 2)
+    for (y14 = -y; y14 <= y; y14++) {
+      console.log(dot(a + x14, b + y14, 'black'))
+    }
+  }
+
+
   //     * 画一个【大小位置都合适】的sin(x)的图像
 
   //     * 画出rgb色彩空间的某一面（尺寸要大于100x100）

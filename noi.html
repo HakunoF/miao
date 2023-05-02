@@ -752,14 +752,15 @@
     // 负数的模运算可行
     var n = +prompt('n')
     var result = 0
-    var sign = Math.sign(n) //取n的符号
-    var n = Math.abs(n) //取n的绝对值
+    // var sign = Math.sign(n) //取n的符号
+    // var n = Math.abs(n) //取n的绝对值
     while (n != 0) {
       var a = n % 10
       result = result * 10 + a
       n = (n - a) / 10
     }
     console.log(result)
+
     // 需要以数值的形式显示
     // var res = ''
     // var x = Math.sqrt(n ** 2)
@@ -883,7 +884,7 @@
     } while (x >= 0)
     console.log(n)
   </script>
-  
+
 
   <script id="ch0105/38" type="x">
     var n = +prompt('多项式组数')
