@@ -177,31 +177,31 @@ class LinkedList {
   }
 }
 
-class Set {
-  constructor() {
-    this.element = []
-  }
+// class Set {
+//   constructor() {
+//     this.element = []
+//   }
 
-  add(val) {
-    if (!this.has(val)) {
-      this.element.push(val)
-    }
-  }
+//   add(val) {
+//     if (!this.has(val)) {
+//       this.element.push(val)
+//     }
+//   }
 
-  remove(val) {
-    if (this.has(val)) {
-      var idx = this.element.indexOf(val)
-      return this.element.splice(idx, 1)
-    }
-  }
+//   remove(val) {
+//     if (this.has(val)) {
+//       var idx = this.element.indexOf(val)
+//       return this.element.splice(idx, 1)
+//     }
+//   }
 
-  has(val) {
-    return this.element.includes(val)
-  }
+//   has(val) {
+//     return this.element.includes(val)
+//   }
 
-  get size() {
-    return this.element.length
-  }
-}
+//   get size() {
+//     return this.element.length
+//   }
+// }
 
 
