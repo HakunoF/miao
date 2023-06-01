@@ -351,4 +351,12 @@ class PriorityQueue {
     this._heapDown(0)
     return result
   }
+
+  peek() {
+    return this._elements[0]
+  }
+  
+  get size() {
+    return this._elements.length
+  }
 }
