@@ -49,7 +49,7 @@ var hakunof = {
         }
 
         if (typeof(f) == 'string') {
-          if (array[i][f]) {
+          if (f in array[i] && array[i][f]) {
             return i
           }
         }
@@ -86,7 +86,7 @@ var hakunof = {
         }
 
         if (typeof(f) == 'string') {
-          if (array[i][f]) {
+          if (f in array[i] && array[i][f]) {
             return i
           }
         }
