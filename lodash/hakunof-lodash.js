@@ -24,13 +24,13 @@ var hakunof = {
 
   findIndex: function(array, f, fromIndex = 0) {
     for (var i = fromIndex; i < array.length; i++) {
-      if (typeof(f) == 'function') {
+      if (typeof f == 'function') {
           if (f(array[i])) {
             return i
         }
       }
 
-      if (typeof(f) == 'object') {
+      if (typeof f == 'object') {
         if (Array.isArray(f)) {
           if (f[0] in array[i] && f[1] == array[i][f[0]]) {
             return i
@@ -47,27 +47,26 @@ var hakunof = {
             return i
           }
         }
-
-        if (typeof(f) == 'string') {
-          if (f in array[i] && array[i][f]) {
-            return i
-          }
-        }
       }
 
-      return -1
+      if (typeof f == 'string') {
+        if (f in array[i] && array[i][f] == true) {
+          return i
+        }
+      }
     }
+    return -1
   },
 
   findLastIndex: function(array, f, fromIndex = array.length - 1) {
     for (var i = fromIndex; i >= 0; i--) {
-      if (typeof(f) == 'function') {
+      if (typeof f == 'function') {
           if (f(array[i])) {
             return i
         }
       }
 
-      if (typeof(f) == 'object') {
+      if (typeof f == 'object') {
         if (Array.isArray(f)) {
           if (f[0] in array[i] && f[1] == array[i][f[0]]) {
             return i
@@ -84,17 +83,15 @@ var hakunof = {
             return i
           }
         }
-
-        if (typeof(f) == 'string') {
-          if (f in array[i] && array[i][f]) {
-            return i
-          }
-        }
       }
 
-      return -1
+      if (typeof f == 'string') {
+        if (f in array[i] && array[i][f] == true) {
+          return i
+        }
+      }
     }
-
+    return -1
   },
 
   flatten: function(array) {
