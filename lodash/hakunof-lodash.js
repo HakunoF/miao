@@ -155,13 +155,13 @@ var hakunof = {
   },
 
   initial: function(array) {
-    return slice(0, array.length - 1)
+    return array.slice(0, array.length - 1)
   },
 
   join: function(array, sep = ',') {
     var str = ''
     for(var i = 0; i < array.length - 1; i++) {
-      str += array[i] + sep
+      str += array[i] + '' + sep
     }
     str += array[array.length - 1]
     return str
