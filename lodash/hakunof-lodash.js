@@ -247,21 +247,6 @@ var hakunof = {
     return coll
   },
 
-  mp: function(coll, predicate) {
-    var arr = []
-    predicate = this.funjudge(predicate)
-    for (var key in coll) {
-      arr.push(predicate(coll[key], isNaN(Number(key)) ? key : Number(key), coll))
-    }
-    return arr
-  },
-
-  : function() {
-
-  },
-
-
-
 
 
 }
