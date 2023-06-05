@@ -127,6 +127,58 @@ var hakunof = {
     return array
   },
 
+  fromPairs: function(array) {
+    return array.reduce((obj, [key, value]) => {
+      obj[key] = value
+      return obj
+    }, {})
+  },
+
+  toPairs: function(obj) {
+    var res = []
+    for (key in obj) {
+      res.push([key,obj[key]])
+    }
+    return res
+  },
+
+  head: function(array) {
+    return array[0]
+  },
+
+  indexOf: function(array, val, fromIndex = 0) {
+      return array.indexOf(val, fromIndex)
+  },
+
+  lastIndexOf: function(array, val, fromIndex = array.length - 1) {
+    return array.lastIndexOf(val, fromIndex)
+  },
+
+  initial: function(array) {
+    return slice(0, array.length - 1)
+  },
+
+  join: function(array, sep = ',') {
+    var str = ''
+    for(var i = 0; i < array.length - 1; i++) {
+      str += array[i] + sep
+    }
+    str += array[array.length - 1]
+    return str
+  },
+
+  last: function(array) {
+    return array[array.length - 1]
+  },
+
+  : function() {
+
+  },
+
+  : function() {
+
+  },
+
 
 
 }
