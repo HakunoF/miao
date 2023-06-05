@@ -22,76 +22,129 @@ var hakunof = {
     return array.slice(n)
   },
 
-  findIndex: function(array, f, fromIndex = 0) {
-    for (var i = fromIndex; i < array.length; i++) {
-      if (typeof f == 'function') {
-          if (f(array[i])) {
-            return i
-        }
-      }
+  funjudge: function(pre) {
+    var flag = false
 
-      if (typeof f == 'object') {
-        if (Array.isArray(f)) {
-          if (f[0] in array[i] && f[1] == array[i][f[0]]) {
-            return i
+    if (typeof pre == 'function') {
+      return pre
+    }
+
+    if (typeof pre == 'object') {
+      if (Array.isArray(pre)) {
+        var key = pre[0]
+        var val = pre[1]
+        return (obj) => {
+          for (var it in obj) {
+            if (it == key && obj[it] ==val) {
+              flag = true
+            }
           }
-        } else {
-          var res = true
-          for (var key in f) {
-            if (f[key] != array[i][key]) {
-              res = false
+          return flag
+        }
+      } else {
+        return (obj) => {
+          for (var [key, val] of Object.entries(pre)) {
+            if (obj[key] != val) {
+              flag = false
               break
             }
           }
-          if (res) {
-            return i
-          }
-        }
-      }
-
-      if (typeof f == 'string') {
-        if (f in array[i] && array[i][f] == true) {
-          return i
+          return flag
         }
       }
     }
-    return -1
+
+    if (typeof pre == 'string') {
+      return (obj) => {
+        if (obj[pre]) {
+          return true
+        } else {
+          return false
+        }
+      }
+    }
+  },
+
+  findIndex: function(array, f, fromIndex = 0) {
+    for (var i = fromIndex; i < array.length; i++) {
+      if (this.funjudge(f)(array[i])) {
+        return i
+      }
+      return -1
+    }
+    //   if (typeof f == 'function') {
+    //       if (f(array[i])) {
+    //         return i
+    //     }
+    //   }
+
+    //   if (typeof f == 'object') {
+    //     if (Array.isArray(f)) {
+    //       if (f[0] in array[i] && f[1] == array[i][f[0]]) {
+    //         return i
+    //       }
+    //     } else {
+    //       var res = true
+    //       for (var key in f) {
+    //         if (f[key] != array[i][key]) {
+    //           res = false
+    //           break
+    //         }
+    //       }
+    //       if (res) {
+    //         return i
+    //       }
+    //     }
+    //   }
+
+    //   if (typeof f == 'string') {
+    //     if (f in array[i] && array[i][f] == true) {
+    //       return i
+    //     }
+    //   }
+    // }
+    // return -1
   },
 
   findLastIndex: function(array, f, fromIndex = array.length - 1) {
     for (var i = fromIndex; i >= 0; i--) {
-      if (typeof f == 'function') {
-          if (f(array[i])) {
-            return i
-        }
+      if (this.funjudge(f)(array[i])) {
+        return i
       }
-
-      if (typeof f == 'object') {
-        if (Array.isArray(f)) {
-          if (f[0] in array[i] && f[1] == array[i][f[0]]) {
-            return i
-          }
-        } else {
-          var res = true
-          for (var key in f) {
-            if (f[key] != array[i][key]) {
-              res = false
-              break
-            }
-          }
-          if (res) {
-            return i
-          }
-        }
-      }
-
-      if (typeof f == 'string') {
-        if (f in array[i] && array[i][f] == true) {
-          return i
-        }
-      }
+      return -1
     }
-    return -1
+    //   if (typeof f == 'function') {
+    //       if (f(array[i])) {
+    //         return i
+    //     }
+    //   }
+
+    //   if (typeof f == 'object') {
+    //     if (Array.isArray(f)) {
+    //       if (f[0] in array[i] && f[1] == array[i][f[0]]) {
+    //         return i
+    //       }
+    //     } else {
+    //       var res = true
+    //       for (var key in f) {
+    //         if (f[key] != array[i][key]) {
+    //           res = false
+    //           break
+    //         }
+    //       }
+    //       if (res) {
+    //         return i
+    //       }
+    //     }
+    //   }
+
+    //   if (typeof f == 'string') {
+    //     if (f in array[i] && array[i][f] == true) {
+    //       return i
+    //     }
+    //   }
+    // }
+    // return -1
   },
 
   flatten: function(array) {
@@ -180,6 +233,31 @@ var hakunof = {
       }
     }
     return array
+  },
+
+  reverse: function(array) {
+    function swap(ary, i, j) {
+      var t = ary[i]
+      ary[i] = ary[j]
+      ary[j] = t
+    }
+    var s = 0
+    var e = array.length - 1
+    while(s < e) {
+      swap(array, s++, e--)
+    }
+    return array
+  },
+
+  every: function(coll, predicate) {
+    var flag = true
+    for (var val of coll) {
+      if (!this.funjudge(predicate)(val)) {
+        flag = false
+        break
+      }
+    }
+    return flag
   },
 
 
