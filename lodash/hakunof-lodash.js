@@ -70,8 +70,8 @@ var hakunof = {
       if (this.funjudge(f)(array[i])) {
         return i
       }
-      return -1
     }
+    return -1
     //   if (typeof f == 'function') {
     //       if (f(array[i])) {
     //         return i
@@ -111,8 +111,8 @@ var hakunof = {
       if (this.funjudge(f)(array[i])) {
         return i
       }
-      return -1
     }
+    return -1
     //   if (typeof f == 'function') {
     //       if (f(array[i])) {
     //         return i
