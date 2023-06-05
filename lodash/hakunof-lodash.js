@@ -37,6 +37,7 @@ var hakunof = {
           for (var it in obj) {
             if (it == key && obj[it] ==val) {
               flag = true
+              break
             }
           }
           return flag
@@ -47,6 +48,8 @@ var hakunof = {
             if (obj[key] != val) {
               flag = false
               break
+            } else {
+              flag = true
             }
           }
           return flag
