@@ -59,11 +59,7 @@ var hakunof = {
 
     if (typeof pre == 'string') {
       return (obj) => {
-        if (obj[pre]) {
-          return true
-        } else {
-          return false
-        }
+        return obj[pre]
       }
     }
   },
@@ -75,38 +71,6 @@ var hakunof = {
       }
     }
     return -1
-    //   if (typeof f == 'function') {
-    //       if (f(array[i])) {
-    //         return i
-    //     }
-    //   }
-
-    //   if (typeof f == 'object') {
-    //     if (Array.isArray(f)) {
-    //       if (f[0] in array[i] && f[1] == array[i][f[0]]) {
-    //         return i
-    //       }
-    //     } else {
-    //       var res = true
-    //       for (var key in f) {
-    //         if (f[key] != array[i][key]) {
-    //           res = false
-    //           break
-    //         }
-    //       }
-    //       if (res) {
-    //         return i
-    //       }
-    //     }
-    //   }
-
-    //   if (typeof f == 'string') {
-    //     if (f in array[i] && array[i][f] == true) {
-    //       return i
-    //     }
-    //   }
-    // }
-    // return -1
   },
 
   findLastIndex: function(array, f, fromIndex = array.length - 1) {
@@ -116,38 +80,6 @@ var hakunof = {
       }
     }
     return -1
-    //   if (typeof f == 'function') {
-    //       if (f(array[i])) {
-    //         return i
-    //     }
-    //   }
-
-    //   if (typeof f == 'object') {
-    //     if (Array.isArray(f)) {
-    //       if (f[0] in array[i] && f[1] == array[i][f[0]]) {
-    //         return i
-    //       }
-    //     } else {
-    //       var res = true
-    //       for (var key in f) {
-    //         if (f[key] != array[i][key]) {
-    //           res = false
-    //           break
-    //         }
-    //       }
-    //       if (res) {
-    //         return i
-    //       }
-    //     }
-    //   }
-
-    //   if (typeof f == 'string') {
-    //     if (f in array[i] && array[i][f] == true) {
-    //       return i
-    //     }
-    //   }
-    // }
-    // return -1
   },
 
   flatten: function(array) {
@@ -262,6 +194,43 @@ var hakunof = {
     }
     return flag
   },
+
+  some: function(coll, predicate) {
+    for (var val of coll) {
+      if (this.funjudge(predicate)(val)) {
+        return true
+      }
+    }
+    return false
+  },
+
+  countBy: function(coll, predicate) {
+    var map = {}
+    predicate = this.funjudge(predicate)
+    for (var item of coll) {
+      if (predicate(item) in map) {
+        map[predicate(item)]++
+      } else {
+        map[predicate(item)] = 1
+      }
+    }
+    return map
+  },
+
+  groupBy: function(coll, predicate) {
+    var map = {}
+    predicate = this.funjudge(predicate)
+    for (var item of coll) {
+      if (predicate(item) in map) {
+        map[predicate(item)].push(item)
+      } else {
+        map[predicate(item)] = [item]
+      }
+    }
+    return map
+  },
+
+
 
 
 
