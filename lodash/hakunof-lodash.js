@@ -230,6 +230,36 @@ var hakunof = {
     return map
   },
 
+  keyBy: function(coll, predicate) {
+    var map = {}
+    predicate = this.funjudge(predicate)
+    for (var item of coll) {
+        map[predicate(item)] = item
+    }
+    return map
+  },
+
+  forEach: function(coll, predicate) {
+    predicate = this.funjudge(predicate)
+    for (var key in coll) {
+      predicate(coll[key], key, coll)
+    }
+    return coll
+  },
+
+  mp: function(coll, predicate) {
+    var arr = []
+    predicate = this.funjudge(predicate)
+    for (var key in coll) {
+      arr.push(predicate(coll[key], isNaN(Number(key)) ? key : Number(key), coll))
+    }
+    return arr
+  },
+
+  : function() {
+
+  },
+
 
 
 
