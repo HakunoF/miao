@@ -3,10 +3,10 @@ var hakunof = {
     return array.filter(it => it)
   },
 
-  chunk: function(ary, size) {
+  chunk: function(array, size) {
     var res = []
-    for (var i = 0; i < ary.length; i += size) {
-      res.push(ary.slice(i, i + size))
+    for (var i = 0; i < array.length; i += size) {
+      res.push(array.slice(i, i + size))
     }
     return res
   },
@@ -171,7 +171,16 @@ var hakunof = {
     return array[array.length - 1]
   },
 
-
+  pull: function(array, ...val) {
+    var set = new Set(val)
+    for (var i = 0; i < array.length; i++) {
+      if (set.has(array[i])) {
+        array.splice(i, 1)
+        i--
+      }
+    }
+    return array
+  },
 
 
 
