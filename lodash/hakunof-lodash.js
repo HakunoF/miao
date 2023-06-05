@@ -171,13 +171,7 @@ var hakunof = {
     return array[array.length - 1]
   },
 
-  : function() {
 
-  },
-
-  : function() {
-
-  },
 
 
 
