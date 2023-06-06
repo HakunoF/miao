@@ -239,14 +239,42 @@ var hakunof = {
     return map
   },
 
-  forEach: function(coll, pre) {
-    pre = this.funjudge(pre)
+  forEach: function(coll, predicate) {
+    predicate = this.funjudge(predicate)
     for (var key in coll) {
-      pre(coll[key], key, coll)
+      predicate(coll[key], key, coll)
     }
     return coll
   },
 
+  map: function(coll, predicate) {
+    var res = []
+    predicate = this.funjudge(predicate)
+    for (var key in coll) {
+      res.push(predicate(coll[key]))
+    }
+    return res
+  },
+
+  filter: function(coll, predicate) {
+    var res = []
+    predicate = this.funjudge(predicate)
+    for (var obj in coll) {
+      if (predicate(coll[obj])) {
+        res.push((coll[obj]))
+      }
+    }
+    return res
+  },
+
+  reduce: function(coll, predicate, init) {
+    var res = init
+    predicate = this.funjudge(predicate)
+    for (var key in coll) {
+      res = predicate(res, coll[key], key)
+    }
+    return res
+  },
 
 
 }
