@@ -267,13 +267,28 @@ var hakunof = {
     return res
   },
 
-  reduce: function(coll, predicate, init) {
-    var res = init
+  reduce: function(coll, predicate, res = 0) {
     predicate = this.funjudge(predicate)
     for (var key in coll) {
       res = predicate(res, coll[key], key)
     }
     return res
+  },
+
+  reduceRight: function(coll, predicate, res = 0) {
+    predicate = this.funjudge(predicate)
+    if (!Array.isArray(coll)) {
+      var keys = Object.keys(coll)
+      for (i = keys.length - 1; i >= 0; i--) {
+        res = predicate(res, coll[keys[i]], keys[i])
+      }
+      return res
+    } else {
+      for (i = coll.length - 1; i >= 0; i--) {
+        res = predicate(res, coll[i], i)
+      }
+      return res
+    }
   },
 
 
