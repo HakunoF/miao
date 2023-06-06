@@ -291,6 +291,10 @@ var hakunof = {
     }
   },
 
+  size: function(coll) {
+    return this.reduce(coll, it => it + 1)
+  },
+
 
 }
 
