@@ -295,6 +295,24 @@ var hakunof = {
     return this.reduce(coll, it => it + 1)
   },
 
+  insertIntoSortedArray: function(arr, num, pre) {
+    var index = 0
+    while (index < arr.length && pre(num) >= pre(arr[index])) {
+      index++
+    }
+    arr.splice(index, 0, num)
+    return arr
+  },
+
+  sortBy: function(coll, predicate) {
+    var res = []
+    predicate = this.funjudge(predicate[predicate.length - 1])
+    for (var val of coll) {
+      this.insertIntoSortedArray(res, val, predicate)
+    }
+    return res
+  },
+
 
 }
 
@@ -311,5 +329,7 @@ var hakunof = {
 // range,stringifyJSON,concat,isEqual,repeat,padStart,padEnd,pad,keys,values,random,
 // round,ceil,floor,cloneDeep
 // trim,trimStart,trimEnd,assign,merge,
+
+
 
 
