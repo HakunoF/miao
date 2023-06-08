@@ -85,8 +85,9 @@ var hakunof = {
   flatten: function(array) {
     for (var i = 0; i < array.length; i++) {
       if (Array.isArray(array[i])) {
+        var t = array[i].length - 1
         array.splice(i, 1, ...array[i])
-        i++
+        i += t
       }
     }
     return array
@@ -106,8 +107,9 @@ var hakunof = {
     while (count <= depth) {
       for (var i = 0; i < array.length; i++) {
         if (Array.isArray(array[i])) {
+          var t = array[i].length - 1
           array.splice(i, 1, ...array[i])
-          i += array[i].length
+          i += t
         }
       }
       count++
@@ -409,11 +411,11 @@ var hakunof = {
     for (var item of coll) {
       res.push(predicate(item))
     }
-    this.flattenDepth(res, depth)
+    this.flattenDepth(res, depth )
     return res
   },
 
-  // get: function(obj, path, deVal) {
+  // get: function(obj, path, deVal = '') {
   //   if (deVal) {
   //     return deVal
   //   }
