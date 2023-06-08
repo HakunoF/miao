@@ -455,6 +455,9 @@ var hakunof = {
       var match
       while (match = re.exec(path)) {
         res = res[match[1]]
+        if (!res) {
+          break
+        }
         if (match[2]) {
           match[2] = match[2].replace(/\[|\]/g, "")
           res = res[match[2]]
