@@ -107,7 +107,7 @@ var hakunof = {
       for (var i = 0; i < array.length; i++) {
         if (Array.isArray(array[i])) {
           array.splice(i, 1, ...array[i])
-          i++
+          i += array[i].length
         }
       }
       count++
@@ -413,16 +413,16 @@ var hakunof = {
     return res
   },
 
-  get: function(obj, path, deVal) {
-    if (deVal) {
-      return deVal
-    }
-    if (Array.isArray(path)) {
-      var key = path.join('.')
-      return obj.key
-    }
-    return obj.path
-  },
+  // get: function(obj, path, deVal) {
+  //   if (deVal) {
+  //     return deVal
+  //   }
+  //   if (Array.isArray(path)) {
+  //     var key = path.join('.')
+  //     return obj.key
+  //   }
+  //   return obj.path
+  // },
 
 
 
