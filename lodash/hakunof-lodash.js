@@ -419,6 +419,9 @@ var hakunof = {
     var res = obj
     if (Array.isArray(path)) {
       for (var item of path) {
+        if (!isNaN(item)) {
+          item = +item
+        }
         res = res[item]
       }
     } else {
@@ -434,6 +437,33 @@ var hakunof = {
     }
     return res !== undefined ? res : deVal
   },
+
+  has: function(obj, path) {
+    var res = obj
+    if (Array.isArray(path)) {
+      for (var item of path) {
+        if (!isNaN(item)) {
+          item = +item
+        }
+        res = res[item]
+      }
+    } else {
+      var re = /(\w+)(\[\d+\])?/g
+      var match
+      while (match = re.exec(path)) {
+        res = res[match[1]]
+        if (match[2]) {
+          match[2] = match[2].replace(/\[|\]/g, "")
+          res = res[match[2]]
+        }
+      }
+    }
+    return res !== undefined ? true : false
+  },
+
+  // mapKeys: function() {
+
+  // },
 
 
 
