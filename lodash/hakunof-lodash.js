@@ -409,8 +409,19 @@ var hakunof = {
     for (var item of coll) {
       res.push(predicate(item))
     }
-    flattenDepth(res, depth)
+    this.flattenDepth(res, depth)
     return res
+  },
+
+  get: function(obj, path, deVal) {
+    if (deVal) {
+      return deVal
+    }
+    if (Array.isArray(path)) {
+      var key = path.join('.')
+      return obj.key
+    }
+    return obj.path
   },
 
 
