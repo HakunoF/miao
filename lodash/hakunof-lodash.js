@@ -313,6 +313,39 @@ var hakunof = {
     return res
   },
 
+  sample: function(coll) {
+    var idx = (Math.random() * keys.length) | 0
+    return coll[idx]
+  },
+
+  isUndefined: function(val) {
+    return val === undefined
+  },
+
+  isNull: function(val) {
+    return val === null
+  },
+
+  isNil: function(val) {
+    return val === null || val === undefined
+  },
+
+  max: function(array) {
+    if (!array) {
+      return undefined
+    } else {
+      return Math.max(...array)
+    }
+  },
+
+  min: function(array) {
+    if (!array) {
+      return undefined
+    } else {
+      return Math.min(...array)
+    }
+  },
+
 
 }
 
