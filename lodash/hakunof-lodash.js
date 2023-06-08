@@ -427,7 +427,7 @@ var hakunof = {
     } else {
       var re = /(\w+)(\[\d+\])?/g
       var match
-      while (res && match = re.exec(path)) {
+      while (match = re.exec(path)) {
         res = res[match[1]]
         if (!res) {
           break
