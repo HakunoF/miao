@@ -427,8 +427,11 @@ var hakunof = {
     } else {
       var re = /(\w+)(\[\d+\])?/g
       var match
-      while (match = re.exec(path)) {
+      while (res && match = re.exec(path)) {
         res = res[match[1]]
+        if (!res) {
+          break
+        }
         if (match[2]) {
           match[2] = match[2].replace(/\[|\]/g, "")
           res = res[match[2]]
@@ -458,7 +461,11 @@ var hakunof = {
         }
       }
     }
-    return res !== undefined ? true : false
+    if (res) {
+      return true
+    } else {
+      return false
+    }
   },
 
   // mapKeys: function() {
