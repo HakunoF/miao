@@ -394,6 +394,24 @@ var hakunof = {
     }
   },
 
+  flatMap: function(coll, predicate) {
+    predicate = this.funjudge(predicate)
+    var res = []
+    for (var item of coll) {
+      res.push(...predicate(item))
+    }
+    return res
+  },
+
+  flatMapDepth: function(coll, predicate, depth = 1) {
+    predicate = this.funjudge(predicate)
+    var res = []
+    for (var item of coll) {
+      res.push(predicate(item))
+    }
+    flattenDepth(res, depth)
+    return res
+  },
 
 
 
