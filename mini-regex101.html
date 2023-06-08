@@ -4,57 +4,61 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mini-regex</title>
+  <title>Document</title>
   <style>
     input, textarea, label, pre {
-    font-family: consolas;
+      font-family: 'Courier New', Courier, monospace;
     }
-    pre > b:nth-child(odd) {
-      background-color: #d5ebff;
-    }
-    pre > b:nth-child(even) {
-      background-color: #9fcfff;
+
+    pre {
+      > b:nth-child(odd) {
+        background-color: red;
+      }
+      > b:nth-child(even) {
+        background-color: yellow;
+      }
     }
 
     .res-wrapper {
-    width: 400px;
-    height: 300px;
-    position: relative;
-    > textarea, > pre {
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      position: absolute;
-      font-size: 30px;
-      padding: 5px;
-      border: 2px solid;
-      border-radius: 2px;
-      background-color: transparent;
-      word-break: break-all;
-      white-space: break-spaces
+      width: 500px;
+      height: 300px;
+      position: relative;
+      > textarea, > pre {
+        position: absolute;
+        box-sizing: border-box;
+        font-size: 30px;
+        padding: 10px;
+        margin: 0;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        word-break: break-all;
+        white-space: break-spaces;
+      }
+
     }
-  }
+
 
   </style>
 </head>
 <body>
-    <span>输入正则：</span><br>
-    <input type="text" id="reInput" value="foo" oninput="run()"><button onclick="run()">run</button><br>
-    <label><input type="checkbox" onclick="run()" id="flagI">i</label>
-    <label><input type="checkbox" onclick="run()" id="flagG" checked>g</label>
-    <label><input type="checkbox" onclick="run()" id="flagM">m</label>
-    <label><input type="checkbox" onclick="run()" id="flagS">s</label>
-    <label><input type="checkbox" onclick="run()" id="flagU">u</label>
-    <label><input type="checkbox" onclick="run()" id="flagY">y</label><br>
-    <span>输入字符串：</span><br>
+  输入正则：<br>
+  <input type="text" id="reInput" value="foo" oninput="run()"><button onclick="run()">run</button><br>
+  <label><input type="checkbox" onclick="run()" id="flagI">i</label>
+  <label><input type="checkbox" onclick="run()" id="flagG" checked>g</label>
+  <label><input type="checkbox" onclick="run()" id="flagM">m</label>
+  <label><input type="checkbox" onclick="run()" id="flagS">s</label>
+  <label><input type="checkbox" onclick="run()" id="flagU">u</label>
+  <label><input type="checkbox" onclick="run()" id="flagY">y</label><br>
+  输入字符串： <br>
   <div class="res-wrapper">
     <pre id="output"></pre>
-    <textarea id="strInput" cols="50" rows="20" oninput="run()">foofoobazqqbaafoobaafoobaz</textarea>
+    <textarea name="" id="reString" cols="30" rows="10" oninput="run()">foobarfoobazfobarbazfoo</textarea>
   </div>
 
+
   <script>
-    function getFlags() {
+    function getFlag() {
       var flag = ''
       if (flagI.checked) {
         flag += 'i'
@@ -78,33 +82,33 @@
     }
 
     function run() {
-      var reg = reInput.value
-      var str = strInput.value
-      var flag = getFlags()
-      var re = new RegExp(reg, flag)
+      var reSource = reInput.value
+      var str = reString.value
+      var flag = getFlag()
+      var re = new RegExp(reSource, flag)
       var match
       var html = ''
-      var idx = 0
+      var lastlastidx = 0
 
       while (match = re.exec(str)) {
-        html += str.slice(idx, match.index)
-        // html += '<b>' + match[0] + '</b>'
+        html += str.slice(lastlastidx, match.index)
         html += `<b>${match[0]}</b>`
-        idx = re.lastIndex
+        lastlastidx = re.lastIndex
         if (!re.global) {
-          idx = match.index + match[0].length
+          lastlastidx = match.index + match[0].length
           break
         }
       }
-
-      html += str.slice(idx)
+      html += str.slice(lastlastidx)
       output.innerHTML = html
     }
+    run()
 
 
 
 
   </script>
+
 
 </body>
 </html>
