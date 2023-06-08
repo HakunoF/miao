@@ -314,7 +314,7 @@ var hakunof = {
   },
 
   sample: function(coll) {
-    var idx = (Math.random() * keys.length) | 0
+    var idx = (Math.random() * coll.length) | 0
     return coll[idx]
   },
 
@@ -371,6 +371,30 @@ var hakunof = {
       return res[0]
     }
   },
+
+  round: function(num, prec = 0) {
+    if (prec >= 0) {
+      return num.toFixed(prec) * 1
+    } else {
+      prec = 10 ** (-prec)
+      return Math.round(num / prec) * prec
+    }
+  },
+
+  sumBy: function(array, predicate) {
+    if (!array || array.length == 0) {
+      return undefined
+    } else {
+      predicate = this.funjudge(predicate)
+      var sum = 0
+      for (var val of array) {
+        sum += predicate(val)
+      }
+      return sum
+    }
+  },
+
+
 
 
 }
