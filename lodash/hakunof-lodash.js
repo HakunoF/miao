@@ -331,7 +331,7 @@ var hakunof = {
   },
 
   max: function(array) {
-    if (!array) {
+    if (!array || array.length == 0) {
       return undefined
     } else {
       return Math.max(...array)
@@ -339,10 +339,36 @@ var hakunof = {
   },
 
   min: function(array) {
-    if (!array) {
+    if (!array || array.length == 0) {
       return undefined
     } else {
       return Math.min(...array)
+    }
+  },
+
+  maxBy: function(array, pre) {
+    pre = this.funjudge(pre)
+    if (!array || array.length == 0) {
+      return undefined
+    } else {
+      var res = []
+      for (var val of array) {
+        this.insertIntoSortedArray(res, val, pre)
+      }
+      return res.at(-1)
+    }
+  },
+
+  minBy: function(array, pre) {
+    pre = this.funjudge(pre)
+    if (!array || array.length == 0) {
+      return undefined
+    } else {
+      var res = []
+      for (var val of array) {
+        this.insertIntoSortedArray(res, val, pre)
+      }
+      return res[0]
     }
   },
 
