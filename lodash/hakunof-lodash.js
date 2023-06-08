@@ -415,16 +415,25 @@ var hakunof = {
     return res
   },
 
-  // get: function(obj, path, deVal = '') {
-  //   if (deVal) {
-  //     return deVal
-  //   }
-  //   if (Array.isArray(path)) {
-  //     var key = path.join('.')
-  //     return obj.key
-  //   }
-  //   return obj.path
-  // },
+  get: function(obj, path, deVal) {
+    var res = obj
+    if (Array.isArray(path)) {
+      for (var item of path) {
+        res = res[item]
+      }
+    } else {
+      var re = /(\w+)(\[\d+\])?/g
+      var match
+      while (match = re.exec(path)) {
+        res = res[match[1]]
+        if (match[2]) {
+          match[2] = match[2].replace(/\[|\]/g, "")
+          res = res[match[2]]
+        }
+      }
+    }
+    return res !== undefined ? res : deVal
+  },
 
 
 
