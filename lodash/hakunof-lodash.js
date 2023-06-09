@@ -470,6 +470,53 @@ var hakunof = {
     return res === undefined ? false : true
   },
 
+  mapKeys: function(obj, predicate) {
+    var newObj = {}
+    for (var key in obj) {
+      var newKey = predicate(obj[key], key, obj)
+      newObj[newKey] = obj[key]
+    }
+    return newObj
+  },
+
+  mapValues: function(obj, predicate) {
+    var newObj = {}
+    predicate = this.funjudge(predicate)
+    for (var key in obj) {
+      newObj[key] = predicate(obj[key])
+    }
+    return newObj
+  },
+
+  range: function(start = 0, end, step) {
+    if (arguments.length == 1) {
+      start = 0
+      end = arguments[0]
+    }
+    var res = []
+    if (step == undefined) {
+      step = end - start < 0 ? -1 : 1
+    }
+    if (step == 0) {
+      var c = Math.abs(end - start)
+    } else {
+      var c = Math.abs((end - start) / step)
+    }
+    var item = start - step
+    for (var i = 0; i < c; i++) {
+      item += step
+      res.push(item)
+    }
+    return res
+  },
+
+  concat: function(array, ...vals) {
+    var res = []
+    vals = this.flatten(vals)
+    res.push(...array, ...vals)
+    return res
+  },
+
 
 
 }
