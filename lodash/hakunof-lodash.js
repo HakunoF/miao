@@ -253,7 +253,7 @@ var hakunof = {
     var res = []
     predicate = this.funjudge(predicate)
     for (var key in coll) {
-      res.push(predicate(coll[key]))
+      res.push(predicate(coll[key], key, coll))
     }
     return res
   },
