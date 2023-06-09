@@ -442,6 +442,9 @@ var hakunof = {
   },
 
   has: function(obj, path) {
+    if (JSON.stringify(obj) === "{}") {
+      return false
+    }
     var res = obj
     if (Array.isArray(path)) {
       for (var item of path) {
@@ -464,11 +467,7 @@ var hakunof = {
         }
       }
     }
-    if (res) {
-      return true
-    } else {
-      return false
-    }
+    return res === undefined ? false : true
   },
 
 
