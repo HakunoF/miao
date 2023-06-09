@@ -511,10 +511,7 @@ var hakunof = {
   },
 
   concat: function(array, ...vals) {
-    var res = []
-    vals = this.flatten(vals)
-    res.push(...array, ...vals)
-    return res
+    return array.concat(...vals)
   },
 
 
