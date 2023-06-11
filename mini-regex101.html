@@ -7,7 +7,7 @@
   <title>Document</title>
   <style>
     input, textarea, label, pre {
-      font-family: 'Courier New', Courier, monospace;
+      font-family: consolas;
     }
 
     pre {
@@ -77,12 +77,19 @@
       z-index: 8;
       position: relative;
       &::before {
-        content: '';
+        content: 'Match ' attr(data-match) '\A-------\AGroup ' attr(data-group) ': ' attr(data-group-content) '\A' 'Pos: ' attr(data-group-start) '-' attr(data-group-end);
         position: absolute;
         bottom: 100%;
+        left: 50%;
+        /* transform: translate(-50%, -50%) 将元素在水平和垂直方向上平移自身宽度和高度的一半 */
+        transform: translate(-50%);
         background-color: black;
         color: white;
         white-space: pre;
+        font-size: 12px;
+        font-weight: normal;
+        padding: 0.5em;
+        border-radius: 5px;
       }
     }
 
@@ -99,7 +106,7 @@
         xposition: absolute;
         box-sizing: border-box;
         border: 2px solid;
-        font-size: 30px;
+        font-size: 20px;
         padding: 10px;
         margin: 0;
         background-color: transparent;
@@ -172,12 +179,13 @@
       var html = ''
       var lastlastidx = 0
 
+      var matchIdx = 1
       while (match = re.exec(str)) {
         html += str.slice(lastlastidx, match.index)
         if (match[0] == '') {
           html += '<em></em>'
         } else {
-          html += wrapOneMatch(match)
+          html += wrapOneMatch(match, matchIdx++)
         }
 
         lastlastidx = re.lastIndex
@@ -195,7 +203,7 @@
     }
 
     // 将一个匹配及其内的每个捕获分组都用标签包起来以高亮
-    function wrapOneMatch(match) {
+    function wrapOneMatch(match, matchIdx) {
       var indices = match.indices.map(([start, end]) => {
         return [start - match.index, end - match.index]
       })
@@ -204,7 +212,7 @@
 
       for (var i = 1; i < indices.length; i++) {
         var [start, end] = indices[i]
-        tags[start] += `<b data-group ="${i}">`
+        tags[start] += `<b data-match="${matchIdx}" data-group="${i}" data-group-content="${match[i]}" data-group-start="${match.indices[i][0]}" data-group-end="${match.indices[i][1]}">`
         tags[end] += '</b>'
       }
 
@@ -213,7 +221,7 @@
         res += tags[j] + match[0][j]
       }
       res += tags[j]
-      return '<b>' + res + '</b>'
+      return `<b data-match="${matchIdx}" data-group="0" data-group-content="${match[0]}" data-group-start="${match.index}" data-group-end="${match.indices[0][1]}">` + res + '</b>'
     }
 
     run()
