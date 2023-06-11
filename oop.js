@@ -355,8 +355,130 @@ class PriorityQueue {
   peek() {
     return this._elements[0]
   }
-  
+
   get size() {
     return this._elements.length
   }
 }
+
+
+
+
+RegExp.prototype.mytest = function(str) {
+  if (this.exec(str)) {
+    return true
+  } else {
+    return false
+  }
+}
+String.prototype.mysearch = function(target) {
+  if (typeof target === 'string') {
+    return this.indexOf(target)
+  } else {
+    var match = target.exec(this)
+    if (match) {
+      return match.index
+    } else {
+      return -1
+    }
+  }
+}
+
+String.prototype.mymatch = function(re) {
+  if (typeof re === 'string') {
+    var re = new RegExp(re)
+  }
+  if (re.global) {
+    re.lastIndex = 0
+    var match
+    var res = []
+    while (match = re.exec(this)) {
+      res.push(match[0])
+    }
+    return res
+  } else {
+    return re.exec(this)
+  }
+}
+
+String.prototype.myreplace = function(re, replacer) {
+  //只考虑正则的情况
+  re.lastIndex = 0
+  var res = ''
+  var match
+  var lastLastIndex = 0
+  while (match = re.exec(this)) {
+    res += this.slice(lastLastIndex, match.index)
+    if (typeof replacer === 'function') {     //1.replacer为函数
+      res += replacer(...match, match.index, match.input)
+    } else { //2.replacer为$1$&类似字符串
+      //先将replacer里面的$&或&1换成match[]
+      var replacement = replacer.myreplace(/\$([1-9\&])/g, (_, idx) =>{
+        if (idx == '&') {
+          return match[0]
+        } else {
+          return match[idx]
+        }
+      })
+      res += replacement
+    }
+    lastLastIndex = re.lastIndex
+    if (!re.global) {
+      lastLastIndex = match.index + match[0].length
+      break
+    }
+  }
+  res += this.slice(lastLastIndex)
+  return res
+}
+
+String.prototype.myreplaceAll = function(re, replacer) {
+  if (!re.global) {
+    throw new TypeError('String.prototype.myreplaceAll called with a non-global RegExp argument')
+  }
+  return this.myreplace(re, replacer)
+}
+
+String.prototype.mysplit = function(re) {
+  var res = []
+  if (typeof re === 'string') {
+    var l = re.length
+    var idx = this.indexOf(re)
+    var startIdx = 0
+    while (idx != -1) {
+      res.push(this.slice(startIdx, idx))
+      startIdx = idx + l
+      idx = this.indexOf(re, startIdx)
+    }
+    res.push(this.slice(startIdx))
+    return res
+  } else {
+    if (!re.global) {
+      re = new RegExp(re.source, 'g' + re.flags)
+    }
+    re.lastIndex = 0
+    var match
+    var startIdx = 0
+    while (match = re.exec(this)) {
+      res.push(this.slice(startIdx, match.index))
+      //如果正则中有括号，split只会将非括号内容视为分隔符,即非括号匹配的内容需要删除，保留括号内字符
+      res.push(...match.slice(1))
+      startIdx = re.lastIndex
+    }
+    res.push(this.slice(startIdx))
+    return res
+  }
+}
+
+
+
+
+// RegExp.prototype.mytest
+// String.prototype.mysearch
+// String.prototype.mymatch
+// String.prototype.myreplace
+// String.prototype.myreplaceAll
+// String.prototype.mysplit
+// 利用RegExp.prototype.exec实现以上所有函数
+// 调用方式跟自带的一样
+
