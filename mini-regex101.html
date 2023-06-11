@@ -12,20 +12,62 @@
 
     pre {
       > b:nth-child(odd) {
-        background-color: red;
+        background-color: #d5ebff;
       }
       > b:nth-child(even) {
-        background-color: yellow;
+        background-color: #9fcfff;
+      }
+
+      > b {
+        [data-group="1"] {
+          background-color: #9fcba1;
+        }
+
+        [data-group="2"] {
+          background-color: #e0bf8b;
+        }
+
+        [data-group="3"] {
+          background-color: #acadfc;
+        }
+
+        [data-group="4"] {
+          background-color: #e1abf5;
+        }
+
+        [data-group="5"] {
+          background-color: #ef9b95;
+        }
+      }
+      
+    /* 零宽断言 */
+      > em {
+        border-left: 4px dotted violet;
+        margin-left: -2px;
+        margin-right: -2px;
+        filter: blur(0.3px);
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+        height: 0.8em;
+        pointer-events: none;
+        vertical-align: middle;
+        transition: .5s;
+        &:hover {
+          border-color: magenta;
+          box-shadow: 0 0 5px grey;
+        }
       }
     }
 
     .res-wrapper {
-      width: 500px;
+      width: 400px;
       height: 300px;
       position: relative;
       > textarea, > pre {
         position: absolute;
         box-sizing: border-box;
+        border: 2px solid;
         font-size: 30px;
         padding: 10px;
         margin: 0;
@@ -35,7 +77,6 @@
         word-break: break-all;
         white-space: break-spaces;
       }
-
     }
 
 
@@ -43,7 +84,8 @@
 </head>
 <body>
   输入正则：<br>
-  <input type="text" id="reInput" value="foo" oninput="run()"><button onclick="run()">run</button><br>
+  <input type="text" id="reInput" value="f()((oo)(.))" oninput="run()"><button onclick="run()">run</button><br>
+  <p id="reInputError"></p>
   <label><input type="checkbox" onclick="run()" id="flagI">i</label>
   <label><input type="checkbox" onclick="run()" id="flagG" checked>g</label>
   <label><input type="checkbox" onclick="run()" id="flagM">m</label>
@@ -53,7 +95,7 @@
   输入字符串： <br>
   <div class="res-wrapper">
     <pre id="output"></pre>
-    <textarea name="" id="reString" cols="30" rows="10" oninput="run()">foobarfoobazfobarbazfoo</textarea>
+    <textarea name="" id="reString" cols="30" rows="10" oninput="run()">foo barbaz baa foobaa foobaa</textarea>
   </div>
 
 
@@ -82,19 +124,37 @@
     }
 
     function run() {
+      output.innerHTML = ''
       var reSource = reInput.value
-      var str = reString.value
+      if (reSource == '') {
+        return
+      }
       var flag = getFlag()
-      var re = new RegExp(reSource, flag)
+      try {
+        var re = new RegExp(reSource, flag + 'd')
+      } catch(e) {
+        reInputError.innerHTML = e
+        return
+      }
+      var str = reString.value
       var match
       var html = ''
       var lastlastidx = 0
 
       while (match = re.exec(str)) {
         html += str.slice(lastlastidx, match.index)
-        html += `<b>${match[0]}</b>`
+        if (match[0] == '') {
+          html += '<em></em>'
+        } else {
+          html += wrapOneMatch(match)
+        }
+
         lastlastidx = re.lastIndex
-        if (!re.global) {
+        if (match[0] == '') { //如果match匹配内容长度为0，lastIndex是不变的
+          re.lastIndex++
+        }
+
+        if (!re.global) { //没有g标记时，lastIndex不会自动更新
           lastlastidx = match.index + match[0].length
           break
         }
@@ -102,6 +162,29 @@
       html += str.slice(lastlastidx)
       output.innerHTML = html
     }
+
+    // 将一个匹配及其内的每个捕获分组都用标签包起来以高亮
+    function wrapOneMatch(match) {
+      var indices = match.indices.map(([start, end]) => {
+        return [start - match.index, end - match.index]
+      })
+      var chars = match[0].split('')
+      var tags = Array(chars.length + 1).fill('')
+
+      for (var i = 1; i < indices.length; i++) {
+        var [start, end] = indices[i]
+        tags[start] += `<i data-group ="${i}">`
+        tags[end] += '</i>'
+      }
+
+      var res = ''
+      for (var j = 0; j < chars.length; j++) {
+        res += tags[j] + chars[j]
+      }
+      res += tags[j]
+      return '<b>' + res + '</b>'
+    }
+
     run()
 
 
