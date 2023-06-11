@@ -11,35 +11,37 @@
     }
 
     pre {
-      > b:nth-child(odd) {
+      > b:nth-of-type(odd) {
         background-color: #d5ebff;
       }
-      > b:nth-child(even) {
+
+      > b:nth-of-type(even) {
         background-color: #9fcfff;
       }
 
+    /* 正则中分组的不同颜色 */
       > b {
         [data-group="1"] {
-          background-color: #9fcba1;
+          --group-color: #9fcba1;
         }
 
         [data-group="2"] {
-          background-color: #e0bf8b;
+          --group-color: #e0bf8b;
         }
 
         [data-group="3"] {
-          background-color: #acadfc;
+          --group-color: #acadfc;
         }
 
         [data-group="4"] {
-          background-color: #e1abf5;
+          --group-color: #e1abf5;
         }
 
         [data-group="5"] {
-          background-color: #ef9b95;
+          --group-color: #ef9b95;
         }
       }
-      
+
     /* 零宽断言 */
       > em {
         border-left: 4px dotted violet;
@@ -60,12 +62,41 @@
       }
     }
 
+    /* 用变量控制颜色混合度 */
+    pre > b:nth-of-type(odd) b {
+      background-color: color-mix(in srgb, var(--group-color) 50%, white);
+    }
+
+    pre > b:nth-of-type(even) b {
+      background-color: var(--group-color)
+    }
+
+    /* 一个元素被hover的同时,其内部没有被hover的元素 */
+    pre b:hover:not(:has(:hover)) {
+      box-shadow: 0 0 2px grey, 0 0 2px grey, 0 0 2px grey;
+      z-index: 8;
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        background-color: black;
+        color: white;
+        white-space: pre;
+      }
+    }
+
+    /* 一个元素被hover的同时,其内部元素的背景色变为透明 */
+    pre b:hover:not(:has(:hover)) b {
+      background-color: transparent;
+    }
+
     .res-wrapper {
       width: 400px;
       height: 300px;
       position: relative;
       > textarea, > pre {
-        position: absolute;
+        xposition: absolute;
         box-sizing: border-box;
         border: 2px solid;
         font-size: 30px;
@@ -75,7 +106,7 @@
         width: 100%;
         height: 100%;
         word-break: break-all;
-        white-space: break-spaces;
+        white-space: pre-wrap;
       }
     }
 
@@ -168,18 +199,18 @@
       var indices = match.indices.map(([start, end]) => {
         return [start - match.index, end - match.index]
       })
-      var chars = match[0].split('')
-      var tags = Array(chars.length + 1).fill('')
+
+      var tags = Array(match[0].length + 1).fill('')
 
       for (var i = 1; i < indices.length; i++) {
         var [start, end] = indices[i]
-        tags[start] += `<i data-group ="${i}">`
-        tags[end] += '</i>'
+        tags[start] += `<b data-group ="${i}">`
+        tags[end] += '</b>'
       }
 
       var res = ''
-      for (var j = 0; j < chars.length; j++) {
-        res += tags[j] + chars[j]
+      for (var j = 0; j < match[0].length; j++) {
+        res += tags[j] + match[0][j]
       }
       res += tags[j]
       return '<b>' + res + '</b>'
