@@ -441,7 +441,7 @@ String.prototype.myreplaceAll = function(re, replacer) {
 
 String.prototype.mysplit = function(re) {
   var res = []
-  if (typeof re === 'string') {
+  if (typeof re === 'string') {  //re为字符串时的循环（也可直接将re转化为正则）
     var l = re.length
     var idx = this.indexOf(re)
     var startIdx = 0
