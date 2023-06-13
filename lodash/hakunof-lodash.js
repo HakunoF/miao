@@ -514,7 +514,172 @@ var hakunof = {
     return array.concat(...vals)
   },
 
+  isEqual: function(m, n) {
+    if (m === n) {
+      return true
+    }
 
+    if (m && n && typeof m === 'object' && typeof n === 'object') {
+      if (Array.isArray(m) == Array.isArray(n)) {
+        if (Array.isArray(m)) { //两者都为数组 先比较长度
+          if (m.length != n.length) {
+            return false
+          }
+        } else { //两者都为对象
+          var size = 0
+          for (var key in m) {
+            size++
+          }
+          for (var key in n) {
+            size--
+          }
+          if (size != 0) {
+            return false
+          }
+        }
+        for (var k in m) {
+          if (!this.isEqual(m[k], n[k])) {
+            return false
+          }
+        }
+        return true
+      } else {
+        return false
+      }
+    }
+
+    return m === n
+  },
+
+  // str = '{"a":1,"bccc":true,"c":[1,[2,2],{"xxxx":3,"y":[1,2,3]}],"d":{"a":{"b":1}}}'
+
+  parseJSON: function(str) {
+    var i = 0
+    return parseValue()
+
+    function parseValue() {
+      var char = str[i]
+      if (char == '{') {
+        return parseObject()
+      }
+
+      if (char == '[') {
+        return parseArray()
+      }
+
+      if (char == '"') {
+        return parseString()
+      }
+
+      if (char == 't') {
+        var token = str.slice(i, i + 4)
+        if (token == 'true') {
+          i += 4
+          return true
+        } else {
+          throw new SyntaxError(`在${i}位置遇到了错误的token`)
+        }
+      }
+
+      if (char == 'f') {
+        var token = str.slice(i, i + 5)
+        if (token == 'false') {
+          i += 5
+          return false
+        } else {
+          throw new SyntaxError(`在${i}位置遇到了错误的token`)
+        }
+      }
+
+      if (char == 'n') {
+        var token = str.slice(i, i + 4)
+        if (token == 'null') {
+          i += 4
+          return true
+        } else {
+          throw new SyntaxError(`在${i}位置遇到了错误的token`)
+        }
+      }
+
+      return parseNumber()
+    }
+
+    function parseNumber() {
+      var start = i
+      while (str[i] >= '0' && str[i] <= '9') {
+        i++
+      }
+      return Number(str.slice(start, i))
+    }
+
+    function parseString() {
+      i++
+      var start = i
+      while (str[i] != '"' && i < str.length) {
+        i++
+      }
+      var end = i
+      i++ //跳过结束的"
+      return str.slice(start, end)
+    }
+
+    function parseArray() {
+      i++ //跳过[
+      var res = []
+      if (str[i] == ']') {
+        i++
+        return res
+      }
+      while (i < str.length) {
+        var value = parseValue()
+        res.push(value)
+        if (str[i] == ',') {
+          i++
+          continue
+        }
+        if (str[i] == ']') {
+          i++
+          break
+        }
+      }
+      return res
+    }
+
+    function parseObject() {
+      i++ //跳过{
+      var res = {}
+      skipSpace()
+      if (str[i] == '}') {
+        i++
+        return res
+      }
+      while (i < str.length) {
+        var name = parseValue()
+        skipSpace()
+        i++ //skip :
+        skipSpace()
+        var value = parseValue()
+        res[name] = value
+        if (str[i] == ',') {
+          i++
+          continue
+        }
+        if (str[i] == '}') {
+          i++
+          break
+        }
+      }
+      return res
+    }
+
+    function skipSpace() {
+      while(str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == 'r') {
+        i++
+      }
+      return
+    }
+
+  },
 
 }
 
