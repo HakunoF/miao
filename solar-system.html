@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>solar-system</title>
+  <style>
+    * {
+      background-color: rgba(0,0,0,0.1);
+    }
+
+    div {
+      width: 800px;
+      height: 800px;
+      margin: 50px auto;
+    }
+
+    .sun, .earth, .moon {
+      display: inline-block;
+      border-radius: 100px;
+      position: fixed;
+      aspect-ratio: 1/1;
+    }
+
+    .sun {
+      background-color: orange;
+      width: 80px;
+    }
+
+    .earth {
+      background-color: lightblue;
+      width: 50px;
+    }
+
+    .moon {
+      background-color: lightyellow;
+      width: 20px;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div>
+    <span class="sun"></span>
+    <span class="earth"></span>
+    <span class="moon"></span>
+  </div>
+  <script>
+    var sun = document.querySelector('.sun')
+    var earth = document.querySelector('.earth')
+    var moon = document.querySelector('.moon')
+
+    function animate(time) {
+      var sunAngle = time / 500
+      var sunX = (Math.cos(sunAngle) * 50) - sun.offsetWidth / 2 + window.innerWidth / 2 + "px"
+      var sunY = (Math.sin(sunAngle) * 50) - sun.offsetHeight / 2 + window.innerHeight / 2 + "px"
+      sun.style.left = sunX
+      sun.style.top = sunY
+
+      var earthAngle = time / 300
+      var earthX = parseFloat(sunX) + sun.offsetWidth / 2 + (Math.cos(earthAngle) * 200) - earth.offsetWidth / 2 + "px"
+      var earthY = parseFloat(sunY) + sun.offsetHeight / 2 + (Math.sin(earthAngle) * 200) - earth.offsetHeight / 2 + "px"
+      earth.style.left = earthX
+      earth.style.top = earthY
+
+      var moonAngle = time / 100
+      var moonX =  parseFloat(earthX) + earth.offsetWidth / 2 + (Math.cos(moonAngle) * 50) - moon.offsetWidth / 2 + "px"
+      var moonY =  parseFloat(earthY) + earth.offsetHeight / 2 + (Math.sin(moonAngle) * 50) - moon.offsetHeight / 2 + "px"
+      moon.style.left = moonX
+      moon.style.top = moonY
+
+      requestAnimationFrame(animate)
+    }
+
+    requestAnimationFrame(animate)
+
+  </script>
+
+</body>
+</html>
