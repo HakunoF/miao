@@ -6,10 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>huaban</title>
   <style>
-    * {
-      background-color: rgba(0,0,0,0.1);
-    }
-
     section {
       display: flex;
       gap: 10px;
@@ -19,9 +15,15 @@
 
     section div {
       flex: 1;
-      xborder: 1px solid red;
-
     }
+
+    img {
+      display: block;
+      margin-bottom: 10px;
+      transition: .3s;
+    }
+
+
 
   </style>
 </head>
@@ -356,46 +358,89 @@
         "height": 1170
       }
     ]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
 
     var section = document.querySelector('section')
-    var columns = ((window.innerWidth - 60) / 200) | 0
-    section.style.width = columns * 200 + (columns - 1) * 10 + 'px'
+    var prevWidth = 0
 
-    for (var i = 0; i < columns; i++) {
-      var div = document.createElement('div')
-      section.append(div)
+    function run() {
+      if (window.innerWidth == prevWidth) {
+        return
+      } else {
+        prevWidth = window.innerWidth
+      }
+
+      section.innerHTML = ''
+      var columns = window.innerWidth / 200 | 0 //页面最多能够塞下x列
+
+      for (var i = 0; i < columns; i++) { //创建x列div元素
+        section.append(document.createElement('div'))
+      }
+
+      var divs = [...document.querySelectorAll('div')] //用all才能选取所有的div
+
+      var colWidth = divs[0].offsetWidth  //得到每列的宽度
+      var colHeight = Array(columns).fill(0) //创建数组记录每一列的高度
+      var colImgs = Array(columns).fill(0).map(it => []) //创建数组累计每列的图片，必须用map，如直接fill([])会指向同一个数组
+
+      for (var cat of cats) {
+        var minDivHeight = Math.min(...colHeight) //取高度最小的div列
+        var minIdx = colHeight.indexOf(minDivHeight) //得到高度最小的div列下标
+
+        var img = document.createElement('img') //创建img元素并确定宽高
+        img.src = cat.fullUrl
+        img.width = colWidth
+        img.height = colWidth * cat.height / cat.width
+
+        colHeight[minIdx] += img.height + 10 //图片将加入的div列，更新其记录数组
+        colImgs[minIdx].push(img) //图片加入高度最小的div列
+
+        colImgs.forEach((imgs, idx) => { //将累计图片的数组每一项append进对应的div
+          divs[idx].append(...imgs)
+        })
+
+        // var div = divs.reduce((min, div) => { //选取累积高度最小的div插入图片
+        //   if (min.offsetHeight <= div.offsetHeight) {
+        //     return min
+        //   } else {
+        //     return div
+        //   }
+        // }, divs[0])
+      }
     }
+    run()
+    window.onresize = run
 
-    var divs = [...document.querySelectorAll('section > div')]
+    var z = 66
+    section.addEventListener('click', function(e) {
+      if (e.target.matches('section > div img')) {
+        var img = e.target
 
-    for (var cat of cats) {
-      var div = divs.reduce((min, div) => { //选取累积高度最小的div插入图片
-        if (min.offsetHeight <= div.offsetHeight) {
-          return min
+        if (img.style.transform == '') {
+          var box = img.getBoundingClientRect()
+          var baseX = box.left + box.width / 2 //得出被点击的图片此时的坐标xy
+          var baseY = box.top + box.height / 2
+          var centerX = window.innerWidth / 2 //中心点坐标
+          var centerY = window.innerHeight / 2
+          var moveX = centerX - baseX  //xy各自的移动距离
+          var moveY = centerY - baseY
+          var zoomX = window.innerWidth / box.width
+          var zoomY = window.innerHeight / box.height
+
+          img.style.zIndex = z++ //选中的img放大并显示在页面最上层
+          img.style.transform = `translate(${moveX}px, ${moveY}px) scale(${Math.min(zoomX, zoomY)})`
+          img.style.boxShadow = '0 0 0 9999px black'
         } else {
-          return div
+          img.style.transform = ''
+          img.style.boxShadow = ''
         }
-      }, divs[0])
 
-      var img = document.createElement('img')
-      img.src = cat.fullUrl
-      img.width = div.offsetWidth
-      img.height = img.width * cat.height / cat.width
-
-      div.append(img)
-    }
-
-
-
-
-
-
-
-
-
-
-
-
+      }
+    })
 
 
 
