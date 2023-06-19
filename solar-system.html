@@ -20,6 +20,7 @@
       display: inline-block;
       border-radius: 100px;
       position: absolute;
+      top: 400px;
       aspect-ratio: 1/1;
       transform: translate(-50%, -50%);
     }
@@ -27,7 +28,6 @@
     .sun {
       background-color: orange;
       width: 80px;
-      top: 400px;
       left: 400px;
     }
 
@@ -62,19 +62,17 @@
       var earthX = 400 + (Math.cos(earthAngle) * 300) + "px"
       var earthY = 400 + (Math.sin(earthAngle) * 300) + "px"
       earth.style.left = earthX
-      earth.style.top = 400 + 'px'
       earth.style.transform = `rotateY(${earthY})`
       if (Math.sin(earthAngle) < 0 ) {
         earth.style.zIndex = -1
       }else{
         earth.style.zIndex = 1
       }
-      
+
       var moonAngle = time / 200
       var moonX =  parseFloat(earthX) + (Math.cos(moonAngle) * 50) + "px"
       var moonY =  parseFloat(earthY) + (Math.sin(moonAngle) * 50) + "px"
       moon.style.left = moonX
-      moon.style.top = 400 + 'px'
       moon.style.transform = `rotateY(${moonY})`
       if (Math.sin(moonAngle) < 0 ) {
         moon.style.zIndex = -999
