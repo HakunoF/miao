@@ -13,6 +13,7 @@
       margin: 50px auto;
       position: relative;
       background-color: rgba(2, 2, 74, 0.534);
+      perspective: 1000px;
     }
 
     .sun, .earth, .moon {
@@ -20,21 +21,26 @@
       border-radius: 100px;
       position: absolute;
       aspect-ratio: 1/1;
+      transform: translate(-50%, -50%);
     }
 
     .sun {
       background-color: orange;
       width: 80px;
+      top: 400px;
+      left: 400px;
     }
 
     .earth {
       background-color: lightblue;
       width: 50px;
+      transform-style: preserve-3d;
     }
 
     .moon {
       background-color: lightyellow;
       width: 20px;
+      transform-style: preserve-3d;
     }
 
 
@@ -51,29 +57,32 @@
     var earth = document.querySelector('.earth')
     var moon = document.querySelector('.moon')
 
-    function animate(time) {
-      var sunAngle = time / 500
-      var sunX = (Math.cos(sunAngle) * 50) - sun.offsetWidth / 2 + 400 + "px"
-      var sunY = (Math.sin(sunAngle) * 50) - sun.offsetHeight / 2 + 400 + "px"
-      sun.style.left = sunX
-      sun.style.top = sunY
-
-      var earthAngle = time / 300  //地球中心绕太阳左上角旋转 需要再偏移1/2太阳的宽高
-      var earthX = parseFloat(sunX) + sun.offsetWidth / 2 + (Math.cos(earthAngle) * 200) - earth.offsetWidth / 2 + "px"
-      var earthY = parseFloat(sunY) + sun.offsetHeight / 2 + (Math.sin(earthAngle) * 200) - earth.offsetHeight / 2 + "px"
+    requestAnimationFrame(function animate(time) {
+      var earthAngle = time / 800
+      var earthX = 400 + (Math.cos(earthAngle) * 300) + "px"
+      var earthY = 400 + (Math.sin(earthAngle) * 300) + "px"
       earth.style.left = earthX
-      earth.style.top = earthY
-
-      var moonAngle = time / 100
-      var moonX =  parseFloat(earthX) + earth.offsetWidth / 2 + (Math.cos(moonAngle) * 50) - moon.offsetWidth / 2 + "px"
-      var moonY =  parseFloat(earthY) + earth.offsetHeight / 2 + (Math.sin(moonAngle) * 50) - moon.offsetHeight / 2 + "px"
+      earth.style.top = 400 + 'px'
+      earth.style.transform = `rotateY(${earthY})`
+      if (Math.sin(earthAngle) < 0 ) {
+        earth.style.zIndex = -1
+      }else{
+        earth.style.zIndex = 1
+      }
+      
+      var moonAngle = time / 200
+      var moonX =  parseFloat(earthX) + (Math.cos(moonAngle) * 50) + "px"
+      var moonY =  parseFloat(earthY) + (Math.sin(moonAngle) * 50) + "px"
       moon.style.left = moonX
-      moon.style.top = moonY
-
+      moon.style.top = 400 + 'px'
+      moon.style.transform = `rotateY(${moonY})`
+      if (Math.sin(moonAngle) < 0 ) {
+        moon.style.zIndex = -999
+      }else{
+        moon.style.zIndex = 1
+      }
       requestAnimationFrame(animate)
-    }
-
-    requestAnimationFrame(animate)
+    })
 
   </script>
 
