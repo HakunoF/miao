@@ -681,6 +681,18 @@ var hakunof = {
 
   },
 
+  repeat: function(str = '', n = 1) {
+    return '' + str.repeat(n)
+  },
+
+  padStart: function(str = '', l = 0, chars = ' ') {
+    return chars.repeat(Math.ceil((l - str.length) / chars.length)).slice(0, l - str.length) + str
+  },
+
+  padEnd: function(str = '', l = 0, chars = ' ') {
+    return str + chars.repeat(Math.ceil((l - str.length) / chars.length)).slice(0, l - str.length)
+  },
+
 }
 
 // : function() {
