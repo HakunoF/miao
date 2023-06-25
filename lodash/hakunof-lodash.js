@@ -783,6 +783,61 @@ var hakunof = {
     }
   },
 
+  trim: function(str = '', chars = ' ') {
+    var charsSet = new Set(chars.split(''))
+    str = str.split('')
+    for (var i = 0; i < str.length; i++) {
+      if (charsSet.has(str[i])) {
+        str.splice(i, 1)
+        i--
+      }
+    }
+    return str.join('')
+  },
+
+  trimStart: function(str = '', chars = ' ') {
+    var charsSet = new Set(chars.split(''))
+    str = str.split('')
+    for (var i = 0; i < str.length; i++) {
+      if (charsSet.has(str[i])) {
+        str.splice(i, 1)
+        i--
+      } else {
+        break
+      }
+    }
+    return str.join('')
+  },
+
+  trimEnd: function(str = '', chars = ' ') {
+    var charsSet = new Set(chars.split(''))
+    str = str.split('')
+    for (var i = str.length - 1; i >= 0; i--) {
+      if (charsSet.has(str[i])) {
+        str.splice(i, 1)
+      } else {
+        break
+      }
+    }
+    return str.join('')
+  },
+
+  assign: function(...obj) {
+    return Object.assign(...obj)
+  },
+
+  merge: function(obj, other) {
+    for (var key in other) {
+      if (key in obj) {
+        this.merge(other[key], obj[key])
+      }
+    }
+    return Object.assign(obj, other)
+  },
+
+
+
+
 }
 
 // : function() {
