@@ -769,15 +769,18 @@ var hakunof = {
   cloneDeep: function(val) {
     if (val === null || typeof val !== 'object') {
       return val
-    }
-
-    var cloneWrap =  Array.isArray(val) ? [] : {}
-    for (var key in val) {
-      if (val.hasOwnProperty(key)) {
-        cloneWrap[key] = cloneDeep(val[key])
+    } else if (val instanceof RegExp) {  //判断是否为正则表达式 Object.prototype.toString.call(regex) === '[object RegExp]'
+      var cloneReg = new RegExp(val.source, val.flags)
+      return cloneReg
+    } else {
+      var cloneWrap =  Array.isArray(val) ? [] : {}
+      for (var key in val) {
+        if (val.hasOwnProperty(key)) {
+          cloneWrap[key] = this.cloneDeep(val[key])
+        }
       }
+      return cloneWrap
     }
-    return cloneWrap
   },
 
 }
