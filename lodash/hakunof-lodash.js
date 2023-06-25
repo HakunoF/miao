@@ -732,15 +732,13 @@ var hakunof = {
     }
 
     if (arguments.length == 1 && typeof arguments[0] === 'number') {
-      lower = 0
       upper = arguments[0]
-      return lower + Math.random() * (upper - lower) | 0
+      return Math.random() * upper | 0
     } else if (arguments.length == 1 && typeof arguments[0] === 'boolean') {
-      return Math.random
+      return Math.random()
     } else if (arguments.length == 2 && typeof arguments[1] === 'boolean') {
-      lower = 0
       upper = arguments[0]
-      return lower + Math.random() * (upper - lower)
+      return Math.random() * upper
     } else if (float) {
       return lower + Math.random() * (upper - lower)
     } else {
