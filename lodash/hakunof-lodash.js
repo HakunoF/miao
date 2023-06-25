@@ -693,6 +693,93 @@ var hakunof = {
     return str + chars.repeat(Math.ceil((l - str.length) / chars.length)).slice(0, l - str.length)
   },
 
+  pad: function(str = '', l = 0, chars = ' ') {
+    var padChars = chars.repeat((l - str.length))
+    var left = (l - str.length) / 2 | 0
+    var right = l - str.length - left
+    return padChars.slice(0, left) + str + padChars.slice(left, left + right)
+  },
+
+  keys: function(obj) {
+    if (typeof obj === 'object' && !Array.isArray(obj)) {
+      return Object.keys(obj)
+    } else {
+      var res = []
+      for (var i = 0; i < obj.length; i++) {
+        res.push(i + '')
+      }
+      return res
+    }
+  },
+
+  values: function(obj) {
+    var res = []
+    if (typeof obj === 'object' && !Array.isArray(obj)) {
+      for (var key in obj) {
+        res.push(obj[key])
+      }
+    } else {
+      for (var val of obj) {
+        res.push(val)
+      }
+    }
+    return res
+  },
+
+  random: function(lower = 0, upper = 1, float) {
+    if (typeof arguments[0] === 'number' && !Number.isInteger(arguments[0])) {
+      float = true
+    }
+
+    if (arguments.length == 1 && typeof arguments[0] === 'number') {
+      lower = 0
+      upper = arguments[0]
+      return lower + Math.random() * (upper - lower) | 0
+    } else if (arguments.length == 1 && typeof arguments[0] === 'boolean') {
+      return Math.random
+    } else if (arguments.length == 2 && typeof arguments[length - 1] === 'boolean') {
+      lower = 0
+      upper = arguments[0]
+      return lower + Math.random() * (upper - lower)
+    } else if (float) {
+      return lower + Math.random() * (upper - lower)
+    } else {
+      return lower + Math.random() * (upper - lower) | 0
+    }
+  },
+
+  ceil: function(num, prec = 0) {
+    var a = 10 ** Math.abs(prec)
+    if (prec >= 0) {
+      return Math.ceil(num * a) / a
+    } else {
+      return Math.ceil(num / a) * a
+    }
+  },
+
+  floor: function(num, prec = 0) {
+    var a = 10 ** Math.abs(prec)
+    if (prec >= 0) {
+      return Math.floor(num * a) / a
+    } else {
+      return Math.floor(num / a) * a
+    }
+  },
+
+  cloneDeep: function(val) {
+    if (val === null || typeof val !== 'object') {
+      return val
+    }
+
+    var cloneWrap =  Array.isArray(val) ? [] : {}
+    for (var key in val) {
+      if (val.hasOwnProperty(key)) {
+        cloneWrap[key] = cloneDeep(val[key])
+      }
+    }
+    return cloneWrap
+  },
+
 }
 
 // : function() {
