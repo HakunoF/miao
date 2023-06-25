@@ -781,7 +781,7 @@ var hakunof = {
     }
   },
 
-  trim: function(str = '', chars = '  ') {
+  trim: function(str = '', chars = ' ') {
     var charsSet = new Set(chars.split(''))
     str = str.split('')
     for (var i = 0; i < str.length; i++) {
@@ -790,7 +790,7 @@ var hakunof = {
         i--
       }
     }
-    return str.join('')
+    return str.join('').trim()
   },
 
   trimStart: function(str = '', chars = '  ') {
@@ -804,7 +804,7 @@ var hakunof = {
         break
       }
     }
-    return str.join('')
+    return str.join('').trimStart()
   },
 
   trimEnd: function(str = '', chars = '  ') {
@@ -817,7 +817,7 @@ var hakunof = {
         break
       }
     }
-    return str.join('')
+    return str.join('').trimEnd()
   },
 
   assign: function(...obj) {
