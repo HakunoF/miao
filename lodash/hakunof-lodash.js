@@ -737,7 +737,7 @@ var hakunof = {
       return lower + Math.random() * (upper - lower) | 0
     } else if (arguments.length == 1 && typeof arguments[0] === 'boolean') {
       return Math.random
-    } else if (arguments.length == 2 && typeof arguments[length - 1] === 'boolean') {
+    } else if (arguments.length == 2 && typeof arguments[1] === 'boolean') {
       lower = 0
       upper = arguments[0]
       return lower + Math.random() * (upper - lower)
