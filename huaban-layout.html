@@ -484,6 +484,7 @@
     }
 
     var z = 5
+    var bodyset = document.querySelector('body')
     section.addEventListener('click', function(e) {
       if (e.target.matches('section img')) {
         var img = e.target
@@ -499,9 +500,11 @@
           img.style.zIndex = z++
           img.style.transform = `translate(${moveX}px, ${moveY}px) scale(${Math.min(zoomX, zoomY)})`
           img.style.boxShadow = '0 0 0 9999px black'
+          bodyset.style.overflowY = 'hidden'
         } else {
           img.style.transform = `translate(${cat.left}px, ${cat.top}px)`
           img.style.boxShadow = ''
+          bodyset.style.overflowY = 'scroll'
         }
 
       }
