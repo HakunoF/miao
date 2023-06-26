@@ -764,7 +764,7 @@ var hakunof = {
     }
   },
 
-  cloneDeep: function(val) {
+  cloneDeep2: function(val) {
     if (val === null || typeof val !== 'object') {
       return val
     } else if (val instanceof RegExp) {  //判断是否为正则表达式 Object.prototype.toString.call(regex) === '[object RegExp]'
@@ -781,6 +781,27 @@ var hakunof = {
     }
   },
 
+  cloneDeep: function(obj, cloneMap = new Map()) {
+    if (obj instanceof RegExp) {
+      var res = new RegExp(obj.source, obj.flags)
+      return res
+    } else if (typeof obj == 'object') {
+      if (cloneMap.has(obj)) {
+        return cloneMap.get(obj)
+      }
+      var cloneObj = Array.isArray(obj) ? [] : {}
+      cloneMap.set(obj, cloneObj)
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          cloneObj[key] = this.cloneDeep(obj[key], cloneMap)
+        }
+      }
+      return cloneObj
+    } else {
+      return obj
+    }
+  },
+
   trim: function(str = '', chars = ' ') {
     var charsSet = new Set(chars.split(''))
     str = str.split('')
@@ -793,7 +814,7 @@ var hakunof = {
     return str.join('').trim()
   },
 
-  trimStart: function(str = '', chars = '  ') {
+  trimStart: function(str = '', chars = ' ') {
     var charsSet = new Set(chars.split(''))
     str = str.split('')
     for (var i = 0; i < str.length; i++) {
@@ -807,7 +828,7 @@ var hakunof = {
     return str.join('').trimStart()
   },
 
-  trimEnd: function(str = '', chars = '  ') {
+  trimEnd: function(str = '', chars = ' ') {
     var charsSet = new Set(chars.split(''))
     str = str.split('')
     for (var i = str.length - 1; i >= 0; i--) {
@@ -831,6 +852,72 @@ var hakunof = {
       }
     }
     return Object.assign(obj, other)
+  },
+
+  uniq: function(array) {
+    return Array.from(new Set(array))
+  },
+
+  uniqBy: function(ary, pre) {
+    pre = this.funjudge(pre)
+    var set = new Set()
+    var res = []
+    for (var item of ary) {
+      if (!set.has(pre(item))) {
+        res.push(item)
+      }
+      set.add(pre(item))
+    }
+    return res
+  },
+
+  uniqWith: function(array, comparator) {
+    var res = []
+    for (var item of array) {
+      var keep = true
+      for (var seen of res) {
+        if (comparator(item, seen)) {
+          keep = false
+          break
+        }
+      }
+      if (keep) {
+        res.push(item)
+      }
+    }
+    return res
+  },
+
+  differenceBy: function(array, value, pre) {
+    pre = this.funjudge(pre)
+    var set = new Set()
+    var res = []
+    for (var item of value) {
+      set.add(pre(item))
+    }
+    for (var item of array) {
+      if (!set.has(pre(item))) {
+        res.push(item)
+      }
+    }
+    return res
+  },
+
+  differenceWith: function(array, value, comparator) {
+    var res = []
+    for (var item of array) {
+      var keep = true
+      for (var seen of value) {
+        if (comparator(item, seen)) {
+          keep = false
+          break
+        }
+      }
+      if (keep) {
+        res.push(item)
+      }
+    }
+    return res
   },
 
 
