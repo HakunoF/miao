@@ -926,6 +926,25 @@ var hakunof = {
     return res
   },
 
+  toPath: function(val) {
+    if (typeof val === 'string') {
+      var res = val.split(/\.|\[|\]\.|\]\[|\]/)
+      if (res.at(-1) == '') {
+        res.pop()
+      }
+      if (res.at(0) == '') {
+        res.shift()
+      }
+      return res
+    }
+    return val
+  },
+
+  property: function(path) {
+    return function(obj) {
+      return this.get(obj,path)
+    }
+  },
 
 
 
