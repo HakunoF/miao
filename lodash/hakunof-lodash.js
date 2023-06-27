@@ -888,8 +888,14 @@ var hakunof = {
     return res
   },
 
-  differenceBy: function(array, value, pre) {
+  differenceBy: function(array, ...value) {
+    if (!Array.isArray(value.at(-1))) {
+      var pre = value.pop()
+    } else {
+      var pre = (it) => it
+    }
     pre = this.funjudge(pre)
+    value = value.flat()
     var set = new Set()
     var res = []
     for (var item of value) {
