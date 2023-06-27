@@ -942,7 +942,7 @@ var hakunof = {
 
   property: function(path) {
     return function(obj) {
-      return this.get(obj,path)
+      return hakunof.get(obj,path)
     }
   },
 
