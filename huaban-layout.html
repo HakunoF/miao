@@ -492,11 +492,11 @@
         var cat = cats[catIdx]
         var box = img.getBoundingClientRect()
 
-        if (box.width != window.innerWidth && box.height != window.innerHeight) {
-          var moveX = window.innerWidth / 2 - cat.displayWidth
-          var moveY = pageYOffset + window.innerHeight / 2 - cat.displayHeight / 2
-          var zoomX = window.innerWidth / cat.displayWidth
-          var zoomY = window.innerHeight / cat.displayHeight
+        if (box.width != window.innerWidth - gap && box.height != window.innerHeight - gap) {
+          var moveX = window.innerWidth / 2 - cat.displayWidth - gap / 2
+          var moveY = pageYOffset + window.innerHeight / 2 - cat.displayHeight / 2 - gap * 0.8
+          var zoomX = (window.innerWidth - gap) / cat.displayWidth
+          var zoomY = (window.innerHeight - gap) / cat.displayHeight
           img.style.zIndex = z++
           img.style.transform = `translate(${moveX}px, ${moveY}px) scale(${Math.min(zoomX, zoomY)})`
           img.style.boxShadow = '0 0 0 9999px black'
