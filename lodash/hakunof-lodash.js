@@ -252,8 +252,8 @@ var hakunof = {
   map: function(coll, predicate) {
     var res = []
     predicate = this.funjudge(predicate)
-    for (var key in coll) {
-      res.push(predicate(coll[key]))
+    for (var i = 0; i < coll.length; i++) {
+      res.push(predicate(coll[i], i, coll))
     }
     return res
   },
@@ -1008,7 +1008,24 @@ var hakunof = {
     }
   },
 
- 
+  matches: function(src) {
+    return function(obj) {
+      return hakunof.isMatch(obj, src)
+    }
+  },
+
+  iteratee: function(predicate) {
+    var func = predicate
+    if (typeof predicate === 'string') {
+      func = hakunof.property(predicate)
+    } else if (Array.isArray(predicate)) {
+      func = hakunof.matchesProperty(predicate)
+    } else if (typeof predicate === 'object') {
+      func = hakunof.matches(predicate)
+    }
+    return func
+  },
+
 
 
 
