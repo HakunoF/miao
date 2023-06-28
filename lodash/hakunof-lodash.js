@@ -64,6 +64,52 @@ var hakunof = {
     }
   },
 
+  funjudge2: function(pre) {
+    var flag = false
+
+    if (typeof pre == 'function') {
+      return pre
+    }
+
+    if (typeof pre == 'object') {
+      if (Array.isArray(pre)) {
+        var key = pre[0]
+        var val = pre[1]
+        return (obj) => {
+          for (var it in obj) {
+            if (it == key && obj[it] ==val) {
+              flag = true
+              break
+            }
+          }
+          return flag
+        }
+      } else {
+        return (obj) => {
+          for (var [key, val] of Object.entries(pre)) {
+            if (obj[key] != val) {
+              flag = false
+              break
+            } else {
+              flag = true
+            }
+          }
+          return flag
+        }
+      }
+    }
+
+    if (typeof pre == 'string') {
+      pre = hakunof.toPath(pre)
+      return (obj) => {
+        for (var key of pre) {
+          obj = obj[key]
+        }
+        return obj
+      }
+    }
+  },
+
   findIndex: function(array, f, fromIndex = 0) {
     for (var i = fromIndex; i < array.length; i++) {
       if (this.funjudge(f)(array[i])) {
@@ -251,9 +297,15 @@ var hakunof = {
 
   map: function(coll, predicate) {
     var res = []
-    predicate = this.funjudge(predicate)
-    for (var i = 0; i < coll.length; i++) {
-      res.push(predicate(coll[i], i, coll))
+    predicate = this.funjudge2(predicate)
+    if (Array.isArray(coll)) {
+      for (var i = 0; i < coll.length; i++) {
+        res.push(predicate(coll[i], i, coll))
+      }
+    } else {
+      for (var [k,v] of Object.entries(coll)) {
+        res.push(predicate(v, k))
+      }
     }
     return res
   },
@@ -1014,17 +1066,7 @@ var hakunof = {
     }
   },
 
-  iteratee: function(predicate) {
-    var func = predicate
-    if (typeof predicate === 'string') {
-      func = hakunof.property(predicate)
-    } else if (Array.isArray(predicate)) {
-      func = hakunof.matchesProperty(predicate)
-    } else if (typeof predicate === 'object') {
-      func = hakunof.matches(predicate)
-    }
-    return func
-  },
+  
 
 
 
