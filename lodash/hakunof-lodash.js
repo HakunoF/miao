@@ -946,6 +946,72 @@ var hakunof = {
     }
   },
 
+  get1: function(obj, path, defaultValue) {
+    path = hakunof.toPath(path)
+    for (var key of path) {
+      if (obj != undefined) {
+        obj = obj[key]
+      } else {
+        return defaultValue
+      }
+    }
+    return obj ?? defaultValue //判断最后的循环结果
+  },
+
+  get2: function(obj, path, defaultValue) {
+    if (typeof path === 'string') {
+      path = hakunof.toPath(path)
+    }
+    if (obj == undefined) {
+      return defaultValue
+    }
+    if (path.length == 0) {
+      return obj
+    }
+    return this.get2(obj[path[0]], path.slice(1))
+  },
+
+  get3: function(obj, path, defaultValue) {
+    if (typeof path === 'string') {
+      path = hakunof.toPath(path)
+    }
+    return path.reduce((res, key) => {
+      if (res == undefined) {
+        return undefined
+      } else {
+        return res[key]
+      }
+    }, obj) ?? defaultValue
+  },
+
+  isMatch: function(obj, src) {
+    for (var key in src) {
+      if (typeof src[key] == 'object') {
+        if (!this.isMatch(obj[key], src[key])) {
+          return false
+        }
+      } else {
+        if (src[key] != obj[key]) {
+          return false
+        }
+      }
+    }
+    return true
+  },
+
+  matchesProperty: function(path, src) {
+    path = hakunof.toPath(path)
+    return function (obj) {
+      if (hakunof.isEqual(hakunof.get3(obj, path), src)) {
+        return obj //res可能不是对象 需要用isEqual进行深度对比
+      }
+    }
+  },
+
+ 
+
+
+
 
 
 }
