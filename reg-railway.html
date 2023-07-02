@@ -6,12 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RegExper</title>
   <style>
+    html, body {
+      background-color: #6a665a;
+      margin: 0;
+    }
+
+    header {
+      background-color: #abc25e;
+      padding: 10px;
+      height: 100px;
+      box-shadow: 0 0 10px black;
+      > h1 {
+        font-size: 40px;
+        margin: 0;
+      }
+    }
+
     div {
       text-align: center;
+      margin-top: 20px;
       > input {
-        width: 500px;
+        width: 800px;
+        height: 50px;
         font-size: 16px;
         margin-bottom: 10px;
+        background-color: #cbcbbc;
+      }
+      > button {
+        background-color: #abc25e;
+        font-size: 16px;
       }
       #showError {
         color: red;
@@ -23,15 +46,20 @@
       border: 1px solid;
       display: block;
       margin: 20px auto;
+      background-color: #fff;
     }
 
   </style>
 </head>
 
 <body>
+  <header>
+    <h1>REGEXPER</h1>
+    <p>You thought you only had two problems…</p>
+  </header>
   <div>
     <input type="text" id="regularExpressionInput" value="(foo+|aaaa)*b(a[abz049_-]){2,}(?=abc)(baz|baa)+|baaaa"> <br>
-    <button onclick="draw()">draw</button>
+    <button onclick="draw()">Display</button>
     <button onclick="download()">Download Graph</button>
     <button id="copyButton" onclick="copyLink()">Copy Link</button>
     <p id="showError"></p>
@@ -44,7 +72,7 @@
     window.onbeforeunload = e => {
       return 'Changes you made may not be saved.'
     }
-    
+
     var svg = document.querySelector('svg')
     var showError = document.querySelector('#showError')
     var hash = location.hash.slice(1)
