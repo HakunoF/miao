@@ -13,8 +13,11 @@
         font-size: 16px;
         margin-bottom: 10px;
       }
+      #showError {
+        color: red;
+        font-size: 20px;
+      }
     }
-
 
     svg {
       border: 1px solid;
@@ -30,13 +33,20 @@
     <input type="text" id="regularExpressionInput" value="(foo+|aaaa)*b(a[abz049_-]){2,}(?=abc)(baz|baa)+|baaaa"> <br>
     <button onclick="draw()">draw</button>
     <button onclick="download()">Download Graph</button>
+    <button id="copyButton" onclick="copyLink()">Copy Link</button>
+    <p id="showError"></p>
   </div>
   <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
   </svg>
 
   <script>
-    var svg = document.querySelector('svg')
 
+    window.onbeforeunload = e => {
+      return 'Changes you made may not be saved.'
+    }
+    
+    var svg = document.querySelector('svg')
+    var showError = document.querySelector('#showError')
     var hash = location.hash.slice(1)
     if (hash) { //如果URL中已存在正则表达式，则直接进行解析后绘制图像
       regularExpressionInput.value = decodeURIComponent(hash)
@@ -45,8 +55,14 @@
 
     function draw() {
       svg.innerHTML = ''
+      showError.innerHTML = ''
+      try {
+        var reg = new RegExp(regularExpressionInput.value)
+      } catch(e) {
+        showError.innerHTML = e
+        return
+      }
       var node = parseRegularExpression(regularExpressionInput.value)
-
       var graph = drawRegularExpression(node)
       var box = graph.getBBox()
       svg.setAttribute('width',box.width)
@@ -63,6 +79,18 @@
       a.href = url
       a.download = 'regular.expression-graph.svg'
       a.click()
+    }
+
+    function copyLink() {
+      var copyButton = document.querySelector('#copyButton')
+      var link = window.location.href
+      var tempInput = document.createElement('input')
+      tempInput.setAttribute('value', link)
+      document.body.appendChild(tempInput)
+      tempInput.select()
+      document.execCommand('copy')
+      document.body.removeChild(tempInput)
+      alert('Link has been copied to the clipboard!')
     }
 
     function parseRegularExpression(input) {
