@@ -58,7 +58,7 @@
     <p>You thought you only had two problems…</p>
   </header>
   <div>
-    <input type="text" id="regularExpressionInput" value="(foo+|aaaa)*b(a[abz049_-]){2,}(?=abc)(baz|baa)+|baaaa(?<=abc)"> <br>
+    <input type="text" id="regularExpressionInput" value="(foo+|aaaa)*b(a[abz049_-]){2,}(?=abc)(baz|baa)+|baaaa(?<!abc)"> <br>
     <button onclick="draw()">Display</button>
     <button onclick="download()">Download Graph</button>
     <button id="copyButton" onclick="copyLink()">Copy Link</button>
@@ -410,9 +410,6 @@
       }
     }
 
-    // var node = parseRegularExpression('[abc]]')
-    // drawCharacterClassGraph(node.branches[0].parts[0])
-
     function drawRegularExpression (node) {
       var graphPadding = 10
       function add(a, b) {
@@ -485,6 +482,16 @@
           y += boxes[i].height + graphPadding
           g.appendChild(graph)
         })
+
+        var label = svgElt('text', {
+          x: 0,
+          y: "-1em",
+          "font-size": 10,
+          "dominant-baseline": "text-before-edge",
+        })
+
+        label.textContent = 'One of:'
+        g.appendChild(label)
 
         return g
       }
