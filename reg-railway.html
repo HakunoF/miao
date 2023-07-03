@@ -76,17 +76,17 @@
 
   <script>
 
-    // window.onbeforeunload = e => {
-    //   return 'Changes you made may not be saved.'
-    // }
+    window.onbeforeunload = e => {
+      return 'Changes you made may not be saved.'
+    }
 
     var svg = document.querySelector('svg')
     var showError = document.querySelector('#showError')
     var hash = location.hash.slice(1)
-    // if (hash) { //如果URL中已存在正则表达式，则直接进行解析后绘制图像
-    //   regularExpressionInput.value = decodeURIComponent(hash)
-    //   draw()
-    // }
+    if (hash) { //如果URL中已存在正则表达式，则直接进行解析后绘制图像
+      regularExpressionInput.value = decodeURIComponent(hash)
+      draw()
+    }
 
     function draw() {
       svg.innerHTML = ''
