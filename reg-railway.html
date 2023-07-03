@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RegExper</title>
+  <link rel="icon" href="https://regexper.com/favicon.ico" type="image/x-icon">
   <style>
     html, body {
       background-color: #6a665a;
@@ -44,14 +45,18 @@
 
     section {
       border: 1px solid;
-      display: block;
-      min-height: 500px;
       margin: 20px;
       background-color: #fff;
-      display: flex;
-      place-items: center;
-      place-content: center;
+      text-align: center;
+      overflow-x: scroll;
+      > svg {
+      margin: auto;
+      }
     }
+
+
+
+
 
   </style>
 </head>
@@ -62,14 +67,15 @@
     <p>You thought you only had two problems…</p>
   </header>
   <div>
-    <input type="text" id="regularExpressionInput" value="(foo+|aaaa)*b(a[abz049_-]){2,}(?=abc)(baz|baa)+|baaaa(?<!abc)"> <br>
+    <input type="text" id="regularExpressionInput" value="(foo+|aaaa)*b(a[abz049_-]){2,}(?=abc)(baz|baa)+xxxx((bbbbb)bbbbbb)|baaaa(?<!abc)"> <br>
     <button onclick="draw()">Display</button>
-    <button onclick="download()">Download Graph</button>
+    <button onclick="downloadSvg()">Download SVG</button>
+    <button onclick="downloadPng()">Download PNG</button>
     <button id="copyButton" onclick="copyLink()">Copy Link</button>
     <p id="showError"></p>
   </div>
   <section>
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1050" height="550">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1050" height="300">
     </svg>
   </section>
 
@@ -109,14 +115,40 @@
       location.hash = encodeURIComponent(regularExpressionInput.value)
     }
 
-    function download() {
+    function downloadSvg() {
       var text = '<?xml version="1.0"?>' + svg.outerHTML
-      var file = new Blob([text], {type: ''})
+      var file = new Blob([text], {type: 'image/svg+xml'})
       var url = URL.createObjectURL(file)
       var a = document.createElement('a')
       a.href = url
       a.download = 'regular.expression-graph.svg'
       a.click()
+    }
+
+    function downloadPng() {
+      var text = '<?xml version="1.0"?>' + svg.outerHTML
+      var file = new Blob([text], {type: 'image/svg+xml'})
+      var url = URL.createObjectURL(file)
+      var img = document.createElement('img')
+      img.src = url
+      img.onload = () => {
+        var canvas = document.createElement('canvas')
+        canvas.width = svg.getAttribute('width')
+        canvas.height = svg.getAttribute('height')
+        var ctx = canvas.getContext('2d')
+
+        ctx.fillStyle = 'white'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        ctx.drawImage(img, 0, 0)
+
+        var url = canvas.toDataURL('image/png')
+
+        var a = document.createElement('a')
+        a.href = url
+        a.download = 'regular-expression-graph.png'
+        a.click()
+      }
     }
 
     function copyLink() {
@@ -523,14 +555,15 @@
         var g = svgElt('g')
         g.appendChild(rect)
 
-        var line = svgElt('line', {
-          x1: 0,
-          y1: height / 2,
-          x2: width,
-          y2: height / 2,
-          stroke: 'black',
+         var path = svgElt("path",{
+            d:`M 0 ${ height / 2}
+               L ${graphPadding} ${height /2}
+               M ${width} ${ height / 2}
+               L ${width - graphPadding * boxes.length} ${height /2}
+            `  ,
+            stroke : 'black'
         })
-        g.appendChild(line)
+        g.appendChild(path)
 
         var x = graphPadding
         graphs.forEach((graph, i) => {
