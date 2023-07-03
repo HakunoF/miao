@@ -42,11 +42,15 @@
       }
     }
 
-    svg {
+    section {
       border: 1px solid;
       display: block;
-      margin: 20px auto;
+      min-height: 500px;
+      margin: 20px;
       background-color: #fff;
+      display: flex;
+      place-items: center;
+      place-content: center;
     }
 
   </style>
@@ -64,22 +68,25 @@
     <button id="copyButton" onclick="copyLink()">Copy Link</button>
     <p id="showError"></p>
   </div>
-  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">
-  </svg>
+  <section>
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1050" height="550">
+    </svg>
+  </section>
+
 
   <script>
 
-    window.onbeforeunload = e => {
-      return 'Changes you made may not be saved.'
-    }
+    // window.onbeforeunload = e => {
+    //   return 'Changes you made may not be saved.'
+    // }
 
     var svg = document.querySelector('svg')
     var showError = document.querySelector('#showError')
     var hash = location.hash.slice(1)
-    if (hash) { //如果URL中已存在正则表达式，则直接进行解析后绘制图像
-      regularExpressionInput.value = decodeURIComponent(hash)
-      draw()
-    }
+    // if (hash) { //如果URL中已存在正则表达式，则直接进行解析后绘制图像
+    //   regularExpressionInput.value = decodeURIComponent(hash)
+    //   draw()
+    // }
 
     function draw() {
       svg.innerHTML = ''
@@ -93,6 +100,9 @@
       var node = parseRegularExpression(regularExpressionInput.value)
       var graph = drawRegularExpression(node)
       var box = graph.getBBox()
+      // var svgZoomX = Math.floor(1050 / box.width)
+      // var svgZoomY = Math.floor(550 / box.height)
+      // var zoom = Math.min(svgZoomX, svgZoomY)
       svg.setAttribute('width',box.width)
       svg.setAttribute('height',box.height)
 
