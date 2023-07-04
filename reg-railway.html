@@ -542,7 +542,7 @@
         var graphs = node.parts.map(drawNodeGraph)
         var boxes = graphs.map(it => it.getBBox())
 
-        var width = boxes.map(it => it.width).reduce(add, 0) + graphPadding * 2
+        var width = boxes.map(it => it.width).reduce(add, 0) + graphPadding * (graphs.length + 1)
         var height = Math.max(...boxes.map(it => it.height)) + 2 * graphPadding
 
         var rect = svgElt('rect', {
@@ -555,32 +555,34 @@
         var g = svgElt('g')
         g.appendChild(rect)
 
-        // var line = svgElt('line', {
-        //   x1: 0,
-        //   y1: height / 2,
-        //   x2: width,
-        //   y2: height / 2,
-        //   stroke: 'black',
-        // })
-        // g.appendChild(line)
-
-        var path = svgElt("path",{
-            d:`M 0 ${height / 2}
-               L ${graphPadding} ${height / 2}
-               M ${width} ${height / 2}
-               L ${width - graphPadding} ${height / 2}
-            `,
-            stroke : 'black',
-            fill: 'none',
-        })
-        g.appendChild(path)
-
         var x = graphPadding
         graphs.forEach((graph, i) => {
           graph.setAttribute('transform', `translate(${x}, ${(height - boxes[i].height) / 2})`)
-          x += boxes[i].width
+          x += boxes[i].width + graphPadding
           g.appendChild(graph)
         })
+
+        var startingLine = 0
+        graphs.forEach((_, i) => {
+          var line = svgElt('line', {
+          x1: startingLine,
+          y1: height / 2,
+          x2: startingLine + graphPadding,
+          y2: height / 2,
+          stroke: 'black',
+          })
+          g.appendChild(line)
+          startingLine += boxes[i].width + graphPadding
+        })
+
+        var line = svgElt('line', {
+          x1: startingLine,
+          y1: height / 2,
+          x2: startingLine + graphPadding,
+          y2: height / 2,
+          stroke: 'black',
+          })
+          g.appendChild(line)
 
         return g
       }
