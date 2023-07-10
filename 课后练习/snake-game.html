@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Game</title>
+  <style>
+    body {
+      background-color: rgba(0, 0, 0, 0.913);
+      color: white;
+      & h1 {
+        text-align: center;
+        margin: 10px auto
+      }
+    }
+    table {
+      border-collapse: collapse;
+      margin: auto;
+      background-color: grey;
+      & td {
+        border: 1px solid black;
+        width: 16px;
+        height: 16px;
+      }
+      & .apple {
+        background-color: red;
+      }
+      & .snakePart {
+        background-color: aquamarine;
+      }
+    }
+
+    #menu {
+      text-align: center;
+      margin-bottom: 10px;
+      & button {
+        height: 30px;
+        width: 80px;
+        border: none;
+        margin-left: 8px;
+      }
+    }
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <h1>Snake Game</h1>
+  <div id="menu">
+    <button id="renew">New Game</button>
+    <button id="state">Run</button>
+    <button id="easy">Easy</button>
+    <button id="medium">Medium</button>
+    <button id="hard">Hard</button>
+    <button id="score">Score</button>
+  </div>
+  <div id="stage"></div>
+
+
+  <script>
+
+    class Snake {
+      constructor(width = 30, height = 30) {
+        this.width = width
+        this.height = height
+        this.world = new Array(height).fill(0).map(it => new Array(width).fill('.'))
+        this.score = 0
+        this.mode = 1
+
+        this.head = [width / 3 | 0, height / 3 | 0]
+        this.tail = this.head
+
+        var [x, y] = this.head
+        this.world[y][x] = '>'
+        this.placeApple()
+      }
+
+      placeApple() {
+        while(true) {
+          var x = this.width * Math.random() | 0
+          var y = this.height * Math.random() | 0
+          if (this.world[y][x] == '.') {
+            this.world[y][x] = 'O'
+            return
+          }
+        }
+      }
+
+      next() {
+        var [hx, hy] = this.head
+        var headDirection = this.world[hy][hx]
+
+        if (headDirection == '^') {
+          var [x, y] = [hx, hy - 1]
+        }
+        if (headDirection == 'v') {
+          var [x, y] = [hx, hy + 1]
+        }
+        if (headDirection == '<') {
+          var [x, y] = [hx - 1, hy]
+        }
+        if (headDirection == '>') {
+          var [x, y] = [hx + 1, hy]
+        }
+
+        if (this.judgeGameOver([x, y])) {
+          return 'over'
+        }
+
+        if (this.world[y][x] == 'O') {
+          this.score++
+          this.world[y][x] = headDirection
+          this.head = [x, y]
+          this.placeApple()
+          return
+        }
+
+        this.world[y][x] = headDirection
+        this.head = [x, y]
+
+        var [tx, ty] = this.tail
+        var tailDirection = this.world[ty][tx]
+
+        if (tailDirection == '^') {
+          var [x, y] = [tx, ty - 1]
+        }
+        if (tailDirection == 'v') {
+          var [x, y] = [tx, ty + 1]
+        }
+        if (tailDirection == '<') {
+          var [x, y] = [tx - 1, ty]
+        }
+        if (tailDirection == '>') {
+          var [x, y] = [tx + 1, ty]
+        }
+
+        this.tail = [x, y]
+        this.world[ty][tx] = '.'
+      }
+
+      judgeGameOver([x, y]) {
+        if (x < 0 || x >= this.width) {
+          return true
+        }
+        if (y < 0 || y >= this.height) {
+          return true
+        }
+
+        if (this.world[y][x] != '.' && this.world[y][x] != 'O') {
+          return true
+        }
+
+        return false
+      }
+
+      setSnakeDirection(direction) {
+        var [x, y] = this.head
+        var currentDirection = this.world[y][x]
+
+        if (currentDirection == '>' || currentDirection == '<') {
+          if (direction == '^' || direction == 'v') {
+            this.world[y][x] = direction
+            this.next()
+          }
+        } else {
+          if (direction == '<' || direction == '>') {
+            this.world[y][x] = direction
+            this.next()
+          }
+        }
+
+        if (direction == currentDirection) {
+          this.next()
+        }
+      }
+
+      renderToHTMLTable() {
+        return '<table>' + this.world.map((row, rowIdx) => {
+          return `<tr>
+            ${row.map((cell, colIdx) => {
+              if (cell == 'O') {
+                return `<td class="apple"></td>`
+              } else if (cell == '.') {
+                return `<td class="bg"></td>`
+              } else {
+                return `<td class="snakePart"></td>`
+              }
+            }).join('')}
+            </tr>
+          `
+        }).join('') + '</table>'
+      }
+    }
+
+
+    var game = new Snake()
+    var intervalId
+    var running = false
+    var menu = document.querySelector('#menu')
+    var state = document.querySelector('#state')
+    var scoreButton = document.querySelector('#score')
+    show()
+    // auto()
+
+    function next() {
+      var result = game.next()
+      show()
+      if(result == 'over') {
+        stop()
+        alert('Game Over!\nScore: ' + game.score)
+        location.reload()
+      }
+    }
+
+    function show() {
+      stage.innerHTML = game.renderToHTMLTable()
+      scoreButton.textContent = 'Score: ' + game.score
+
+    }
+
+    function autoEasy() {
+      intervalId = setInterval(() => {
+        next()
+      }, 600)
+      running = true
+      state.textContent = 'Pause'
+    }
+
+    function autoMedium() {
+      intervalId = setInterval(() => {
+        next()
+      }, 300)
+      running = true
+      state.textContent = 'Pause'
+    }
+
+    function autoHard() {
+      intervalId = setInterval(() => {
+        next()
+      }, 200)
+      running = true
+      state.textContent = 'Pause'
+    }
+
+    function stop() {
+      clearInterval(intervalId)
+      running = false
+      state.textContent = 'Run'
+    }
+
+    function runMode() {
+      clearInterval(intervalId)
+      if (game.mode == 1) {
+        autoEasy()
+      } else if (game.mode == 2) {
+        autoMedium()
+      } else {
+        autoHard()
+      }
+    }
+
+    document.body.addEventListener('keydown', e => {
+      if (e.key == 'ArrowUp') {
+        game.setSnakeDirection('^')
+        stop()
+        show()
+        if (game.mode == 1) {
+          autoEasy()
+        } else if (game.mode == 2) {
+          autoMedium()
+        } else {
+          autoHard()
+        }
+      } else if (e.key == 'ArrowDown') {
+        game.setSnakeDirection('v')
+        stop()
+        show()
+        runMode()
+      } else if (e.key == 'ArrowLeft') {
+        game.setSnakeDirection('<')
+        stop()
+        show()
+        runMode()
+      } else if (e.key == 'ArrowRight') {
+        game.setSnakeDirection('>')
+        stop()
+        show()
+        runMode()
+      }
+    })
+
+    menu.addEventListener('click', e => {
+      if (e.target.matches('#easy')) {
+        game.mode = 1
+        autoEasy()
+      } else if (e.target.matches('#medium')) {
+        game.mode = 2
+        autoMedium()
+      } else if (e.target.matches('#hard')) {
+        game.mode = 3
+        autoHard()
+      } else if (e.target.matches('#state')) {
+        if (running == false) {
+          runMode()
+        } else {
+          stop()
+        }
+      } else if (e.target.matches('#renew')) {
+        location.reload()
+      }
+    })
+
+
+
+
+
+
+
+  </script>
+
+</body>
+</html>
