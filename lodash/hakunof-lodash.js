@@ -1081,7 +1081,79 @@ var hakunof = {
     }
   },
 
+  once: function(func) {
+    var res
+    var called = false //是否被调用过
+
+    return function(...args) {
+      if (called) {
+        return res
+      } else {
+        called = true
+        res = func.call(this, ...args)
+        return res
+      }
+    }
+
+  },
+
+  before: function(n, func) {
+    let res
+    let called = 0
+    return function(...args) {
+      if (called == n) {
+        return res
+      } else {
+        called++
+        res = func.call(this, ...args)
+        return res
+      }
+    }
+  },
+
+  after: function(n, func) {
+    let called = 0
+    return function(...args) {
+      called++
+      if (called >= n)
+      return func.call(this, ...args)
+    }
+  },
+
+  negate: function(func) {
+    return function(...args) {
+      return !func.call(this, ...args)
+    }
+  },
+
+  unary: function(func) {
+    return function(...args) {
+      return func(...args.slice(0, 1))
+    }
+  },
+
+  ary: function(func, n) {
+    return function(...args) {
+      return func(...args.slice(0, n))
+    }
+  },
+
+  flip: function(func) {
+    return function(...args) {
+      return func(...args.reverse())
+    }
+  },
+
   
+
+
+
+
+
+
+
+
+
 }
 
 // : function() {
