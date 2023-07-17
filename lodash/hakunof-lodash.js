@@ -1066,13 +1066,22 @@ var hakunof = {
     }
   },
 
+  bind: function(f, thisArgs, ...fixedArgs) {
+    return function(...args) {
+      var copy = fixedArgs.slice()
+      for (var i = 0, j = 0; i < copy.length; i++) {
+        if (copy[i] == undefined) {
+          copy[i] = args[j++]
+        }
+      }
+      while(j < args.length) {
+        copy.push(args[j++])
+      }
+      return f.call(thisArgs, ...copy)
+    }
+  },
+
   
-
-
-
-
-
-
 }
 
 // : function() {
