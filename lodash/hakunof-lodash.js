@@ -1144,7 +1144,23 @@ var hakunof = {
     }
   },
 
-  
+  spread: function(func) {
+    return function(...args) {
+      return func.apply(this, ...args)
+    }
+  },
+
+  sortedUniq: function(array) {
+    if (array.length == 0) {
+      return []
+    } else {
+      const set = new Set()
+      array.forEach(it => set.add(it))
+      return Array.from(set)
+    }
+  },
+
+
 
 
 
