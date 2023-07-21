@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>downloadCats</title>
+</head>
+<body>
+  <span>pls fill the quantities of simultaneous downloads(should be less than 4)</span> <br>
+  <input type="text"><br>
+  <button onclick="run()">Download</button>
+
+  <script>
+    const input = document.querySelector('input')
+
+    const downloadCatsUrls = (url) => {
+      const req = new XMLHttpRequest()
+      req.open('get', url, false)
+      req.send()
+      return JSON.parse(req.responseText)
+    }
+    const catsUrls = downloadCatsUrls('https://xieranmaya.github.io/images/cats/cats.json')
+
+    const run = () => {
+      let maxParallelDownloads = +input.value ?? 1
+      maxParallelDownloads = maxParallelDownloads < 4 ? maxParallelDownloads : 3
+      console.log(maxParallelDownloads)
+      downloadTasks(catsUrls, maxParallelDownloads)
+    }
+
+
+    const downloadImg = (url, callback) => {
+      console.log('startTime' + new Date().getMilliseconds())
+      var img = new Image()
+      img.src = url
+      img.onload = () => {
+        callback()
+      }
+    }
+
+    const downloadTasks = (urls, maxParallelDownloads) => {
+      let currIdx = 0
+      let currDownloadNums = 0
+
+      function startDownload() {
+        while (currDownloadNums < maxParallelDownloads && currIdx < catsUrls.length) {
+          const url = catsUrls[currIdx].fullUrl
+          downloadImg(url, () => {
+            console.log('endTime' + new Date().getMilliseconds())
+            currDownloadNums--
+            startDownload()
+          })
+          currIdx++
+          currDownloadNums++
+        }
+      }
+
+      startDownload()
+    }
+  </script>
+
+</body>
+</html>
