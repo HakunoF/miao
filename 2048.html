@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048</title>
+  <style>
+    body {
+      background-color: #faf8f0;
+    }
+
+    table {
+      background-color: #b9ada1;
+      border-spacing: 10px;
+      margin: auto;
+      & td {
+        width: 100px;
+        height: 100px;
+        background-color: #cac1b5;
+        text-align: center;
+        font-size: 60px;
+        font-weight: bold;
+        color: grey;
+        &.num2 {
+          background-color: #ece4db;
+        }
+        &.num4 {
+          background-color:#ece1cc;
+        }
+        &.num8 {
+          background-color: #e9b582;
+        }
+        &.num16 {
+          background-color: #e99a6d;
+        }
+        &.num32 {
+          background-color: #e78367;
+        }
+        &.num64 {
+          background-color: #e56948;
+        }
+        &.num128 {
+          background-color: #e8d180;
+        }
+        &.num256 {
+          background-color: #abe880;
+        }
+        &.num512 {
+          background-color: #80e89f;
+        }
+        &.num1024 {
+          background-color: #80e8d2;
+        }
+        &.num2048 {
+          background-color: #80dae8;
+        }
+      }
+    }
+
+    div {
+      xbackground-color: rebeccapurple;
+      text-align: left;
+      width: 450px;
+      margin: auto;
+      position: relative;
+      color: #756e66;
+      > h1 {
+        font-size: 60px;
+        margin-bottom: 0;
+      }
+
+      > button {
+      width: max-content;
+      height: 40px;
+      font-size: 16px;
+      background-color: #b9ada1;
+      border: none;
+      color: white;
+      position: absolute;
+      font-weight: bold;
+      }
+
+      #score {
+        right: 0;
+        top: 10px;
+      }
+
+      #new {
+        right: 0;
+        bottom: 0;
+        background-color: #8c7b68;
+        font-size: 20px;
+        width: 140px;
+      }
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <div>
+    <h1>2048</h1>
+    <button id="score"></button>
+    <button id="new" onclick="refresh()">new game</button>
+    <p>Join the tiles, <b>get to 2048!</b></p>
+  </div>
+  <table id="stage"></table>
+
+  <script>
+    let board = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
+    ]
+    let scores = 0
+
+    fill(board)
+    fill(board)
+    show()
+
+    const refresh = () => {
+      board = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+      ]
+      scores = 0
+      fill(board)
+      fill(board)
+      show()
+    }
+
+
+    //绑定事件优先
+    document.addEventListener('keydown', e => {
+      if (e.key == 'ArrowUp') {
+        board = up(board)
+        show()
+      }
+      if (e.key == 'ArrowDown') {
+        board = down(board)
+        show()
+      }
+      if (e.key == 'ArrowLeft') {
+        board = left(board)
+        show()
+      }
+      if (e.key == 'ArrowRight') {
+        board = right(board)
+        show()
+      }
+    })
+
+    function left(board) {
+      let res = board.map(row => {
+        return leftMerge(row)
+      })
+      if (JSON.stringify(res) != JSON.stringify(board)) {
+        fill(res)
+      }
+      return res
+    }
+
+    function right(board) {
+      let res = board.map(row => {
+        return rightMerge(row)
+      })
+      if (JSON.stringify(res) != JSON.stringify(board)) {
+        fill(res)
+      }
+      return res
+    }
+
+    function up(board) {
+      let res = clockwise( left(antiClockwise(board)))
+      return res
+    }
+
+    function down(board) {
+      let res = antiClockwise( left(clockwise(board)))
+      return res
+    }
+
+    function leftMerge(row) {
+      let l = row.length
+      row = row.filter(it => it > 0)
+      let nextRow = []
+      for (let i = 0; i < row.length; i++) {
+        if (row[i] == row[i + 1]) {
+          nextRow.push(row[i] * 2)
+          scores += row[i] * 2
+          i++
+        } else {
+          nextRow.push(row[i])
+        }
+      }
+      while (nextRow.length < l) {
+        nextRow.push(0)
+      }
+      return nextRow
+    }
+
+    function rightMerge(row) {
+      return leftMerge(row.reverse()).reverse()
+    }
+
+    function transpose(matrix) {
+      return matrix[0].map((_, idx) => {
+        return matrix.map(it => it[idx])
+      })
+    }
+
+    function antiClockwise(board) {
+      let res = board.map(row => row.reverse())
+      return res = transpose(res)
+    }
+
+    function clockwise(board) {
+      return antiClockwise( antiClockwise(antiClockwise(board)))
+    }
+
+    function fill(board) {
+      if (board.flat().includes(0)) {
+        let row = Math.random() * board.length | 0
+        let col = Math.random() * board[0].length | 0
+        if (board[row][col] == 0) {
+          board[row][col] = Math.random() > 0.5 ? 2 : 4 //随机填入2或4
+        } else {
+          fill(board)
+        }
+      }
+    }
+
+    function show() {
+      stage.innerHTML = board.map(row => {
+        return `<tr>${row.map(cell => {
+          if (cell == 0) {
+            return `<td></td>`
+          } else {
+            return `<td class="num${cell}">${cell}</td>`
+          }
+        }).join('')}
+        </tr>`
+      }).join('')
+      score.innerHTML = `Score: ${scores}`
+
+    }
+
+
+
+
+
+
+  </script>
+
+
+</body>
+</html>
