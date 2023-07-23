@@ -7,6 +7,7 @@
   <style>
     body {
       background-color: #faf8f0;
+      overflow: hidden;
     }
 
     table {
@@ -14,8 +15,8 @@
       border-spacing: 10px;
       margin: auto;
       & td {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         background-color: #cac1b5;
         text-align: center;
         font-size: 60px;
@@ -41,18 +42,23 @@
         }
         &.num128 {
           background-color: #e8d180;
+          font-size: 40px;
         }
         &.num256 {
           background-color: #abe880;
+          font-size: 40px;
         }
         &.num512 {
           background-color: #80e89f;
+          font-size: 40px;
         }
         &.num1024 {
           background-color: #80e8d2;
+          font-size: 36px;
         }
         &.num2048 {
           background-color: #80dae8;
+          font-size: 36px;
         }
       }
     }
@@ -60,7 +66,7 @@
     div {
       xbackground-color: rebeccapurple;
       text-align: left;
-      width: 450px;
+      width: 360px;
       margin: auto;
       position: relative;
       color: #756e66;
@@ -107,10 +113,11 @@
   </div>
   <table id="stage"></table>
 
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
   <script>
     let board = [
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
+      [0, 1024, 0, 0],
+      [0, 512, 0, 0],
       [0, 0, 0, 0],
       [0, 0, 0, 0]
     ]
@@ -149,6 +156,24 @@
         show()
       }
       if (e.key == 'ArrowRight') {
+        board = right(board)
+        show()
+      }
+    })
+
+    const mc = new Hammer.Manager(document.body)
+    mc.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL }))
+    mc.on('panend', (e) => {
+      if (e.direction === Hammer.DIRECTION_UP) {
+        board = up(board)
+        show()
+      } else if (e.direction === Hammer.DIRECTION_DOWN) {
+        board = down(board)
+        show()
+      } else if (e.direction === Hammer.DIRECTION_LEFT) {
+        board = left(board)
+        show()
+      } else if (e.direction === Hammer.DIRECTION_RIGHT) {
         board = right(board)
         show()
       }
