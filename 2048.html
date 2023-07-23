@@ -156,7 +156,7 @@
 
     function left(board) {
       let res = board.map(row => {
-        return leftMerge(row)
+        return merge(row)
       })
       if (JSON.stringify(res) != JSON.stringify(board)) {
         fill(res)
@@ -166,7 +166,7 @@
 
     function right(board) {
       let res = board.map(row => {
-        return rightMerge(row)
+        return merge(row.reverse()).reverse()
       })
       if (JSON.stringify(res) != JSON.stringify(board)) {
         fill(res)
@@ -184,7 +184,7 @@
       return res
     }
 
-    function leftMerge(row) {
+    function merge(row) {
       let l = row.length
       row = row.filter(it => it > 0)
       let nextRow = []
@@ -201,10 +201,6 @@
         nextRow.push(0)
       }
       return nextRow
-    }
-
-    function rightMerge(row) {
-      return leftMerge(row.reverse()).reverse()
     }
 
     function transpose(matrix) {
