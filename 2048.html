@@ -161,22 +161,29 @@
       }
     })
 
-    const mc = new Hammer.Manager(document.body)
-    mc.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL }))
-    mc.on('panend', (e) => {
-      if (e.direction === Hammer.DIRECTION_UP) {
-        board = up(board)
-        show()
-      } else if (e.direction === Hammer.DIRECTION_DOWN) {
-        board = down(board)
-        show()
-      } else if (e.direction === Hammer.DIRECTION_LEFT) {
-        board = left(board)
-        show()
-      } else if (e.direction === Hammer.DIRECTION_RIGHT) {
-        board = right(board)
-        show()
+    const hm = new Hammer(document.body)
+    hm.on('panend', (e) => {
+      let velocityX = Math.abs(e.velocityX)
+      let velocityY = Math.abs(e.velocityY)
+      
+      if (velocityX > velocityY) {
+        if (e.direction === Hammer.DIRECTION_LEFT) {
+          board = left(board)
+          show()
+        } else if (e.direction === Hammer.DIRECTION_RIGHT) {
+          board = right(board)
+          show()
+        }
+      } else {
+        if (e.direction === Hammer.DIRECTION_UP) {
+          board = up(board)
+          show()
+        } else if (e.direction === Hammer.DIRECTION_DOWN) {
+          board = down(board)
+          show()
+        }
       }
+
     })
 
     function left(board) {
