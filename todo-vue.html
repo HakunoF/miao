@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>toDos</title>
+  <style>
+    .completed input[type="text"] {
+      text-decoration: line-through
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+  <script>
+    new Vue({
+      el: '#container',
+      data: {
+        todos: [
+          { content: 'eat', completed: true, editing: false },
+          { content: 'drink', completed: false, editing: false },
+          { content: 'sleep', completed: true, editing: false }
+        ],
+        visibleTodos: 'all',
+        newTodo: ''
+      },
+      watch: {
+        todos: {
+          handler: function(newTodos) {
+            localStorage.setItem('todos', JSON.stringify(newTodos))
+          },
+          deep: true
+        }
+      },
+      methods: {
+        addTodo() {
+          if (this.newTodo.trim()) {
+            this.todos.push({ content: this.newTodo, completed: false, editing: false })
+            this.newTodo = ''
+          }
+        },
+        deleteTodo(index) {
+          this.todos.splice(index, 1)
+        },
+        toggleComplete(index) {
+          this.todos[index].completed = !this.todos[index].completed
+        },
+        toggleAll() {
+          const allCompleted = this.todos.every(todo => todo.completed)
+          this.todos.forEach(todo => (todo.completed = !allCompleted))
+        },
+        clearCompleted() {
+          this.todos = this.todos.filter(todo => !todo.completed)
+        }
+      },
+      computed: {
+        filteredTodos() {
+          if (this.visibleTodos === 'active') {
+            return this.todos.filter(todo => !todo.completed)
+          } else if (this.visibleTodos === 'completed') {
+            return this.todos.filter(todo => todo.completed)
+          }
+          return this.todos
+        },
+        itemsLeft() {
+          return this.todos.filter(todo => !todo.completed).length
+        }
+      },
+      template: `
+        <div>
+          <h1>todos</h1>
+          <div>
+            <input
+              type="checkbox"
+              class="toggle-all"
+              :checked="todos.every(todo => todo.completed)"
+              @change="toggleAll"
+            >
+            <input
+              type="text"
+              id="todo-input"
+              placeholder="what needs to be done?"
+              v-model="newTodo"
+              @keyup.enter="addTodo"
+            >
+          </div>
+          <ul :class="'visible-' + visibleTodos">
+            <li v-for="(todo, index) in filteredTodos" :class="{ completed: todo.completed }">
+              <input
+                type="checkbox"
+                :checked="todo.completed"
+                @change="toggleComplete(index)"
+              >
+              <input
+                type="text"
+                :value="todo.content"
+                :readonly="!todo.editing"
+                @dblclick="todo.editing = true"
+                @blur="todo.editing = false"
+                @keyup.enter="todo.editing = false"
+                @input="todo.content = $event.target.value"
+                class="editable"
+              >
+              <button class="delete" @click="deleteTodo(index)">&times;</button>
+            </li>
+          </ul>
+          <div>
+            <span><em>{{itemsLeft}}</em> items left</span>
+            <div class="visible-select">
+              <label><input type="radio" value="all" v-model="visibleTodos"> All</label>
+              <label><input type="radio" value="active" v-model="visibleTodos"> Active</label>
+              <label><input type="radio" value="completed" v-model="visibleTodos"> Completed</label>
+            </div>
+            <button class="clear-completed" @click="clearCompleted" v-if="todos.some(todo => todo.completed)">Clear completed</button>
+          </div>
+        </div>
+      `
+    })
+  </script>
+</body>
+</html>
