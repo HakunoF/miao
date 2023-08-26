@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todos</title>
+  <style>
+    .container {
+      max-width: max-content;
+      margin: auto;
+      font-family: Arial, Helvetica, sans-serif;
+      position: relative;
+    }
+    button, input{
+    border: none;
+    outline: none;
+    }
+    input {
+      &[type="text"] {
+        width: 400px;
+      }
+      &[done] {
+        text-decoration: line-through;
+      }
+    }
+    hr {
+      border: 1px solid rgb(222, 221, 221);
+    }
+    .wrapper {
+      border: 1px solid rgb(222, 221, 221);
+      padding: 10px;
+      box-shadow: -2px -2px rgb(195, 194, 194);
+      & * {
+        font-size: 14px;
+      }
+    }
+    .wrapper > * {
+      text-align: left;
+    }
+    h1 {
+      color: #e8d9d8;
+      font-size: 100px;
+      font-weight: 100;
+      margin: 0;
+      text-align: center;
+    }
+
+    .my-main {
+      list-style: none;
+      padding: 0;
+    }
+
+    .my-footer {
+      display: flex;
+      xjustify-content: space-around;
+      gap: 50px;
+      & .active {
+        margin: 0 8px;
+      }
+      & label {
+        background-color: #efefef;
+      }
+    }
+
+    label.mode {
+      display: block;
+      width: 68px;
+      height: 40px;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 2.5px;
+      background-color: #e7e7e7;
+      border: 1px solid #c9cac8;
+      border-radius: 80px;
+      position: absolute;
+      right: 0;
+      top: 50px;
+      transition: 0.5s;
+      > input {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        display: none;
+      }
+      > span {
+        display: inline-block;
+        border: none;
+        border-radius: 70px;
+        background-color: white !important;
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 2px;
+        right: 30px;
+        box-shadow: 0 0 5px rgba(91, 91, 91, 0.483);
+      }
+      & input:checked + span {
+        left: 30px;
+        right: 2px;
+        transition: right 0.5s, left 0.7s;
+      }
+      &:has(:checked) {
+        xbackground-color: #72f15e;
+        border-color: #303d46;
+        box-shadow: inset 5px 0 0 20px #506574;
+      }
+    }
+
+    .container:has(.mode input:checked) * {
+      background-color: #506574;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <h1>todos</h1>
+      <label class="mode">
+        <input type="checkbox" checked>
+        <span></span>
+      </label>
+      <div class="wrapper">
+        <div class="my-header">
+          <input type="checkbox" @click="handleAll($event)" :checked="todos.every(todo => todo.completed)">
+          <input type="text" @keyup.enter="addTodo($event)" placeholder="What needs to be done?">
+          <hr>
+        </div>
+        <ul class="my-main">
+          <li v-for="todo of todos" :key="todo.id" v-show="todo.completed == filterTodo.showTodo1 || todo.completed == filterTodo.showTodo2">
+            <input type="checkbox" :checked="todo.completed" @click="todo.completed = !todo.completed">
+            <input type="text" v-model="todo.content" readonly @dblclick="editTodo($event, todo.completed)"
+            :done="todo.completed"
+            @blur="$event.target.readOnly = true"
+            @keyup.enter="$event.target.readOnly = true">
+            <button @click="handleDelete(todo.id)">&times;</button>
+            <hr>
+          </li>
+        </ul>
+        <div class="my-footer">
+          <div><span>{{ countLeft }}</span> items left</div>
+          <div>
+            <label><input type="radio" hidden name="chooseToShow" checked @click="showTodo('all')"> All</label>
+            <label class="active"><input type="radio" hidden name="chooseToShow" @click="showTodo('active')"> Active</label>
+            <label><input type="radio" hidden name="chooseToShow" @click="showTodo('completed')"> Completed</label>
+          </div>
+          <div>
+            <button v-show="todos.some(todo => todo.completed)" @click="clearCompleted">Clear completed</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./vue-2.7.14.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        todos: [
+          {id: 999, content: 'eat', completed: true},
+          {id: 998, content: 'coffee', completed: false},
+          {id: 997, content: 'sleep', completed: true},
+          {id: 996, content: 'reading', completed: false},
+          {id: 995, content: 'do the laundry', completed: false},
+          {id: 994, content: 'lib', completed: true},
+        ],
+        serialNum: 0,
+        filterTodo: {
+          showTodo1: true,
+          showTodo2: false,
+        }
+      },
+      computed: {
+        countLeft() {
+          return this.todos.reduce((sum, todo) => sum += todo.completed ? 0 : 1, 0)
+        }
+      },
+      methods: {
+        addTodo(e) {
+          const newtodo = e.target.value.trim()
+          if (newtodo) {
+            const newObj = {id: this.serialNum++, content: newtodo, completed: false}
+            this.todos.push(newObj)
+          }
+          e.target.value = ''
+        },
+        handleAll(e) {
+          let state = e.target.checked
+          this.todos.forEach(todo => todo.completed = state)
+          return
+        },
+        handleDelete(id) {
+          if (confirm('Sure to delete this one?')) {
+            this.todos.forEach((todo, idx) => {
+              if (todo.id == id) {
+                this.todos.splice(idx, 1)
+                return
+              }
+            })
+          }
+        },
+        showTodo(keyword) {
+          if(keyword == 'all') {
+            this.filterTodo.showTodo1 = true
+            this.filterTodo.showTodo2= false
+            return
+          }
+          if(keyword == 'active') {
+            this.filterTodo.showTodo1 = false
+            this.filterTodo.showTodo2= false
+            return
+          }
+          if(keyword == 'completed') {
+            this.filterTodo.showTodo1 = true
+            this.filterTodo.showTodo2= true
+            return
+          }
+        },
+        editTodo(e, done) {
+          if (!done) {
+            e.target.readOnly = false
+          }
+        },
+        clearCompleted() {
+          this.todos = this.todos.filter(todo => !todo.completed)
+          return
+        }
+      },
+    })
+  </script>
+
+</body>
+</html>
