@@ -126,17 +126,17 @@
       </label>
       <div class="wrapper">
         <div class="my-header">
-          <input type="checkbox" @click="handleAll($event)" :checked="todos.every(todo => todo.completed)">
-          <input type="text" @keyup.enter="addTodo($event)" placeholder="What needs to be done?">
+          <input type="checkbox" @click="handleAll" :checked="todos.every(todo => todo.completed)">
+          <input type="text" @keyup.enter="addTodo" placeholder="What needs to be done?">
           <hr>
         </div>
         <ul class="my-main">
-          <li v-for="todo of todos" :key="todo.id" v-show="todo.completed == filterTodo.showTodo1 || todo.completed == filterTodo.showTodo2">
+          <li v-for="todo of showTodos" :key="todo.id">
             <input type="checkbox" :checked="todo.completed" @click="todo.completed = !todo.completed">
             <input type="text" v-model="todo.content" readonly @dblclick="editTodo($event, todo.completed)"
             :done="todo.completed"
-            @blur="$event.target.readOnly = true"
-            @keyup.enter="$event.target.readOnly = true">
+            @blur="finishEdit($event, todo.id)"
+            @keyup.enter="finishEdit($event, todo.id)">
             <button @click="handleDelete(todo.id)">&times;</button>
             <hr>
           </li>
@@ -144,9 +144,9 @@
         <div class="my-footer">
           <div><span>{{ countLeft }}</span> items left</div>
           <div>
-            <label><input type="radio" hidden name="chooseToShow" checked @click="showTodo('all')"> All</label>
-            <label class="active"><input type="radio" hidden name="chooseToShow" @click="showTodo('active')"> Active</label>
-            <label><input type="radio" hidden name="chooseToShow" @click="showTodo('completed')"> Completed</label>
+            <label><input type="radio" hidden name="chooseToShow" checked value="all" @click="visibleTodo = 'all' "> All</label>
+            <label class="active"><input type="radio" hidden name="chooseToShow" value="active" @click="visibleTodo = 'active' "> Active</label>
+            <label><input type="radio" hidden name="chooseToShow" value="completed" @click="visibleTodo = 'completed' "> Completed</label>
           </div>
           <div>
             <button v-show="todos.some(todo => todo.completed)" @click="clearCompleted">Clear completed</button>
@@ -170,10 +170,7 @@
           {id: 5, content: 'do the laundry', completed: false},
           {id: 4, content: 'lib', completed: true},
         ],
-        filterTodo: {
-          showTodo1: true,
-          showTodo2: false,
-        }
+        visibleTodo: 'all',
       },
       watch: {
         todos : {
@@ -187,6 +184,15 @@
       computed: {
         countLeft() {
           return this.todos.reduce((sum, todo) => sum += todo.completed ? 0 : 1, 0)
+        },
+        showTodos() {
+          if (this.visibleTodo == 'active') {
+            return this.todos.filter(it => !it.completed)
+          }
+          if (this.visibleTodo == 'completed') {
+            return this.todos.filter(it => it.completed)
+          }
+          return this.todos
         }
       },
       methods: {
@@ -214,23 +220,6 @@
             })
           }
         },
-        showTodo(keyword) {
-          if(keyword == 'all') {
-            this.filterTodo.showTodo1 = true
-            this.filterTodo.showTodo2= false
-            return
-          }
-          if(keyword == 'active') {
-            this.filterTodo.showTodo1 = false
-            this.filterTodo.showTodo2= false
-            return
-          }
-          if(keyword == 'completed') {
-            this.filterTodo.showTodo1 = true
-            this.filterTodo.showTodo2= true
-            return
-          }
-        },
         editTodo(e, done) {
           if (!done) {
             e.target.readOnly = false
@@ -239,6 +228,17 @@
         clearCompleted() {
           this.todos = this.todos.filter(todo => !todo.completed)
           return
+        },
+        finishEdit(e, id) {
+          if (!e.target.value.trim()) {
+            this.todos.forEach((todo, idx) => {
+              if (todo.id == id) {
+                this.todos.splice(idx, 1)
+                return
+              }
+            })
+          }
+          e.target.readOnly = true
         }
       },
     })
