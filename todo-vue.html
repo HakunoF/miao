@@ -162,19 +162,27 @@
     new Vue({
       el: '#app',
       data: {
-        todos: [
-          {id: 999, content: 'eat', completed: true},
-          {id: 998, content: 'coffee', completed: false},
-          {id: 997, content: 'sleep', completed: true},
-          {id: 996, content: 'reading', completed: false},
-          {id: 995, content: 'do the laundry', completed: false},
-          {id: 994, content: 'lib', completed: true},
+        todos:  JSON.parse(localStorage.getItem('todos')) || [
+          {id: 9, content: 'eat', completed: true},
+          {id: 8, content: 'coffee', completed: false},
+          {id: 7, content: 'sleep', completed: true},
+          {id: 6, content: 'reading', completed: false},
+          {id: 5, content: 'do the laundry', completed: false},
+          {id: 4, content: 'lib', completed: true},
         ],
-        serialNum: 0,
         filterTodo: {
           showTodo1: true,
           showTodo2: false,
         }
+      },
+      watch: {
+        todos : {
+          deep: true,
+          handler(value) {
+            localStorage.setItem('todos',JSON.stringify(value))
+          }
+        }
+
       },
       computed: {
         countLeft() {
@@ -185,7 +193,8 @@
         addTodo(e) {
           const newtodo = e.target.value.trim()
           if (newtodo) {
-            const newObj = {id: this.serialNum++, content: newtodo, completed: false}
+            const newObj = {id: Date.now(), content: newtodo, completed: false}
+            console.log(newObj.id)
             this.todos.push(newObj)
           }
           e.target.value = ''
