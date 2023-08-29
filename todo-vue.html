@@ -149,7 +149,7 @@
           <hr>
         </div>
         <ul class="my-main">
-          <transition name="oneTodo" v-for="todo of showTodos" :key="todo.id">
+          <transition name="oneTodo" appear v-for="todo of showTodos" :key="todo.id">
             <li>
               <input type="checkbox" :checked="todo.completed" @click="todo.completed = !todo.completed">
               <input type="text" v-model="todo.content" readonly @dblclick="editTodo($event, todo.completed)"
