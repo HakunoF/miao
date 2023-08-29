@@ -114,6 +114,24 @@
       background-color: #506574;
       color: white;
     }
+
+    .oneTodo-enter-active {
+      animation: inandout .2s linear;
+    }
+
+    .oneTodo-leave-active {
+      animation: inandout .2s linear reverse;
+    }
+
+    @keyframes inandout {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0px);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -131,15 +149,17 @@
           <hr>
         </div>
         <ul class="my-main">
-          <li v-for="todo of showTodos" :key="todo.id">
-            <input type="checkbox" :checked="todo.completed" @click="todo.completed = !todo.completed">
-            <input type="text" v-model="todo.content" readonly @dblclick="editTodo($event, todo.completed)"
-            :done="todo.completed"
-            @blur="finishEdit($event, todo.id)"
-            @keyup.enter="finishEdit($event, todo.id)">
-            <button @click="handleDelete(todo.id)">&times;</button>
-            <hr>
-          </li>
+          <transition name="oneTodo" v-for="todo of showTodos" :key="todo.id">
+            <li>
+              <input type="checkbox" :checked="todo.completed" @click="todo.completed = !todo.completed">
+              <input type="text" v-model="todo.content" readonly @dblclick="editTodo($event, todo.completed)"
+              :done="todo.completed"
+              @blur="finishEdit($event, todo.id)"
+              @keyup.enter="finishEdit($event, todo.id)">
+              <button @click="handleDelete(todo.id)">&times;</button>
+              <hr>
+            </li>
+          </transition>
         </ul>
         <div class="my-footer">
           <div><span>{{ countLeft }}</span> items left</div>
